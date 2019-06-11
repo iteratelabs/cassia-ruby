@@ -1,0 +1,6 @@
+example_id                                      | status | run_time        |
+----------------------------------------------- | ------ | --------------- |
+./spec/cassia/requests/get_token_spec.rb[1:1:1] | passed | 0.00008 seconds |
+./spec/cassia/requests/get_token_spec.rb[1:2:1] | passed | 0.00082 seconds |
+./spec/cassia/requests/get_token_spec.rb[1:3:1] | passed | 0.00011 seconds |
+./spec/cassia/requests/get_token_spec.rb[1:4:1] | passed | 0.19425 seconds |
