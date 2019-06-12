@@ -39,7 +39,8 @@ RSpec.describe Cassia::Requests::GetToken do
   end
 
   describe '#perform' do
-    context "when passing valid credentials" do
+    vcr_options = { cassette_name: 'token/success', record: :new_episodes }
+    context "when passing valid credentials", vcr: vcr_options do
       it "returns a 200 response" do
         Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
         Cassia.configuration.secret = ENV['CASSIA_SECRET']
@@ -61,7 +62,8 @@ RSpec.describe Cassia::Requests::GetToken do
       end
     end
 
-    context "when passing invalid credentials" do
+    vcr_options = { cassette_name: 'token/failure', record: :new_episodes }
+    context "when passing invalid credentials", vcr: vcr_options do
       it "returns a 401" do
         Cassia.configuration.client_id = "invalid"
         Cassia.configuration.secret = "invalid"

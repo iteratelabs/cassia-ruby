@@ -2,6 +2,7 @@ require "dotenv"
 require "bundler/setup"
 require "cassia"
 require "pry"
+require "vcr"
 
 Dotenv.load
 Dir[File.join(File.dirname(__FILE__), 'support', '**', '*.rb')].each do |f|
