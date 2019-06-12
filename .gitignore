@@ -9,3 +9,4 @@
 .DS_Store
 .env
 .rspec_status
+**/.vscode
