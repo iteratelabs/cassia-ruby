@@ -5,7 +5,7 @@ RSpec.describe Cassia::Requests::GetToken do
     it "returns the correct API endpoint" do
       request = described_class.new
 
-      expect(request.path).to eq('/oauth2/token')
+      expect(request.path).to eq('/api/oauth2/token')
     end
   end
 
@@ -28,7 +28,7 @@ RSpec.describe Cassia::Requests::GetToken do
 
       request = described_class.new
 
-      base64 = Base64.encode64("test:12345")
+      base64 = Base64.encode64("test:12345").strip
       expect(request.headers).to eq(
         {
           'Authorization' => "Basic #{base64}",
@@ -39,19 +39,49 @@ RSpec.describe Cassia::Requests::GetToken do
   end
 
   describe '#perform' do
-    it "returns the correct request" do
-      Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
-      ci = Cassia.configuration.client_id
-      puts ci
-      Cassia.configuration.secret = ENV['CASSIA_SECRET']
-      s = Cassia.configuration.secret
-      puts s
+    context "when passing valid credentials" do
+      it "returns a 200 response" do
+        Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
+        Cassia.configuration.secret = ENV['CASSIA_SECRET']
 
-      request = described_class.new
-      response = request.perform
-      puts response
-      puts response.body
-      puts response.status
+        request = described_class.new
+        response = request.perform
+
+        expect(response.status).to eq 200
+      end
+
+      it "returns a valid token" do
+        Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
+        Cassia.configuration.secret = ENV['CASSIA_SECRET']
+
+        request = described_class.new
+        response = request.perform
+
+        expect(response.body).to have_key("access_token")
+      end
+    end
+
+    context "when passing invalid credentials" do
+      it "returns a 401" do
+        Cassia.configuration.client_id = "invalid"
+        Cassia.configuration.secret = "invalid"
+
+        request = described_class.new
+        response = request.perform
+
+        expect(response.status).to eq 401
+      end
+
+      it "returns an invalid response" do
+        Cassia.configuration.client_id = "invalid"
+        Cassia.configuration.secret = "invalid"
+
+        request = described_class.new
+        response = request.perform
+
+        expect(response.body['error']).to eq("invalid_client")
+        expect(response.body['error_description']).to eq("Client not found")
+      end
     end
   end
 end

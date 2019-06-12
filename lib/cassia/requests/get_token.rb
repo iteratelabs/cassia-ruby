@@ -2,7 +2,7 @@ module Cassia
   module Requests
     class GetToken
       def path
-        '/oauth2/token'
+        '/api/oauth2/token'
       end
 
       def body
@@ -10,7 +10,7 @@ module Cassia
       end
 
       def headers
-        { 
+        {
           'Authorization' => "Basic #{get_encode}",
           'Content-Type' => "application/json"
         }
@@ -18,12 +18,12 @@ module Cassia
 
       def perform
         Cassia.api.post(self)
-      end  
+      end
 
       private
       def get_encode
-        Base64.encode64("#{Cassia.configuration.client_id}:#{Cassia.configuration.secret}")
-      end   
-    end 
+        Base64.encode64("#{Cassia.configuration.client_id}:#{Cassia.configuration.secret}").strip
+      end
+    end
   end
 end
