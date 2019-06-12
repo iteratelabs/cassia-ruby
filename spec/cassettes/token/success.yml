@@ -8,7 +8,7 @@ http_interactions:
       string: '{"grant_type":"client_credentials"}'
     headers:
       Authorization:
-      - Basic aXRlcmF0ZWxhYnM6N2Q4Yjk5ZTk4OTM0NGI2Zg==
+      - Basic <CREDENTIALS>
       Content-Type:
       - application/json
   response:
@@ -19,7 +19,7 @@ http_interactions:
       server:
       - nginx/1.13.6
       date:
-      - Wed, 12 Jun 2019 18:37:56 GMT
+      - Wed, 12 Jun 2019 19:39:06 GMT
       content-type:
       - application/json
       content-length:
@@ -44,7 +44,7 @@ http_interactions:
       - no-cache
     body:
       encoding: UTF-8
-      string: '{"token_type":"bearer","access_token":"4bd110e250262144c7b8ee7606338830e04f5d1ddae7b7aee366190816a09571","expires_in":3600}'
+      string: '{"token_type":"bearer","access_token":"2ded2d8cf3073d368fec27243a71f858e9b9231d7388e63e6d2f70852c33e66f","expires_in":3600}'
     http_version: 
-  recorded_at: Wed, 12 Jun 2019 18:37:56 GMT
+  recorded_at: Wed, 12 Jun 2019 19:39:06 GMT
 recorded_with: VCR 5.0.0
