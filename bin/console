@@ -1,14 +1,17 @@
 #!/usr/bin/env ruby
 
 require "bundler/setup"
-require "cassia/ruby"
-
-# You can add fixtures and/or initialization code here to make experimenting
-# with your gem easier. You can also use a different console, if you like.
-
-# (If you use this, don't forget to add pry to your Gemfile!)
-# require "pry"
-# Pry.start
-
+require "cassia"
 require "irb"
+require "pry"
+require "dotenv"
+
+Dotenv.load
+
+Cassia.configure do |config|
+  config.ac_url = ENV['CASSIA_AC_URL']
+  config.client_id = ENV['CASSIA_CLIENT_ID']
+  config.secret = ENV['CASSIA_SECRET']
+end
+
 IRB.start(__FILE__)
