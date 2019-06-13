@@ -8,6 +8,7 @@ jobs:
           BUNDLE_JOBS: 3
           BUNDLE_RETRY: 3
           BUNDLE_PATH: vendor/bundle
+          BUNDLER_VERSION: 2.0.1
           RAILS_ENV: test
 
     steps:
@@ -45,4 +46,4 @@ jobs:
       # Save test results for timing analysis
       - store_test_results:
           path: test_results
-          
+   
