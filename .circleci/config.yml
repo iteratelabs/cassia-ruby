@@ -37,7 +37,7 @@ jobs:
             - vendor/bundle
 
       # Setup the environment
-      - run: cp .sample.env .env
+      - run: cp .env.sample .env
 
       # Run rspec in parallel
       - run:
