@@ -3,7 +3,7 @@ module Cassia
     attr_accessor :client_id, :secret, :ac_url
  
     def ac_url
-      @ac_url ||= "http://demo.cassia.pro"
+    	@ac_url ||= "http://demo.cassia.pro"
     end
   end
 end
