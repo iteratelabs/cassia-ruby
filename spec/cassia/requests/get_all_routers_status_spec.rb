@@ -15,7 +15,7 @@ RSpec.describe Cassia::Requests::GetAllRoutersStatus do
       Cassia.configuration.secret = "12345"
       access_token = "2ded2d8cf3073d368fec27243a71f858e9b9231d7388e63e6d2f70852c33e66f"
 
-      request = described_class.new(access_token)
+      request = described_class.new(access_token: access_token)
 
       expect(request.headers).to eq(
         {
@@ -53,7 +53,7 @@ RSpec.describe Cassia::Requests::GetAllRoutersStatus do
     vcr_options = { cassette_name: 'routersstatus/failure', record: :new_episodes }
     context "when passing invalid access token", vcr: vcr_options do
       it "returns a 403" do
-        request = described_class.new("invalid_access_token")
+        request = described_class.new(access_token: "invalid_access_token")
         response = request.perform
 
         expect(response.status).to eq 403
