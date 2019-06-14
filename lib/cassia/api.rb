@@ -8,6 +8,13 @@ module Cassia
       end
     end
 
+    def get(request)
+      connection.get do |req|
+        req.url request.path
+        req.headers = request.headers
+      end 
+    end
+
     private
 
     def connection

@@ -7,6 +7,7 @@ require "cassia/api"
 require "cassia/configuration"
 require "cassia/default_logger"
 require "cassia/requests/get_token"
+require "cassia/requests/get_all_routers_status"
 
 module Cassia
   def self.configuration
