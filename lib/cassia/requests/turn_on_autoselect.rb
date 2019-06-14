@@ -1,9 +1,10 @@
 module Cassia
   module Requests
-    class TurnOnAutoselect
+    class SwitchAutoSelect
 
-      def initialize(access_token: nil)
+      def initialize(access_token: nil, flag: 1)
         @access_token = access_token
+        @flag = flag
       end
 
       def path

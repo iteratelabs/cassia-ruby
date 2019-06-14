@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe Cassia::Requests::TurnOnAutoselect do
+RSpec.describe Cassia::Requests::SwitchAutoSelect do
   describe '#path' do
     it "returns the correct API endpoint" do
       request = described_class.new
@@ -57,10 +57,7 @@ RSpec.describe Cassia::Requests::TurnOnAutoselect do
         request = described_class.new
         response = request.perform
 
-        expect(response.body).to have_key("status")
-        expect(response.body["status"]).to eq "success"
-        expect(response.body).to have_key("flag")
-        expect(response.body["flag"]).to eq 1
+        expect(response.body).to include("status" => "success", "flag" => 1)
       end
     end
 

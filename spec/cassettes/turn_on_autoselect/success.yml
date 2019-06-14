@@ -19,7 +19,7 @@ http_interactions:
       server:
       - nginx/1.13.6
       date:
-      - Fri, 14 Jun 2019 19:23:30 GMT
+      - Fri, 14 Jun 2019 20:57:50 GMT
       content-type:
       - application/json
       content-length:
@@ -44,9 +44,9 @@ http_interactions:
       - no-cache
     body:
       encoding: UTF-8
-      string: '{"token_type":"bearer","access_token":"22d22638acf31cb7e21eb284f3b9dc0135cf8dbd0d77b0622dd0e541b8f51d09","expires_in":3600}'
+      string: '{"token_type":"bearer","access_token":"9da895846956d3302ed41b62cf5bbbad134a7e42ca7f1d8e9d1a9bc81d261d13","expires_in":3600}'
     http_version: 
-  recorded_at: Fri, 14 Jun 2019 19:23:30 GMT
+  recorded_at: Fri, 14 Jun 2019 20:57:50 GMT
 - request:
     method: post
     uri: http://iteratelabs.cassia.pro/api/aps/ap-select-switch
@@ -55,7 +55,7 @@ http_interactions:
       string: '{"flag":1}'
     headers:
       Authorization:
-      - Bearer 22d22638acf31cb7e21eb284f3b9dc0135cf8dbd0d77b0622dd0e541b8f51d09
+      - Bearer 9da895846956d3302ed41b62cf5bbbad134a7e42ca7f1d8e9d1a9bc81d261d13
       Content-Type:
       - application/json
   response:
@@ -66,7 +66,7 @@ http_interactions:
       server:
       - nginx/1.13.6
       date:
-      - Fri, 14 Jun 2019 19:23:30 GMT
+      - Fri, 14 Jun 2019 20:57:50 GMT
       content-type:
       - application/json
       transfer-encoding:
@@ -89,5 +89,5 @@ http_interactions:
       encoding: UTF-8
       string: '{"status":"success","flag":1}'
     http_version: 
-  recorded_at: Fri, 14 Jun 2019 19:23:30 GMT
+  recorded_at: Fri, 14 Jun 2019 20:57:50 GMT
 recorded_with: VCR 5.0.0
