@@ -10,12 +10,21 @@ RSpec.describe Cassia::Requests::SwitchAutoSelect do
   end
 
   describe '#body' do
-    it "returns the correct flag" do
-      request = described_class.new
+    it "returns the correct flag for an on_request" do
+      on_request = described_class.new(flag: 1)
 
-      expect(request.body).to eq(
+      expect(on_request.body).to eq(
         {
           'flag' => 1
+        }.to_json
+      )
+    end
+
+    it "returns the correct flag for an off_request" do
+      off_request = described_class.new(flag: 0)
+      expect(off_request.body).to eq(
+        {
+          'flag' => 0
         }.to_json
       )
     end
@@ -40,24 +49,34 @@ RSpec.describe Cassia::Requests::SwitchAutoSelect do
   end
 
   describe '#perform' do
-    vcr_options = { cassette_name: 'turn_on_autoselect/success', record: :new_episodes }
-    context "when passing a valid access token", vcr: vcr_options do
-      it "returns a 200 response" do
+    vcr_options = { cassette_name: 'turn_on_autoselect/success_on', record: :new_episodes }
+    context "when passing a valid access token to an on_request", vcr: vcr_options do
+      it "returns a 200 response for an on_request" do
         Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
         Cassia.configuration.secret = ENV['CASSIA_SECRET']
 
-        request = described_class.new
+        request = described_class.new(flag: 1)
         response = request.perform
+
 
         expect(response.status).to eq 200
-      end
-
-      it "returns a successful status and a flag 1" do
-
-        request = described_class.new
-        response = request.perform
-
         expect(response.body).to include("status" => "success", "flag" => 1)
+      end
+    end
+      
+    vcr_options = { cassette_name: 'turn_on_autoselect/success_off', record: :new_episodes }
+    context "when passing a valid access token to an off_request", vcr: vcr_options do
+      it "returns a 200 response for an off_request" do
+        Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
+        Cassia.configuration.secret = ENV['CASSIA_SECRET']
+
+        request2 = described_class.new(flag: 0)
+        response2 = request2.perform
+
+        puts response2.body
+        
+        expect(response2.status).to eq 200
+        expect(response2.body).to include("status" => "success", "flag" => 0)
       end
     end
 

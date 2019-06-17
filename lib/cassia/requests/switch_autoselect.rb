@@ -12,7 +12,7 @@ module Cassia
       end
 
       def body
-        { 'flag' => 1 }.to_json
+        { 'flag' => @flag }.to_json
       end
 
       def headers

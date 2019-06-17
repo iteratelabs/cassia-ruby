@@ -8,7 +8,7 @@ require "cassia/configuration"
 require "cassia/default_logger"
 require "cassia/requests/get_token"
 require "cassia/requests/get_all_routers_status"
-require "cassia/requests/turn_on_autoselect"
+require "cassia/requests/switch_autoselect"
 
 module Cassia
   def self.configuration
