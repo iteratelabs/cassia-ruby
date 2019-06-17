@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe Cassia::Requests::SwitchAutoSelect do
+RSpec.describe Cassia::Requests::SwitchAutoselect do
   describe '#path' do
     it "returns the correct API endpoint" do
       request = described_class.new
