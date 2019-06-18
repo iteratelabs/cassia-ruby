@@ -1,0 +1,93 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://iteratelabs.cassia.pro/api/oauth2/token
+    body:
+      encoding: UTF-8
+      string: '{"grant_type":"client_credentials"}'
+    headers:
+      Authorization:
+      - Basic <CREDENTIALS>
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      server:
+      - nginx/1.13.6
+      date:
+      - Tue, 18 Jun 2019 18:54:04 GMT
+      content-type:
+      - application/json
+      content-length:
+      - '123'
+      connection:
+      - close
+      access-control-allow-origin:
+      - "*"
+      access-control-allow-headers:
+      - Content-Type,Accept,Authorization
+      access-control-allow-methods:
+      - GET,POST,PUT,DELETE
+      access-control-allow-credentials:
+      - 'true'
+      x-frame-options:
+      - SAMEORIGIN
+      x-content-type-options:
+      - nosniff
+      cache-control:
+      - no-store
+      pragma:
+      - no-cache
+    body:
+      encoding: UTF-8
+      string: '{"token_type":"bearer","access_token":"2bc7cb5a99286b5811a04282f88610242593ab03a349d53bf3699becc4945412","expires_in":3600}'
+    http_version: 
+  recorded_at: Tue, 18 Jun 2019 18:54:04 GMT
+- request:
+    method: post
+    uri: http://iteratelabs.cassia.pro/api/aps/connections/connect
+    body:
+      encoding: UTF-8
+      string: '{"aps":["CC:1B:E0:E0:ED:AC","CC:1B:E0:E0:F1:E8"],"devices":["F3:25:5F:22:35:39"]}'
+    headers:
+      Authorization:
+      - Bearer 2bc7cb5a99286b5811a04282f88610242593ab03a349d53bf3699becc4945412
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      server:
+      - nginx/1.13.6
+      date:
+      - Tue, 18 Jun 2019 18:54:13 GMT
+      content-type:
+      - application/json
+      content-length:
+      - '65'
+      connection:
+      - close
+      access-control-allow-origin:
+      - "*"
+      access-control-allow-headers:
+      - Content-Type,Accept,Authorization
+      access-control-allow-methods:
+      - GET,POST,PUT,DELETE
+      access-control-allow-credentials:
+      - 'true'
+      x-frame-options:
+      - SAMEORIGIN
+      x-content-type-options:
+      - nosniff
+    body:
+      encoding: UTF-8
+      string: '{"status":"error","error":"timeout","device":"F3:25:5F:22:35:39"}'
+    http_version: 
+  recorded_at: Tue, 18 Jun 2019 18:54:13 GMT
+recorded_with: VCR 5.0.0
