@@ -3,8 +3,7 @@ require 'spec_helper'
 RSpec.describe Cassia::Requests::ConnectDevice do
   describe '#path' do
     it "returns the correct API endpoint" do
-      request = described_class.new( aps: ["CC:1B:E0:E7:FE:F8","CC:1B:E0:E7:FE:F9","CC:1B:E0:E7:FE:FA"],
-        mac: "F7:18:BC:18:F0:3A" )
+      request = described_class.new
 
       expect(request.path).to eq('/api/aps/connections/connect')
     end
@@ -12,7 +11,7 @@ RSpec.describe Cassia::Requests::ConnectDevice do
 
   describe '#body' do
     it "returns the correct aps and devices" do
-      request = described_class.new(aps: ["CC:1B:E0:E0:ED:AC", "CC:1B:E0:E0:F1:E8"], mac: "CC:1B:E0:E0:ED:AC" )
+      request = described_class.new(aps: ["CC:1B:E0:E0:ED:AC", "CC:1B:E0:E0:F1:E8"], device_mac: "CC:1B:E0:E0:ED:AC" )
       expect(request.body).to eq(
         {
           'aps' => ["CC:1B:E0:E0:ED:AC", "CC:1B:E0:E0:F1:E8"],
@@ -46,9 +45,8 @@ RSpec.describe Cassia::Requests::ConnectDevice do
           Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
           Cassia.configuration.secret = ENV['CASSIA_SECRET']
           request = described_class.new(aps: ["CC:1B:E0:E0:ED:AC", "CC:1B:E0:E0:F1:E8"],
-            mac: "F3:25:5F:22:35:39" )
+            device_mac: "F3:25:5F:22:35:39" )
           response = request.perform
-          puts response.body
 
           expect(response.status).to eq 200
         end
@@ -59,9 +57,8 @@ RSpec.describe Cassia::Requests::ConnectDevice do
         it "returns a 400 and error message invalid devices" do
           Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
           Cassia.configuration.secret = ENV['CASSIA_SECRET']
-          request = described_class.new(mac: ["CC:1B:E0:E0:ED:AC", "CC:1B:E0:E0:F1:E8"])
+          request = described_class.new(device_mac: ["CC:1B:E0:E0:ED:AC", "CC:1B:E0:E0:F1:E8"])
           response = request.perform
-          puts response.body
 
           expect(response.status).to eq 400
           expect(response.body).to include("status" => "bad request", "error" => "invalid devices")
