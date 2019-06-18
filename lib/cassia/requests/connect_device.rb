@@ -2,10 +2,10 @@ module Cassia
   module Requests
     class ConnectDevice
 
-      def initialize(access_token: nil, aps: '*', mac: nil)
+      def initialize(access_token: nil, aps: '*', device_mac: nil)
         @access_token = access_token  
         @aps = aps
-        @mac = mac
+        @device_mac = device_mac
       end
 
       def path
@@ -14,7 +14,7 @@ module Cassia
 
       def body
         { 'aps' => @aps,
-          'devices' => [@mac] }.to_json
+          'devices' => [@device_mac] }.to_json
       end
 
       def headers
