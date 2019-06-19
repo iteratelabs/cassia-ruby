@@ -1,0 +1,91 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://iteratelabs.cassia.pro/api/oauth2/token
+    body:
+      encoding: UTF-8
+      string: '{"grant_type":"client_credentials"}'
+    headers:
+      Authorization:
+      - Basic <CREDENTIALS>
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      server:
+      - nginx/1.13.6
+      date:
+      - Tue, 18 Jun 2019 20:42:17 GMT
+      content-type:
+      - application/json
+      content-length:
+      - '123'
+      connection:
+      - close
+      access-control-allow-origin:
+      - "*"
+      access-control-allow-headers:
+      - Content-Type,Accept,Authorization
+      access-control-allow-methods:
+      - GET,POST,PUT,DELETE
+      access-control-allow-credentials:
+      - 'true'
+      x-frame-options:
+      - SAMEORIGIN
+      x-content-type-options:
+      - nosniff
+      cache-control:
+      - no-store
+      pragma:
+      - no-cache
+    body:
+      encoding: UTF-8
+      string: '{"token_type":"bearer","access_token":"d2ad28987c31f4f0103a79386167a6060622e98fc51bd83eae0d04d43a2a9dcb","expires_in":3600}'
+    http_version: 
+  recorded_at: Tue, 18 Jun 2019 20:42:17 GMT
+- request:
+    method: post
+    uri: http://iteratelabs.cassia.pro/api/aps/scan/open
+    body:
+      encoding: UTF-8
+      string: '{"aps":null}'
+    headers:
+      Authorization:
+      - Bearer d2ad28987c31f4f0103a79386167a6060622e98fc51bd83eae0d04d43a2a9dcb
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      server:
+      - nginx/1.13.6
+      date:
+      - Tue, 18 Jun 2019 20:42:17 GMT
+      transfer-encoding:
+      - chunked
+      connection:
+      - close
+      access-control-allow-origin:
+      - "*"
+      access-control-allow-headers:
+      - Content-Type,Accept,Authorization
+      access-control-allow-methods:
+      - GET,POST,PUT,DELETE
+      access-control-allow-credentials:
+      - 'true'
+      x-frame-options:
+      - SAMEORIGIN
+      x-content-type-options:
+      - nosniff
+    body:
+      encoding: UTF-8
+      string: '{"status":"bad request","error":"invalid aps"}'
+    http_version: 
+  recorded_at: Tue, 18 Jun 2019 20:42:17 GMT
+recorded_with: VCR 5.0.0
