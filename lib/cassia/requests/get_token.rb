@@ -1,6 +1,10 @@
 module Cassia
   module Requests
     class GetToken
+      def initialize(access_controller)
+        @access_controller = access_controller
+      end
+
       def path
         '/api/oauth2/token'
       end
@@ -17,10 +21,11 @@ module Cassia
       end
 
       def perform
-        Cassia.api.post(self)
+        Cassia::ResponseHandlers::GetToken.new(@access_controller).handle(Cassia.api.post(self))
       end
 
       private
+
       def get_encode
         Base64.encode64("#{Cassia.configuration.client_id}:#{Cassia.configuration.secret}").strip
       end

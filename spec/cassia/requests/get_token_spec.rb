@@ -3,7 +3,7 @@ require 'spec_helper'
 RSpec.describe Cassia::Requests::GetToken do
   describe '#path' do
     it "returns the correct API endpoint" do
-      request = described_class.new
+      request = described_class.new(Cassia::AccessController.new)
 
       expect(request.path).to eq('/api/oauth2/token')
     end
@@ -11,7 +11,7 @@ RSpec.describe Cassia::Requests::GetToken do
 
   describe '#body' do
     it "returns the correct grant_type" do
-      request = described_class.new
+      request = described_class.new(Cassia::AccessController.new)
 
       expect(request.body).to eq(
         {
@@ -26,7 +26,7 @@ RSpec.describe Cassia::Requests::GetToken do
       Cassia.configuration.client_id = "test"
       Cassia.configuration.secret = "12345"
 
-      request = described_class.new
+      request = described_class.new(Cassia::AccessController.new)
 
       base64 = Base64.encode64("test:12345").strip
       expect(request.headers).to eq(
@@ -41,48 +41,27 @@ RSpec.describe Cassia::Requests::GetToken do
   describe '#perform' do
     vcr_options = { cassette_name: 'token/success', record: :new_episodes }
     context "when passing valid credentials", vcr: vcr_options do
-      it "returns a 200 response" do
+      it "returns true" do
         Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
         Cassia.configuration.secret = ENV['CASSIA_SECRET']
 
-        request = described_class.new
+        request = described_class.new(Cassia::AccessController.new)
         response = request.perform
 
-        expect(response.status).to eq 200
-      end
-
-      it "returns a valid token" do
-        Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
-        Cassia.configuration.secret = ENV['CASSIA_SECRET']
-
-        request = described_class.new
-        response = request.perform
-
-        expect(response.body).to have_key("access_token")
+        expect(response).to be_truthy
       end
     end
 
     vcr_options = { cassette_name: 'token/failure', record: :new_episodes }
     context "when passing invalid credentials", vcr: vcr_options do
-      it "returns a 401" do
+      it "returns true" do
         Cassia.configuration.client_id = "invalid"
         Cassia.configuration.secret = "invalid"
 
-        request = described_class.new
+        request = described_class.new(Cassia::AccessController.new)
         response = request.perform
 
-        expect(response.status).to eq 401
-      end
-
-      it "returns an invalid response" do
-        Cassia.configuration.client_id = "invalid"
-        Cassia.configuration.secret = "invalid"
-
-        request = described_class.new
-        response = request.perform
-
-        expect(response.body['error']).to eq("invalid_client")
-        expect(response.body['error_description']).to eq("Client not found")
+        expect(response).to be_falsey
       end
     end
   end
