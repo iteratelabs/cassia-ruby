@@ -10,6 +10,7 @@ require "cassia/requests/get_token"
 require "cassia/requests/get_all_routers_status"
 require "cassia/requests/switch_autoselect"
 require "cassia/requests/open_scan"
+require "cassia/requests/connect_device"
 
 module Cassia
   def self.configuration

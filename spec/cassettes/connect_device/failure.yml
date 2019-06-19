@@ -1,0 +1,93 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://iteratelabs.cassia.pro/api/oauth2/token
+    body:
+      encoding: UTF-8
+      string: '{"grant_type":"client_credentials"}'
+    headers:
+      Authorization:
+      - Basic <CREDENTIALS>
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      server:
+      - nginx/1.13.6
+      date:
+      - Tue, 18 Jun 2019 18:52:26 GMT
+      content-type:
+      - application/json
+      content-length:
+      - '123'
+      connection:
+      - close
+      access-control-allow-origin:
+      - "*"
+      access-control-allow-headers:
+      - Content-Type,Accept,Authorization
+      access-control-allow-methods:
+      - GET,POST,PUT,DELETE
+      access-control-allow-credentials:
+      - 'true'
+      x-frame-options:
+      - SAMEORIGIN
+      x-content-type-options:
+      - nosniff
+      cache-control:
+      - no-store
+      pragma:
+      - no-cache
+    body:
+      encoding: UTF-8
+      string: '{"token_type":"bearer","access_token":"d33a9f9a82288a2f4c1596479f073819178f99410936c5e822ccb8c40f64f291","expires_in":3600}'
+    http_version: 
+  recorded_at: Tue, 18 Jun 2019 18:52:26 GMT
+- request:
+    method: post
+    uri: http://iteratelabs.cassia.pro/api/aps/connections/connect
+    body:
+      encoding: UTF-8
+      string: '{"aps":"*","devices":[["CC:1B:E0:E0:ED:AC","CC:1B:E0:E0:F1:E8"]]}'
+    headers:
+      Authorization:
+      - Bearer d33a9f9a82288a2f4c1596479f073819178f99410936c5e822ccb8c40f64f291
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      server:
+      - nginx/1.13.6
+      date:
+      - Tue, 18 Jun 2019 18:52:27 GMT
+      content-type:
+      - application/json
+      transfer-encoding:
+      - chunked
+      connection:
+      - close
+      access-control-allow-origin:
+      - "*"
+      access-control-allow-headers:
+      - Content-Type,Accept,Authorization
+      access-control-allow-methods:
+      - GET,POST,PUT,DELETE
+      access-control-allow-credentials:
+      - 'true'
+      x-frame-options:
+      - SAMEORIGIN
+      x-content-type-options:
+      - nosniff
+    body:
+      encoding: UTF-8
+      string: '{"status":"bad request","error":"invalid devices"}'
+    http_version: 
+  recorded_at: Tue, 18 Jun 2019 18:52:27 GMT
+recorded_with: VCR 5.0.0
