@@ -1,16 +1,15 @@
 module Cassia
   module Requests
     class OpenScan
-
-      def initialize(access_token: nil, aps: nil, chip: nil, active: nil, filter_name: nil, filter_mac: nil,
+      def initialize(access_controller, aps: nil, chip: nil, active: nil, filter_name: nil, filter_mac: nil,
         filter_uuid: nil)
-        @access_token = access_token  
+        @access_controller = access_controller
         @aps = aps
         @chip = chip
         @active = active
         @filter_name = filter_name
         @filter_mac = filter_mac
-        @filter_uuid = filter_uuid 
+        @filter_uuid = filter_uuid
       end
 
       def path
@@ -18,7 +17,7 @@ module Cassia
       end
 
       def body
-        body = { 
+        body = {
           'aps' => @aps
         }
         body['chip'] = @chip unless @chip.nil?
@@ -43,9 +42,8 @@ module Cassia
       private
 
       def access_token
-        @access_token ||= Cassia::Requests::GetToken.new.perform().body["access_token"]
+        @access_controller.access_token || @access_controller.get_token
       end
-
     end
   end
 end

@@ -1,9 +1,8 @@
 module Cassia
   module Requests
     class ConnectDevice
-
-      def initialize(access_token: nil, aps: '*', device_mac: nil)
-        @access_token = access_token  
+      def initialize(access_controller, aps: '*', device_mac: nil)
+        @access_controller = access_controller
         @aps = aps
         @device_mac = device_mac
       end
@@ -31,9 +30,8 @@ module Cassia
       private
 
       def access_token
-        @access_token ||= Cassia::Requests::GetToken.new.perform().body["access_token"]
+        @access_controller.access_token || @access_controller.get_token
       end
-
     end
   end
 end

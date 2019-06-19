@@ -3,8 +3,8 @@ module Cassia
     class GetAllRoutersStatus
       attr_reader :access_token
 
-      def initialize(access_token: nil)
-        @access_token = access_token
+      def initialize(access_controller)
+        @access_controller = access_controller
       end
 
       def path
@@ -25,7 +25,7 @@ module Cassia
       private
 
       def access_token
-        @access_token ||= Cassia::Requests::GetToken.new.perform().body["access_token"]
+        @access_controller.access_token || @access_controller.get_token
       end
     end
   end

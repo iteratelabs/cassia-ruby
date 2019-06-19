@@ -3,7 +3,7 @@ require 'spec_helper'
 RSpec.describe Cassia::Requests::SwitchAutoselect do
   describe '#path' do
     it "returns the correct API endpoint" do
-      request = described_class.new
+      request = described_class.new(Cassia::AccessController.new)
 
       expect(request.path).to eq('/api/aps/ap-select-switch')
     end
@@ -11,7 +11,7 @@ RSpec.describe Cassia::Requests::SwitchAutoselect do
 
   describe '#body' do
     it "returns the correct flag for an on_request" do
-      on_request = described_class.new(flag: 1)
+      on_request = described_class.new(Cassia::AccessController.new, flag: 1)
 
       expect(on_request.body).to eq(
         {
@@ -21,7 +21,7 @@ RSpec.describe Cassia::Requests::SwitchAutoselect do
     end
 
     it "returns the correct flag for an off_request" do
-      off_request = described_class.new(flag: 0)
+      off_request = described_class.new(Cassia::AccessController.new, flag: 0)
       expect(off_request.body).to eq(
         {
           'flag' => 0
@@ -32,15 +32,14 @@ RSpec.describe Cassia::Requests::SwitchAutoselect do
 
   describe '#headers' do
     it "returns the correct authorization and content-type" do
-      Cassia.configuration.client_id = "test"
-      Cassia.configuration.secret = "12345"
-      access_token = "2ded2d8cf3073d368fec27243a71f858e9b9231d7388e63e6d2f70852c33e66f"
-      
-      request = described_class.new(access_token: access_token)
+      access_controller = Cassia::AccessController.new
+      access_controller.access_token = "2ded2d8cf3073d368fec27243a71f858e9b9231d7388e63e6d2f70852c33e66f"
+
+      request = described_class.new(access_controller)
 
       expect(request.headers).to eq(
         {
-          'Authorization' => "Bearer #{access_token}",
+          'Authorization' => "Bearer #{access_controller.access_token}",
           'Content-Type' => "application/json"
         }
       )
@@ -54,7 +53,7 @@ RSpec.describe Cassia::Requests::SwitchAutoselect do
         Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
         Cassia.configuration.secret = ENV['CASSIA_SECRET']
 
-        request = described_class.new(flag: 1)
+        request = described_class.new(Cassia::AccessController.new, flag: 1)
         response = request.perform
 
 
@@ -62,18 +61,18 @@ RSpec.describe Cassia::Requests::SwitchAutoselect do
         expect(response.body).to include("status" => "success", "flag" => 1)
       end
     end
-      
+
     vcr_options = { cassette_name: 'turn_on_autoselect/success_off', record: :new_episodes }
     context "when passing a valid access token to an off_request", vcr: vcr_options do
       it "returns a 200 response for an off_request" do
         Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
         Cassia.configuration.secret = ENV['CASSIA_SECRET']
 
-        request2 = described_class.new(flag: 0)
+        request2 = described_class.new(Cassia::AccessController.new, flag: 0)
         response2 = request2.perform
 
         puts response2.body
-        
+
         expect(response2.status).to eq 200
         expect(response2.body).to include("status" => "success", "flag" => 0)
       end
@@ -82,7 +81,10 @@ RSpec.describe Cassia::Requests::SwitchAutoselect do
     vcr_options = { cassette_name: 'turn_on_autoselect/failure', record: :new_episodes }
     context "when passing an invalid access token", vcr: vcr_options do
       it "returns a 403" do
-        request = described_class.new(access_token: "invalid_access_token")
+        access_controller = Cassia::AccessController.new
+        access_controller.access_token = "invalid_access_token"
+
+        request = described_class.new(access_controller)
         response = request.perform
 
         expect(response.status).to eq 403
