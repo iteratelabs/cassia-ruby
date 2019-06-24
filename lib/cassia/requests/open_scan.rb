@@ -36,13 +36,14 @@ module Cassia
       end
 
       def perform
-        Cassia.api.post(self)
+        Cassia::ResponseHandlers::OpenScan.new(@access_controller).handle(Cassia.api.post(self))
       end
 
       private
 
       def access_token
-        @access_controller.access_token || @access_controller.get_token
+        @access_controller.get_token if @access_controller.access_token.nil?
+        @access_controller.access_token
       end
     end
   end

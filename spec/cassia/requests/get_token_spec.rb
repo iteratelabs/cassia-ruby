@@ -54,7 +54,7 @@ RSpec.describe Cassia::Requests::GetToken do
 
     vcr_options = { cassette_name: 'token/failure', record: :new_episodes }
     context "when passing invalid credentials", vcr: vcr_options do
-      it "returns true" do
+      it "returns false" do
         Cassia.configuration.client_id = "invalid"
         Cassia.configuration.secret = "invalid"
 

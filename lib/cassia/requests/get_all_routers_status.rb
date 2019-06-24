@@ -19,13 +19,14 @@ module Cassia
       end
 
       def perform
-        Cassia.api.get(self)
+        Cassia::ResponseHandlers::GetAllRoutersStatus.new(@access_controller).handle(Cassia.api.get(self))
       end
 
       private
 
       def access_token
-        @access_controller.access_token || @access_controller.get_token
+        @access_controller.get_token if @access_controller.access_token.nil?
+        @access_controller.access_token
       end
     end
   end

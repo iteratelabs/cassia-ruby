@@ -28,37 +28,28 @@ RSpec.describe Cassia::Requests::GetAllRoutersStatus do
   describe '#perform' do
     vcr_options = { cassette_name: 'routersstatus/success', record: :new_episodes }
     context "when passing valid credentials", vcr: vcr_options do
-      it "returns a 200 response" do
+      it "returns true" do
         Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
         Cassia.configuration.secret = ENV['CASSIA_SECRET']
+        access_controller = Cassia::AccessController.new
 
-        request = described_class.new(Cassia::AccessController.new)
+        request = described_class.new(access_controller)
         response = request.perform
 
-        expect(response.status).to eq 200
-      end
-
-      it "returns the correct number of routers" do
-        Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
-        Cassia.configuration.secret = ENV['CASSIA_SECRET']
-
-        request = described_class.new(Cassia::AccessController.new)
-        response = request.perform
-
-        expect(response.body.size).to eq 1
+        expect(response).to be_truthy
       end
     end
 
     vcr_options = { cassette_name: 'routersstatus/failure', record: :new_episodes }
     context "when passing invalid access token", vcr: vcr_options do
-      it "returns a 403" do
+      it "returns false" do
         access_controller = Cassia::AccessController.new
         access_controller.access_token = "invalid_access_token"
 
         request = described_class.new(access_controller)
         response = request.perform
 
-        expect(response.status).to eq 403
+        expect(response).to be_falsey
       end
     end
   end

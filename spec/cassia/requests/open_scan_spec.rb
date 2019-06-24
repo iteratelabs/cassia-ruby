@@ -47,7 +47,7 @@ RSpec.describe Cassia::Requests::OpenScan do
           request = described_class.new(Cassia::AccessController.new, aps: ["CC:1B:E0:E0:ED:AC", "CC:1B:E0:E0:F1:E8"])
           response = request.perform
 
-          expect(response.status).to eq 202
+          expect(response).to be_truthy
         end
       end
 
@@ -59,7 +59,7 @@ RSpec.describe Cassia::Requests::OpenScan do
           request = described_class.new(Cassia::AccessController.new)
           response = request.perform
 
-          expect(response.status).to eq 400
+          expect(response).to be_falsey
         end
       end
   end

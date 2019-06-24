@@ -1,6 +1,6 @@
 module Cassia
   module ResponseHandlers
-    class GetToken
+    class GetAllRoutersStatus
       def initialize(access_controller)
         @access_controller = access_controller
       end
@@ -17,12 +17,11 @@ module Cassia
       private
 
       def handle_success(response)
-        @access_controller.access_token = response.body["access_token"]
       end
 
       def handle_failure(response)
-        @access_controller.error = response.body[:error]
-        @access_controller.error_description = response.body[:error_description]
+        @access_controller.error = JSON.parse(response.body)["error"]
+        @access_controller.error_description = JSON.parse(response.body)["error_description"]
       end
     end
   end
