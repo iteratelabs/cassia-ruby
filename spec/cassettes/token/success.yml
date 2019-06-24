@@ -19,7 +19,7 @@ http_interactions:
       server:
       - nginx/1.13.6
       date:
-      - Wed, 12 Jun 2019 19:39:06 GMT
+      - Fri, 21 Jun 2019 19:11:28 GMT
       content-type:
       - application/json
       content-length:
@@ -44,7 +44,7 @@ http_interactions:
       - no-cache
     body:
       encoding: UTF-8
-      string: '{"token_type":"bearer","access_token":"2ded2d8cf3073d368fec27243a71f858e9b9231d7388e63e6d2f70852c33e66f","expires_in":3600}'
+      string: '{"token_type":"bearer","access_token":"91cb1c787aaf6af2e12592a7191c399458e3fb8f2cee90b7cdbed2d4daf2bd87","expires_in":3600}'
     http_version: 
-  recorded_at: Wed, 12 Jun 2019 19:39:06 GMT
+  recorded_at: Fri, 21 Jun 2019 19:11:29 GMT
 recorded_with: VCR 5.0.0

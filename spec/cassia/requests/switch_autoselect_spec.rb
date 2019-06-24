@@ -47,38 +47,35 @@ RSpec.describe Cassia::Requests::SwitchAutoselect do
   end
 
   describe '#perform' do
-    vcr_options = { cassette_name: 'turn_on_autoselect/success_on', record: :new_episodes }
+    vcr_options = { cassette_name: 'switch_autoselect/success_on', record: :new_episodes }
     context "when passing a valid access token to an on_request", vcr: vcr_options do
       it "returns a 200 response for an on_request" do
         Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
         Cassia.configuration.secret = ENV['CASSIA_SECRET']
 
-        request = described_class.new(Cassia::AccessController.new, flag: 1)
+        access_controller = Cassia::AccessController.new
+        request = described_class.new(access_controller, flag: 1)
         response = request.perform
-
-
-        expect(response.status).to eq 200
-        expect(response.body).to include("status" => "success", "flag" => 1)
+        
+        expect(response).to be_truthy
       end
     end
 
-    vcr_options = { cassette_name: 'turn_on_autoselect/success_off', record: :new_episodes }
+    vcr_options = { cassette_name: 'switch_autoselect/success_off', record: :new_episodes }
     context "when passing a valid access token to an off_request", vcr: vcr_options do
       it "returns a 200 response for an off_request" do
         Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
         Cassia.configuration.secret = ENV['CASSIA_SECRET']
 
-        request2 = described_class.new(Cassia::AccessController.new, flag: 0)
+        access_controller = Cassia::AccessController.new
+        request2 = described_class.new(access_controller, flag: 0)
         response2 = request2.perform
 
-        puts response2.body
-
-        expect(response2.status).to eq 200
-        expect(response2.body).to include("status" => "success", "flag" => 0)
+        expect(response2).to be_truthy
       end
     end
 
-    vcr_options = { cassette_name: 'turn_on_autoselect/failure', record: :new_episodes }
+    vcr_options = { cassette_name: 'switch_autoselect/failure', record: :new_episodes }
     context "when passing an invalid access token", vcr: vcr_options do
       it "returns a 403" do
         access_controller = Cassia::AccessController.new
@@ -87,7 +84,7 @@ RSpec.describe Cassia::Requests::SwitchAutoselect do
         request = described_class.new(access_controller)
         response = request.perform
 
-        expect(response.status).to eq 403
+        expect(response).to be_falsey
       end
     end
   end
