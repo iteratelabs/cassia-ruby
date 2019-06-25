@@ -17,6 +17,7 @@ module Cassia
       private
 
       def handle_success(response)
+        @access_controller.scanning_on = true
       end
 
       def handle_failure(response)
