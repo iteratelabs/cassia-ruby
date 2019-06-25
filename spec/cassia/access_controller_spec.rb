@@ -103,7 +103,7 @@ RSpec.describe Cassia::AccessController do
         response = build_response(status: 200, body: response_body)
         response_handler = Cassia::ResponseHandlers::ConnectDevice.new(access_controller)
         response_handler.handle(response)
-        expect(access_controller.device_mac).to eq "F3:25:5F:22:35:39"
+        expect(access_controller.connect_device[0].mac).to eq "F3:25:5F:22:35:39"
       end
     end
 
