@@ -18,7 +18,7 @@ module Cassia
 
       def handle_success(response)
         new_device = Cassia::Device.new(mac: response.body['device'])
-        @access_controller.connected_devices = @access_controller.connected_devices.append(new_device)
+        @access_controller.connected_devices << new_device
       end
 
       def handle_failure(response)
