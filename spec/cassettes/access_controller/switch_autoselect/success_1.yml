@@ -1,0 +1,93 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://iteratelabs.cassia.pro/api/oauth2/token
+    body:
+      encoding: UTF-8
+      string: '{"grant_type":"client_credentials"}'
+    headers:
+      Authorization:
+      - Basic <CREDENTIALS>
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      server:
+      - nginx/1.13.6
+      date:
+      - Wed, 26 Jun 2019 18:42:00 GMT
+      content-type:
+      - application/json
+      content-length:
+      - '123'
+      connection:
+      - close
+      access-control-allow-origin:
+      - "*"
+      access-control-allow-headers:
+      - Content-Type,Accept,Authorization
+      access-control-allow-methods:
+      - GET,POST,PUT,DELETE
+      access-control-allow-credentials:
+      - 'true'
+      x-frame-options:
+      - SAMEORIGIN
+      x-content-type-options:
+      - nosniff
+      cache-control:
+      - no-store
+      pragma:
+      - no-cache
+    body:
+      encoding: UTF-8
+      string: '{"token_type":"bearer","access_token":"d0043253370c96383f22ee48516b9e31a1f958306b8d3f7cb03380f47c4ab91a","expires_in":3600}'
+    http_version: 
+  recorded_at: Wed, 26 Jun 2019 18:42:00 GMT
+- request:
+    method: post
+    uri: http://iteratelabs.cassia.pro/api/aps/ap-select-switch
+    body:
+      encoding: UTF-8
+      string: '{"flag":1}'
+    headers:
+      Authorization:
+      - Bearer d0043253370c96383f22ee48516b9e31a1f958306b8d3f7cb03380f47c4ab91a
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      server:
+      - nginx/1.13.6
+      date:
+      - Wed, 26 Jun 2019 18:42:00 GMT
+      content-type:
+      - application/json
+      transfer-encoding:
+      - chunked
+      connection:
+      - close
+      access-control-allow-origin:
+      - "*"
+      access-control-allow-headers:
+      - Content-Type,Accept,Authorization
+      access-control-allow-methods:
+      - GET,POST,PUT,DELETE
+      access-control-allow-credentials:
+      - 'true'
+      x-frame-options:
+      - SAMEORIGIN
+      x-content-type-options:
+      - nosniff
+    body:
+      encoding: UTF-8
+      string: '{"status":"success","flag":1}'
+    http_version: 
+  recorded_at: Wed, 26 Jun 2019 18:42:00 GMT
+recorded_with: VCR 5.0.0

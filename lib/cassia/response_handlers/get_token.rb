@@ -21,8 +21,8 @@ module Cassia
       end
 
       def handle_failure(response)
-        @access_controller.error = response.body[:error]
-        @access_controller.error_description = response.body[:error_description]
+        @access_controller.error = response.body["error"]
+        @access_controller.error_description = response.body["error_description"]
       end
     end
   end
