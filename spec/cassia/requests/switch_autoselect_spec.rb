@@ -22,6 +22,7 @@ RSpec.describe Cassia::Requests::SwitchAutoselect do
 
     it "returns the correct flag for an off_request" do
       off_request = described_class.new(Cassia::AccessController.new, flag: 0)
+      
       expect(off_request.body).to eq(
         {
           'flag' => 0
@@ -34,7 +35,6 @@ RSpec.describe Cassia::Requests::SwitchAutoselect do
     it "returns the correct authorization and content-type" do
       access_controller = Cassia::AccessController.new
       access_controller.access_token = "2ded2d8cf3073d368fec27243a71f858e9b9231d7388e63e6d2f70852c33e66f"
-
       request = described_class.new(access_controller)
 
       expect(request.headers).to eq(
@@ -52,9 +52,9 @@ RSpec.describe Cassia::Requests::SwitchAutoselect do
       it "returns a 200 response for an on_request" do
         Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
         Cassia.configuration.secret = ENV['CASSIA_SECRET']
-
         access_controller = Cassia::AccessController.new
         request = described_class.new(access_controller, flag: 1)
+
         response = request.perform
         
         expect(response).to be_truthy
@@ -66,9 +66,9 @@ RSpec.describe Cassia::Requests::SwitchAutoselect do
       it "returns a 200 response for an off_request" do
         Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
         Cassia.configuration.secret = ENV['CASSIA_SECRET']
-
         access_controller = Cassia::AccessController.new
         request2 = described_class.new(access_controller, flag: 0)
+
         response2 = request2.perform
 
         expect(response2).to be_truthy
@@ -80,8 +80,8 @@ RSpec.describe Cassia::Requests::SwitchAutoselect do
       it "returns a 403" do
         access_controller = Cassia::AccessController.new
         access_controller.access_token = "invalid_access_token"
-
         request = described_class.new(access_controller)
+        
         response = request.perform
 
         expect(response).to be_falsey

@@ -25,10 +25,9 @@ RSpec.describe Cassia::Requests::GetToken do
     it "returns the correct authorization and content-type" do
       Cassia.configuration.client_id = "test"
       Cassia.configuration.secret = "12345"
-
       request = described_class.new(Cassia::AccessController.new)
-
       base64 = Base64.encode64("test:12345").strip
+
       expect(request.headers).to eq(
         {
           'Authorization' => "Basic #{base64}",
@@ -44,8 +43,8 @@ RSpec.describe Cassia::Requests::GetToken do
       it "returns true" do
         Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
         Cassia.configuration.secret = ENV['CASSIA_SECRET']
-
         request = described_class.new(Cassia::AccessController.new)
+
         response = request.perform
 
         expect(response).to be_truthy
@@ -57,8 +56,8 @@ RSpec.describe Cassia::Requests::GetToken do
       it "returns false" do
         Cassia.configuration.client_id = "invalid"
         Cassia.configuration.secret = "invalid"
-
         request = described_class.new(Cassia::AccessController.new)
+        
         response = request.perform
 
         expect(response).to be_falsey
