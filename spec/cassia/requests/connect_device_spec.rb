@@ -12,6 +12,7 @@ RSpec.describe Cassia::Requests::ConnectDevice do
   describe '#body' do
     it "returns the correct aps and devices" do
       request = described_class.new(Cassia::AccessController.new, aps: ["CC:1B:E0:E0:ED:AC", "CC:1B:E0:E0:F1:E8"], device_mac: "CC:1B:E0:E0:ED:AC" )
+      
       expect(request.body).to eq(
         {
           'aps' => ["CC:1B:E0:E0:ED:AC", "CC:1B:E0:E0:F1:E8"],
@@ -25,7 +26,6 @@ RSpec.describe Cassia::Requests::ConnectDevice do
     it "returns the correct authorization and content-type" do
       access_controller = Cassia::AccessController.new
       access_controller.access_token = "2ded2d8cf3073d368fec27243a71f858e9b9231d7388e63e6d2f70852c33e66f"
-
       request = described_class.new(access_controller)
 
       expect(request.headers).to eq(
@@ -48,6 +48,7 @@ RSpec.describe Cassia::Requests::ConnectDevice do
           scan_res = scan_req.perform
           request = described_class.new(access_controller, aps: ["CC:1B:E0:E0:F1:E8"],
             device_mac: "F3:25:5F:22:35:39" )
+
           response = request.perform
           
           expect(response).to be_truthy
@@ -60,6 +61,7 @@ RSpec.describe Cassia::Requests::ConnectDevice do
           Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
           Cassia.configuration.secret = ENV['CASSIA_SECRET']
           request = described_class.new(Cassia::AccessController.new, device_mac: ["CC:1B:E0:E0:ED:AC", "CC:1B:E0:E0:F1:E8"])
+          
           response = request.perform
 
           expect(response).to be_falsey

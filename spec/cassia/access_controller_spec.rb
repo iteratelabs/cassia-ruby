@@ -8,7 +8,9 @@ RSpec.describe Cassia::AccessController do
       context "when successful", vcr: vcr_options do
         it "sets the access_token" do
           access_controller = described_class.new
+
           access_controller.get_token
+
           expect(access_controller.access_token).not_to be_nil
         end
       end
@@ -19,7 +21,9 @@ RSpec.describe Cassia::AccessController do
           Cassia.configuration.client_id = "invalid"
           Cassia.configuration.secret = "invalid"
           access_controller = described_class.new
+
           access_controller.get_token
+
           expect(access_controller.error). to eq "invalid_client"
           expect(access_controller.error_description). to eq "Client not found"
         end
@@ -33,7 +37,9 @@ RSpec.describe Cassia::AccessController do
           Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
           Cassia.configuration.secret = ENV['CASSIA_SECRET']
           access_controller = described_class.new
+
           access_controller.get_all_routers_status
+
           expect(access_controller.routers).not_to be_empty
         end
       end
@@ -44,7 +50,9 @@ RSpec.describe Cassia::AccessController do
         Cassia.configuration.client_id = "invalid"
         Cassia.configuration.secret = "invalid"
         access_controller = described_class.new
+
         access_controller.get_all_routers_status
+
         expect(access_controller.error). to eq "access_denied"
         expect(access_controller.error_description). to eq "Wrong authorization header"
       end
@@ -58,7 +66,9 @@ RSpec.describe Cassia::AccessController do
             Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
             Cassia.configuration.secret = ENV['CASSIA_SECRET']
             access_controller = described_class.new
+
             access_controller.switch_autoselect(flag: 1)
+
             expect(access_controller.autoselect_switch).to eq 1
           end
         end
@@ -67,7 +77,9 @@ RSpec.describe Cassia::AccessController do
         context "when successfully switching to 0", vcr: vcr_options do
           it "sets the switch to 0" do
             access_controller = described_class.new
+
             access_controller.switch_autoselect(flag: 0)
+
             expect(access_controller.autoselect_switch).to eq 0
           end
         end
@@ -78,7 +90,9 @@ RSpec.describe Cassia::AccessController do
         Cassia.configuration.client_id = "invalid"
         Cassia.configuration.secret = "invalid"
         access_controller = described_class.new
+
         access_controller.switch_autoselect(flag: 0)
+
         expect(access_controller.error). to eq "access_denied"
         expect(access_controller.error_description). to eq "Wrong authorization header"
       end
@@ -90,7 +104,9 @@ RSpec.describe Cassia::AccessController do
       context "when unsuccessful", vcr: vcr_options do
         it "sets the error" do
           access_controller = described_class.new
+
           access_controller.open_scan
+
           expect(access_controller.error). to eq "invalid aps"
         end
       end
@@ -103,8 +119,10 @@ RSpec.describe Cassia::AccessController do
           Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
           Cassia.configuration.secret = ENV['CASSIA_SECRET']
           access_controller = described_class.new
+
           access_controller.open_scan(aps: ["CC:1B:E0:E0:F1:E8"])
           access_controller.connect_device(device_mac: "F3:25:5F:22:35:39")
+
           expect(access_controller.connected_devices).not_to be_empty
         end
       end
@@ -113,7 +131,9 @@ RSpec.describe Cassia::AccessController do
       context "when unsuccessful" do
         it "sets the error", vcr: vcr_options do
           access_controller = described_class.new
+
           access_controller.connect_device(device_mac: ["blah"])
+          
           expect(access_controller.error). to eq "invalid devices"
         end
       end

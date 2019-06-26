@@ -10,7 +10,9 @@ RSpec.describe Cassia::ResponseHandlers::GetAllRoutersStatus do
       response = build_response(status: 200, body: response_body)
       response_handler = described_class.new(access_controller)
       
-      expect(response_handler.handle(response)). to be_truthy
+      result = response_handler.handle(response)
+
+      expect(result). to be_truthy
     end
 
     it "returns false for an unsuccessful response" do
@@ -19,7 +21,9 @@ RSpec.describe Cassia::ResponseHandlers::GetAllRoutersStatus do
       response = build_response(status: 403, body: response_body)
       response_handler = described_class.new(access_controller)
       
-      expect(response_handler.handle(response)). to be_falsey
+      result = response_handler.handle(response)
+
+      expect(result). to be_falsey
     end
   end
 end
