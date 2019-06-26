@@ -2,28 +2,26 @@
 http_interactions:
 - request:
     method: post
-    uri: http://iteratelabs.cassia.pro/api/oauth2/token
+    uri: http://iteratelabs.cassia.pro/api/aps/ap-select-switch
     body:
       encoding: UTF-8
-      string: '{"grant_type":"client_credentials"}'
+      string: '{"flag":1}'
     headers:
       Authorization:
-      - Basic <CREDENTIALS>
+      - Bearer invalid_access_token
       Content-Type:
       - application/json
   response:
     status:
-      code: 200
-      message: OK
+      code: 403
+      message: Forbidden
     headers:
       server:
       - nginx/1.13.6
       date:
       - Fri, 21 Jun 2019 19:11:28 GMT
-      content-type:
-      - application/json
       content-length:
-      - '123'
+      - '70'
       connection:
       - close
       access-control-allow-origin:
@@ -44,7 +42,7 @@ http_interactions:
       - no-cache
     body:
       encoding: UTF-8
-      string: '{"token_type":"bearer","access_token":"91cb1c787aaf6af2e12592a7191c399458e3fb8f2cee90b7cdbed2d4daf2bd87","expires_in":3600}'
+      string: '{"error":"forbidden","error_description":"Token not found or expired"}'
     http_version: 
-  recorded_at: Fri, 21 Jun 2019 19:11:29 GMT
+  recorded_at: Fri, 21 Jun 2019 19:11:28 GMT
 recorded_with: VCR 5.0.0

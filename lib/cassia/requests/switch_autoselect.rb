@@ -2,8 +2,8 @@ module Cassia
   module Requests
     class SwitchAutoselect
 
-      def initialize(access_token: nil, flag: 1)
-        @access_token = access_token
+      def initialize(access_controller, flag: 1)
+        @access_controller = access_controller
         @flag = flag
       end
 
@@ -23,15 +23,15 @@ module Cassia
       end
 
       def perform
-        Cassia.api.post(self)
+        Cassia::ResponseHandlers::SwitchAutoselect.new(@access_controller).handle(Cassia.api.post(self))
       end
 
       private
 
       def access_token
-        @access_token ||= Cassia::Requests::GetToken.new.perform().body["access_token"]
+        @access_controller.get_token if @access_controller.access_token.nil?
+        @access_controller.access_token
       end
-
     end
   end
 end

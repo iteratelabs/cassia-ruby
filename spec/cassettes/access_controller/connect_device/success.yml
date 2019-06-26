@@ -109,7 +109,7 @@ http_interactions:
       server:
       - nginx/1.13.6
       date:
-      - Mon, 24 Jun 2019 19:17:08 GMT
+      - Wed, 26 Jun 2019 19:27:24 GMT
       content-length:
       - '70'
       connection:
@@ -134,5 +134,5 @@ http_interactions:
       encoding: UTF-8
       string: '{"error":"forbidden","error_description":"Token not found or expired"}'
     http_version: 
-  recorded_at: Mon, 24 Jun 2019 19:17:08 GMT
+  recorded_at: Wed, 26 Jun 2019 19:27:24 GMT
 recorded_with: VCR 5.0.0
