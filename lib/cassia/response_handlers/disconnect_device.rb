@@ -17,8 +17,7 @@ module Cassia
       private
 
       def handle_success(response)
-        that_router = @access_controller.connected_devices.find {|router| router['mac'] == response.body['device']}
-        @access_controller.connected_devices.delete(that_router)
+        @access_controller.connected_devices.select! {|device| device.mac != response.body['device']}
       end
 
       def handle_failure(response)
