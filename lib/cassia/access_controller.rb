@@ -29,5 +29,9 @@ module Cassia
     def connect_device(aps: '*', device_mac: )
       Cassia::Requests::ConnectDevice.new(self, aps: aps, device_mac: device_mac).perform
     end
+
+    def disconnect_device(device_mac: )
+      Cassia::Requests::DisconnectDevice.new(self, device_mac: device_mac).perform
+    end
   end
 end
