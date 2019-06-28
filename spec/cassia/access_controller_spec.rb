@@ -138,4 +138,36 @@ RSpec.describe Cassia::AccessController do
         end
       end
   end
+
+  describe "#disconnect_device" do
+    vcr_options = { cassette_name: 'access_controller/disconnect_device/success', record: :new_episodes }
+      context "when successful", vcr: vcr_options do
+        it "removes the device from connected_devices" do
+          Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
+          Cassia.configuration.secret = ENV['CASSIA_SECRET']
+          access_controller = described_class.new
+
+          access_controller.open_scan(aps: ["CC:1B:E0:E0:F1:E8"])
+          access_controller.connect_device(device_mac: "F3:25:5F:22:35:39")
+          access_controller.disconnect_device(device_mac: "F3:25:5F:22:35:39")
+
+          expect(access_controller.connected_devices).to be_empty
+        end
+      end
+    
+    vcr_options = { cassette_name: 'access_controller/disconnect_device/failure', record: :new_episodes }
+      context "when unsuccessful" do
+        it "sets the error", vcr: vcr_options do
+          Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
+          Cassia.configuration.secret = ENV['CASSIA_SECRET']
+          access_controller = described_class.new
+
+          access_controller.open_scan(aps: ["CC:1B:E0:E0:F1:E8"])
+          access_controller.connect_device(device_mac: "F3:25:5F:22:35:39")
+          access_controller.disconnect_device(device_mac: "invalid device mac")
+          
+          expect(access_controller.error). to eq "invalid devices"
+        end
+      end
+  end
 end
