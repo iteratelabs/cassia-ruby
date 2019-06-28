@@ -22,5 +22,10 @@ module Cassia
     attribute :update_progress, Integer
     attribute :container, Hash
     attribute :ap, Hash
+    attribute :connected_devices, Array[Cassia::Device], default: []
+
+    def connect_local(access_controller, device_mac: , type: )
+      Cassia::Requests::ConnectLocal.new(access_controller, router: self, device_mac: device_mac, type: type).perform
+    end
   end
 end
