@@ -19,7 +19,7 @@ http_interactions:
       server:
       - nginx/1.13.6
       date:
-      - Fri, 28 Jun 2019 20:09:50 GMT
+      - Mon, 01 Jul 2019 20:37:06 GMT
       content-type:
       - application/json
       content-length:
@@ -44,18 +44,18 @@ http_interactions:
       - no-cache
     body:
       encoding: UTF-8
-      string: '{"token_type":"bearer","access_token":"081bf842e705809dad664e376f097923d390076c01cc19838dcf1fa51a8a6baa","expires_in":3600}'
+      string: '{"token_type":"bearer","access_token":"2abcc0e91299a0f5a39209db2a9353f3048429f28f30d05f24da1cff536462c8","expires_in":3600}'
     http_version: 
-  recorded_at: Fri, 28 Jun 2019 20:09:50 GMT
+  recorded_at: Mon, 01 Jul 2019 20:37:06 GMT
 - request:
     method: post
-    uri: http://iteratelabs.cassia.pro/api/gap/nodes/invalid_device_mac/connection?mac=CC%3A1B%3AE0%3AE0%3AF1%3AE8
+    uri: http://iteratelabs.cassia.pro/api/gap/nodes/invalid/connection?mac=CC%3A1B%3AE0%3AE0%3AF1%3AE8
     body:
       encoding: UTF-8
       string: '{"type":"random","timeout":"5000","auto":"0","discovergatt":"1"}'
     headers:
       Authorization:
-      - Bearer 081bf842e705809dad664e376f097923d390076c01cc19838dcf1fa51a8a6baa
+      - Bearer 2abcc0e91299a0f5a39209db2a9353f3048429f28f30d05f24da1cff536462c8
       Content-Type:
       - application/json
   response:
@@ -66,7 +66,7 @@ http_interactions:
       server:
       - nginx/1.13.6
       date:
-      - Fri, 28 Jun 2019 20:09:50 GMT
+      - Mon, 01 Jul 2019 20:37:06 GMT
       content-type:
       - text/plain
       content-length:
@@ -89,5 +89,5 @@ http_interactions:
       encoding: UTF-8
       string: parameter invalid
     http_version: 
-  recorded_at: Fri, 28 Jun 2019 20:09:50 GMT
+  recorded_at: Mon, 01 Jul 2019 20:37:06 GMT
 recorded_with: VCR 5.0.0
