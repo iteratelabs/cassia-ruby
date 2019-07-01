@@ -31,5 +31,9 @@ module Cassia
     def disconnect_local(access_controller, device_mac: )
       Cassia::Requests::DisconnectLocal.new(access_controller, router: self, device_mac: device_mac).perform
     end
+
+    def get_connected_devices_router(access_controller)
+      Cassia::Requests::GetConnectedDevicesRouter.new(access_controller, router: self).perform
+    end
   end
 end
