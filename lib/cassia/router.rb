@@ -27,5 +27,9 @@ module Cassia
     def connect_local(access_controller, device_mac: , type: )
       Cassia::Requests::ConnectLocal.new(access_controller, router: self, device_mac: device_mac, type: type).perform
     end
+
+    def disconnect_local(access_controller, device_mac: )
+      Cassia::Requests::DisconnectLocal.new(access_controller, router: self, device_mac: device_mac).perform
+    end
   end
 end
