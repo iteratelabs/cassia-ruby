@@ -19,7 +19,7 @@ http_interactions:
       server:
       - nginx/1.13.6
       date:
-      - Fri, 28 Jun 2019 20:09:39 GMT
+      - Mon, 01 Jul 2019 20:37:06 GMT
       content-type:
       - application/json
       content-length:
@@ -44,9 +44,9 @@ http_interactions:
       - no-cache
     body:
       encoding: UTF-8
-      string: '{"token_type":"bearer","access_token":"b4974834a42d23c6ad6ac44147ccea01cabdc07f36b416ed9239c650e5c7b403","expires_in":3600}'
+      string: '{"token_type":"bearer","access_token":"6e1b15f04bdcd4938b272b28d7901ba450011c22890d4677f7e9964f32f3c2af","expires_in":3600}'
     http_version: 
-  recorded_at: Fri, 28 Jun 2019 20:09:39 GMT
+  recorded_at: Mon, 01 Jul 2019 20:37:06 GMT
 - request:
     method: post
     uri: http://iteratelabs.cassia.pro/api/gap/nodes/F6:12:3D:BD:DE:44/connection?mac=CC%3A1B%3AE0%3AE0%3AF1%3AE8
@@ -55,22 +55,22 @@ http_interactions:
       string: '{"type":"random","timeout":"5000","auto":"0","discovergatt":"1"}'
     headers:
       Authorization:
-      - Bearer b4974834a42d23c6ad6ac44147ccea01cabdc07f36b416ed9239c650e5c7b403
+      - Bearer 6e1b15f04bdcd4938b272b28d7901ba450011c22890d4677f7e9964f32f3c2af
       Content-Type:
       - application/json
   response:
     status:
-      code: 400
-      message: Bad Request
+      code: 200
+      message: OK
     headers:
       server:
       - nginx/1.13.6
       date:
-      - Fri, 28 Jun 2019 20:09:50 GMT
+      - Mon, 01 Jul 2019 20:37:06 GMT
       content-type:
       - text/plain
       content-length:
-      - '7'
+      - '2'
       connection:
       - close
       access-control-allow-origin:
@@ -87,7 +87,7 @@ http_interactions:
       - nosniff
     body:
       encoding: UTF-8
-      string: timeout
+      string: OK
     http_version: 
-  recorded_at: Fri, 28 Jun 2019 20:09:50 GMT
+  recorded_at: Mon, 01 Jul 2019 20:37:07 GMT
 recorded_with: VCR 5.0.0

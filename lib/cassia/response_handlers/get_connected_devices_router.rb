@@ -18,7 +18,13 @@ module Cassia
       private
 
       def handle_success(response)
-        @router.connected_devices = response.body["nodes"]
+        connected_devices = []
+        response.body["nodes"].each do |device|
+          new_device = Device.new(device)
+          new_device.mac = device.delete("id")
+          connected_devices << new_device
+        end
+        @router.connected_devices = connected_devices
       end
 
       def handle_failure(response)

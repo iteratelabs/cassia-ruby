@@ -8,6 +8,5 @@ module Cassia
     attribute :handle, String
     attribute :name, String
     attribute :connectionState, String
-    attribute :id, String
   end
 end
