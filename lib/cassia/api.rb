@@ -15,6 +15,13 @@ module Cassia
       end 
     end
 
+    def delete(request)
+      connection.delete do |req|
+        req.url request.path
+        req.headers = request.headers
+      end
+    end
+    
     private
 
     def connection

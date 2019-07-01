@@ -17,6 +17,7 @@ require "cassia/response_handlers/open_scan"
 require "cassia/response_handlers/connect_device"
 require "cassia/response_handlers/disconnect_device"
 require "cassia/response_handlers/connect_local"
+require "cassia/response_handlers/disconnect_local"
 require "cassia/requests/get_token"
 require "cassia/requests/get_all_routers_status"
 require "cassia/requests/switch_autoselect"
@@ -24,6 +25,7 @@ require "cassia/requests/open_scan"
 require "cassia/requests/connect_device"
 require "cassia/requests/disconnect_device"
 require "cassia/requests/connect_local"
+require "cassia/requests/disconnect_local"
 
 module Cassia
   def self.configuration
