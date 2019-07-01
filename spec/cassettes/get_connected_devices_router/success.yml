@@ -19,7 +19,7 @@ http_interactions:
       server:
       - nginx/1.13.6
       date:
-      - Mon, 01 Jul 2019 20:37:06 GMT
+      - Mon, 01 Jul 2019 17:39:14 GMT
       content-type:
       - application/json
       content-length:
@@ -44,33 +44,33 @@ http_interactions:
       - no-cache
     body:
       encoding: UTF-8
-      string: '{"token_type":"bearer","access_token":"2abcc0e91299a0f5a39209db2a9353f3048429f28f30d05f24da1cff536462c8","expires_in":3600}'
+      string: '{"token_type":"bearer","access_token":"c2b1b82d83dec47f088e3e60b1dccc637d9b943e220562a31bbc8e0fbec09a8c","expires_in":3600}'
     http_version: 
-  recorded_at: Mon, 01 Jul 2019 20:37:06 GMT
+  recorded_at: Mon, 01 Jul 2019 17:39:14 GMT
 - request:
-    method: post
-    uri: http://iteratelabs.cassia.pro/api/gap/nodes/invalid/connection?mac=CC%3A1B%3AE0%3AE0%3AF1%3AE8
+    method: get
+    uri: http://iteratelabs.cassia.pro/api/gap/nodes?connection_state=connected&mac=CC%3A1B%3AE0%3AE0%3AF1%3AE8
     body:
-      encoding: UTF-8
-      string: '{"type":"random","timeout":"5000","auto":"0","discovergatt":"1"}'
+      encoding: US-ASCII
+      string: ''
     headers:
       Authorization:
-      - Bearer 2abcc0e91299a0f5a39209db2a9353f3048429f28f30d05f24da1cff536462c8
+      - Bearer c2b1b82d83dec47f088e3e60b1dccc637d9b943e220562a31bbc8e0fbec09a8c
       Content-Type:
       - application/json
   response:
     status:
-      code: 500
-      message: Internal Server Error
+      code: 200
+      message: OK
     headers:
       server:
       - nginx/1.13.6
       date:
-      - Mon, 01 Jul 2019 20:37:06 GMT
+      - Mon, 01 Jul 2019 17:39:14 GMT
       content-type:
-      - text/plain
+      - application/json
       content-length:
-      - '17'
+      - '180'
       connection:
       - close
       access-control-allow-origin:
@@ -87,7 +87,7 @@ http_interactions:
       - nosniff
     body:
       encoding: UTF-8
-      string: parameter invalid
+      string: '{"nodes":[{"type":"random","bdaddrs":{"bdaddr":"F6:12:3D:BD:DE:44","bdaddrType":"random"},"chipId":0,"handle":"","name":"","connectionState":"connected","id":"F6:12:3D:BD:DE:44"}]}'
     http_version: 
-  recorded_at: Mon, 01 Jul 2019 20:37:06 GMT
+  recorded_at: Mon, 01 Jul 2019 17:39:14 GMT
 recorded_with: VCR 5.0.0

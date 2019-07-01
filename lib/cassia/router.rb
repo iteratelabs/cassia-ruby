@@ -23,6 +23,7 @@ module Cassia
     attribute :container, Hash
     attribute :ap, Hash
     attribute :connected_devices, Array[Cassia::Device], default: []
+    attribute :notification_open, Boolean
 
     def connect_local(access_controller, device_mac: , type: )
       Cassia::Requests::ConnectLocal.new(access_controller, router: self, device_mac: device_mac, type: type).perform
@@ -30,6 +31,10 @@ module Cassia
 
     def disconnect_local(access_controller, device_mac: )
       Cassia::Requests::DisconnectLocal.new(access_controller, router: self, device_mac: device_mac).perform
+    end
+
+    def get_connected_devices(access_controller)
+      Cassia::Requests::GetConnectedDevicesRouter.new(access_controller, router: self).perform
     end
   end
 end

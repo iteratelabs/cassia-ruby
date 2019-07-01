@@ -33,5 +33,9 @@ module Cassia
     def disconnect_device(device_mac: )
       Cassia::Requests::DisconnectDevice.new(self, device_mac: device_mac).perform
     end
+
+    def open_notify(aps: )
+      Cassia::Requests::OpenNotify.new(self, aps: aps).perform
+    end
   end
 end
