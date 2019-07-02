@@ -8,7 +8,6 @@ module Cassia
     attribute :autoselect_switch, Integer, default: 0
     attribute :connected_devices, Array[Cassia::Device], default: []
     attribute :routers, Array[Cassia::Router], default: []
-    attribute :scanning_on, Boolean
 
     def get_token
       Cassia::Requests::GetToken.new(self).perform
@@ -22,8 +21,12 @@ module Cassia
       Cassia::Requests::SwitchAutoselect.new(self, flag: flag).perform
     end
 
-    def open_scan(aps: nil, chip: nil, active: nil, filter_name: nil, filter_mac: nil, filter_uuid: nil)
+    def open_scan(aps: , chip: nil, active: nil, filter_name: nil, filter_mac: nil, filter_uuid: nil)
       Cassia::Requests::OpenScan.new(self, aps: aps, chip: chip, active: active, filter_name: filter_name, filter_mac: filter_mac, filter_uuid: filter_uuid).perform
+    end
+
+    def close_scan(aps: )
+      Cassia::Requests::CloseScan.new(self, aps: aps).perform
     end
 
     def connect_device(aps: '*', device_mac: )
