@@ -1,6 +1,6 @@
 module Cassia
   module ResponseHandlers
-    class OpenScan
+    class CloseScan
       def initialize(access_controller, aps: )
         @access_controller = access_controller
         @aps = aps
@@ -20,7 +20,7 @@ module Cassia
       def handle_success
         routers_to_be_turned_on = @access_controller.routers.select {|router| @aps.include?(router.mac) }
         routers_to_be_turned_on.each do |router|
-          router.scanning_on = true
+          router.scanning_on = false
         end
       end
 

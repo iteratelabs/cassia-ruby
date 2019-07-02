@@ -1,7 +1,7 @@
 module Cassia
   module Requests
     class OpenScan
-      def initialize(access_controller, aps: nil, chip: nil, active: nil, filter_name: nil, filter_mac: nil,
+      def initialize(access_controller, aps: , chip: nil, active: nil, filter_name: nil, filter_mac: nil,
         filter_uuid: nil)
         @access_controller = access_controller
         @aps = aps
@@ -36,7 +36,7 @@ module Cassia
       end
 
       def perform
-        Cassia::ResponseHandlers::OpenScan.new(@access_controller).handle(Cassia.api.post(self))
+        Cassia::ResponseHandlers::OpenScan.new(@access_controller, aps: @aps).handle(Cassia.api.post(self))
       end
 
       private
