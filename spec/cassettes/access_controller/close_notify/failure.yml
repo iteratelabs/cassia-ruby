@@ -1,0 +1,91 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://iteratelabs.cassia.pro/api/oauth2/token
+    body:
+      encoding: UTF-8
+      string: '{"grant_type":"client_credentials"}'
+    headers:
+      Authorization:
+      - Basic <CREDENTIALS>
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      server:
+      - nginx/1.13.6
+      date:
+      - Tue, 02 Jul 2019 19:02:08 GMT
+      content-type:
+      - application/json
+      content-length:
+      - '123'
+      connection:
+      - close
+      access-control-allow-origin:
+      - "*"
+      access-control-allow-headers:
+      - Content-Type,Accept,Authorization
+      access-control-allow-methods:
+      - GET,POST,PUT,DELETE
+      access-control-allow-credentials:
+      - 'true'
+      x-frame-options:
+      - SAMEORIGIN
+      x-content-type-options:
+      - nosniff
+      cache-control:
+      - no-store
+      pragma:
+      - no-cache
+    body:
+      encoding: UTF-8
+      string: '{"token_type":"bearer","access_token":"4cc565173f654d361e4b298837d6a93936aa3370212a58d4e9da687211b47557","expires_in":3600}'
+    http_version: 
+  recorded_at: Tue, 02 Jul 2019 19:02:08 GMT
+- request:
+    method: post
+    uri: http://iteratelabs.cassia.pro/api/aps/notify/close
+    body:
+      encoding: UTF-8
+      string: '{"aps":["invalid router mac"]}'
+    headers:
+      Authorization:
+      - Bearer 4cc565173f654d361e4b298837d6a93936aa3370212a58d4e9da687211b47557
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      server:
+      - nginx/1.13.6
+      date:
+      - Tue, 02 Jul 2019 19:02:08 GMT
+      transfer-encoding:
+      - chunked
+      connection:
+      - close
+      access-control-allow-origin:
+      - "*"
+      access-control-allow-headers:
+      - Content-Type,Accept,Authorization
+      access-control-allow-methods:
+      - GET,POST,PUT,DELETE
+      access-control-allow-credentials:
+      - 'true'
+      x-frame-options:
+      - SAMEORIGIN
+      x-content-type-options:
+      - nosniff
+    body:
+      encoding: UTF-8
+      string: '{"status":"bad request","error":"invalid aps"}'
+    http_version: 
+  recorded_at: Tue, 02 Jul 2019 19:02:08 GMT
+recorded_with: VCR 5.0.0

@@ -37,5 +37,9 @@ module Cassia
     def open_notify(aps: )
       Cassia::Requests::OpenNotify.new(self, aps: aps).perform
     end
+
+    def close_notify(aps: )
+      Cassia::Requests::CloseNotify.new(self, aps: aps).perform
+    end
   end
 end
