@@ -100,6 +100,21 @@ RSpec.describe Cassia::AccessController do
   end
 
   describe "#open_scan" do
+    vcr_options = { cassette_name: 'access_controller/open_scan/success', record: :new_episodes }
+    context "when successful", vcr: vcr_options do
+      it "sets scanning_on for all routers when passed in * for aps" do
+        Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
+        Cassia.configuration.secret = ENV['CASSIA_SECRET']
+        access_controller = described_class.new
+
+        access_controller.open_scan(aps: "*")
+        
+        access_controller.routers.each do |router|
+          expect(router.scanning_on).to be_truthy
+        end
+      end
+    end
+
     vcr_options = { cassette_name: 'access_controller/open_scan/failure', record: :new_episodes }
       context "when unsuccessful", vcr: vcr_options do
         it "sets the error" do

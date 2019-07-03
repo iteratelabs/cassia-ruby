@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe Cassia::ResponseHandlers::CloseAPState do
+RSpec.describe Cassia::ResponseHandlers::CloseApState do
   include FaradayHelpers
   describe "#handle" do
     it "returns true for a successful response" do

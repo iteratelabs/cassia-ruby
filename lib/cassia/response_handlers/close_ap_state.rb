@@ -1,6 +1,6 @@
 module Cassia
   module ResponseHandlers
-    class CloseAPState
+    class CloseApState
       def initialize(access_controller)
         @access_controller = access_controller
       end

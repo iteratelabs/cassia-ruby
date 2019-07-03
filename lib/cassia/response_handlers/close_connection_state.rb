@@ -23,6 +23,15 @@ module Cassia
           router.connection_state_monitor_on = false
         end
       end
+        # if @aps == "*"
+        #   routers_to_close_connection_state = @access_controller.routers
+        # else
+        #   routers_to_close_connection_state = @access_controller.routers.select {|router| @aps.include?(router.mac) }
+        # end
+      #   routers_to_close_connection_state.each do |router|
+      #     router.connection_state_monitor_on = false
+      #   end
+      # end
 
       def handle_failure(response)
         @access_controller.error = JSON.parse(response.body)['error']
