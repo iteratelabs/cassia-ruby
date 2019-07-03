@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe Cassia::Requests::OpenAPState do
+RSpec.describe Cassia::Requests::OpenApState do
   describe '#path' do
     it "returns the correct API endpoint" do
       request = described_class.new(Cassia::AccessController.new)

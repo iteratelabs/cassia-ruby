@@ -1,6 +1,6 @@
 module Cassia
   module Requests
-    class OpenAPState
+    class OpenApState
       def initialize(access_controller)
         @access_controller = access_controller
       end
@@ -17,7 +17,7 @@ module Cassia
       end
 
       def perform
-        Cassia::ResponseHandlers::OpenAPState.new(@access_controller).handle(Cassia.api.get(self))
+        Cassia::ResponseHandlers::OpenApState.new(@access_controller).handle(Cassia.api.get(self))
       end
 
       private
