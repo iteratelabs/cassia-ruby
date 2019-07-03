@@ -8,22 +8,22 @@ http_interactions:
       string: '{"grant_type":"client_credentials"}'
     headers:
       Authorization:
-      - Basic <CREDENTIALS>
+      - Basic aW52YWxpZCBjbGllbnQgaWQ6aW52YWxpZCBzZWNyZXQ=
       Content-Type:
       - application/json
   response:
     status:
-      code: 200
-      message: OK
+      code: 401
+      message: Unauthorized
     headers:
       server:
       - nginx/1.13.6
       date:
-      - Tue, 02 Jul 2019 19:27:27 GMT
+      - Wed, 03 Jul 2019 15:34:58 GMT
       content-type:
       - application/json
       content-length:
-      - '123'
+      - '65'
       connection:
       - close
       access-control-allow-origin:
@@ -44,31 +44,31 @@ http_interactions:
       - no-cache
     body:
       encoding: UTF-8
-      string: '{"token_type":"bearer","access_token":"e2f9b4de5fc5526b2b3c4211205f18b50aeac5c62cefb0f303a2a0436e24c2e1","expires_in":3600}'
+      string: '{"error":"invalid_client","error_description":"Client not found"}'
     http_version: 
-  recorded_at: Tue, 02 Jul 2019 19:27:27 GMT
+  recorded_at: Wed, 03 Jul 2019 15:34:58 GMT
 - request:
-    method: post
-    uri: http://iteratelabs.cassia.pro/api/aps/scan/open
+    method: get
+    uri: http://iteratelabs.cassia.pro/api/aps/ap-state/open
     body:
-      encoding: UTF-8
-      string: '{"aps":["invalid router mac"]}'
+      encoding: US-ASCII
+      string: ''
     headers:
       Authorization:
-      - Bearer e2f9b4de5fc5526b2b3c4211205f18b50aeac5c62cefb0f303a2a0436e24c2e1
+      - 'Bearer '
       Content-Type:
       - application/json
   response:
     status:
-      code: 400
-      message: Bad Request
+      code: 403
+      message: Forbidden
     headers:
       server:
       - nginx/1.13.6
       date:
-      - Tue, 02 Jul 2019 19:27:27 GMT
-      transfer-encoding:
-      - chunked
+      - Wed, 03 Jul 2019 15:34:58 GMT
+      content-length:
+      - '74'
       connection:
       - close
       access-control-allow-origin:
@@ -83,9 +83,13 @@ http_interactions:
       - SAMEORIGIN
       x-content-type-options:
       - nosniff
+      cache-control:
+      - no-store
+      pragma:
+      - no-cache
     body:
       encoding: UTF-8
-      string: '{"status":"bad request","error":"invalid aps"}'
+      string: '{"error":"access_denied","error_description":"Wrong authorization header"}'
     http_version: 
-  recorded_at: Tue, 02 Jul 2019 19:27:27 GMT
+  recorded_at: Wed, 03 Jul 2019 15:34:58 GMT
 recorded_with: VCR 5.0.0

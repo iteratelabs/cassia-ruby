@@ -1,6 +1,6 @@
 module Cassia
   module ResponseHandlers
-    class OpenScan
+    class CloseNotify
       def initialize(access_controller, aps: )
         @access_controller = access_controller
         @aps = aps
@@ -18,9 +18,9 @@ module Cassia
       private
 
       def handle_success
-        routers_to_open_scan = @access_controller.routers.select {|router| @aps.include?(router.mac) }
-        routers_to_open_scan.each do |router|
-          router.scanning_on = true
+        routers_to_close_notify = @access_controller.routers.select {|router| @aps.include?(router.mac) }
+        routers_to_close_notify.each do |router|
+          router.notification_open = false
         end
       end
 
