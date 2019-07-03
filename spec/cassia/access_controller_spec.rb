@@ -241,4 +241,35 @@ RSpec.describe Cassia::AccessController do
         end
       end
   end
+
+  describe "#open_ap_state" do
+    vcr_options = { cassette_name: 'access_controller/open_ap_state/success', record: :new_episodes }
+      context "when successful", vcr: vcr_options do
+        it "turns on ap_state_monitor_on for all routers" do
+          Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
+          Cassia.configuration.secret = ENV['CASSIA_SECRET']
+          access_controller = described_class.new
+
+          access_controller.open_ap_state
+
+          access_controller.routers.each do |router|
+            expect(router.ap_state_monitor_on).to be_truthy
+          end
+        end
+      end
+    
+    vcr_options = { cassette_name: 'access_controller/open_ap_state/failure', record: :new_episodes }
+      context "when unsuccessful" do
+        it "sets the error", vcr: vcr_options do
+          Cassia.configuration.client_id = "invalid client id"
+          Cassia.configuration.secret = "invalid secret"
+          access_controller = described_class.new
+
+          access_controller.open_ap_state
+          
+          expect(access_controller.error). to eq "access_denied"
+          expect(access_controller.error_description).to eq "Wrong authorization header"
+        end
+      end
+  end
 end
