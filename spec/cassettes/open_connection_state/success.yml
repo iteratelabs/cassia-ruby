@@ -1,0 +1,91 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://iteratelabs.cassia.pro/api/oauth2/token
+    body:
+      encoding: UTF-8
+      string: '{"grant_type":"client_credentials"}'
+    headers:
+      Authorization:
+      - Basic <CREDENTIALS>
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      server:
+      - nginx/1.13.6
+      date:
+      - Wed, 03 Jul 2019 14:30:01 GMT
+      content-type:
+      - application/json
+      content-length:
+      - '123'
+      connection:
+      - close
+      access-control-allow-origin:
+      - "*"
+      access-control-allow-headers:
+      - Content-Type,Accept,Authorization
+      access-control-allow-methods:
+      - GET,POST,PUT,DELETE
+      access-control-allow-credentials:
+      - 'true'
+      x-frame-options:
+      - SAMEORIGIN
+      x-content-type-options:
+      - nosniff
+      cache-control:
+      - no-store
+      pragma:
+      - no-cache
+    body:
+      encoding: UTF-8
+      string: '{"token_type":"bearer","access_token":"7cb92f65801962a8a295b483aeb8d8cbf8332f15510df8e3f062a73b67f2aedf","expires_in":3600}'
+    http_version: 
+  recorded_at: Wed, 03 Jul 2019 14:30:01 GMT
+- request:
+    method: post
+    uri: http://iteratelabs.cassia.pro/api/aps/connection-state/open
+    body:
+      encoding: UTF-8
+      string: '{"aps":["CC:1B:E0:E0:F1:E8"]}'
+    headers:
+      Authorization:
+      - Bearer 7cb92f65801962a8a295b483aeb8d8cbf8332f15510df8e3f062a73b67f2aedf
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      server:
+      - nginx/1.13.6
+      date:
+      - Wed, 03 Jul 2019 14:30:01 GMT
+      transfer-encoding:
+      - chunked
+      connection:
+      - close
+      access-control-allow-origin:
+      - "*"
+      access-control-allow-headers:
+      - Content-Type,Accept,Authorization
+      access-control-allow-methods:
+      - GET,POST,PUT,DELETE
+      access-control-allow-credentials:
+      - 'true'
+      x-frame-options:
+      - SAMEORIGIN
+      x-content-type-options:
+      - nosniff
+    body:
+      encoding: UTF-8
+      string: '{"status":"accepted"}'
+    http_version: 
+  recorded_at: Wed, 03 Jul 2019 14:30:01 GMT
+recorded_with: VCR 5.0.0

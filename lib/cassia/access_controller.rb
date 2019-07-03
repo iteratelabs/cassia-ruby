@@ -44,5 +44,9 @@ module Cassia
     def close_notify(aps: )
       Cassia::Requests::CloseNotify.new(self, aps: aps).perform
     end
+
+    def open_connection_state(aps: )
+      Cassia::Requests::OpenConnectionState.new(self, aps: aps).perform
+    end
   end
 end
