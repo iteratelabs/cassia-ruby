@@ -48,5 +48,9 @@ module Cassia
     def open_connection_state(aps: )
       Cassia::Requests::OpenConnectionState.new(self, aps: aps).perform
     end
+
+    def close_connection_state(aps: )
+      Cassia::Requests::CloseConnectionState.new(self, aps: aps).perform
+    end
   end
 end
