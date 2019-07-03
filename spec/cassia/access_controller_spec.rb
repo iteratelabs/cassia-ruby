@@ -226,4 +226,19 @@ RSpec.describe Cassia::AccessController do
         end
       end
   end
+
+  describe "#close_connection_state" do
+    vcr_options = { cassette_name: 'access_controller/close_connection_state/failure', record: :new_episodes }
+      context "when unsuccessful", vcr: vcr_options do
+        it "sets the error" do
+          Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
+          Cassia.configuration.secret = ENV['CASSIA_SECRET']
+          access_controller = described_class.new
+
+          access_controller.close_notify(aps: ["invalid router mac"])
+
+          expect(access_controller.error). to eq "invalid aps"
+        end
+      end
+  end
 end
