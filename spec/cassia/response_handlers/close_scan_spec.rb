@@ -6,7 +6,7 @@ RSpec.describe Cassia::ResponseHandlers::CloseScan do
     it "returns true for a successful response" do
       access_controller = Cassia::AccessController.new
       response_body = '{"status":"accepted"}'
-      response = build_response(status: 200, body: response_body)
+      response = build_response(status: 202, body: response_body)
       response_handler = described_class.new(access_controller, aps: ["CC:1B:E0:E0:ED:AC", "CC:1B:E0:E0:F1:E8"])
       
       result = response_handler.handle(response)

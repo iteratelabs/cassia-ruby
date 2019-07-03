@@ -56,5 +56,9 @@ module Cassia
     def open_ap_state
       Cassia::Requests::OpenAPState.new(self).perform
     end
+
+    def close_ap_state
+      Cassia::Requests::CloseAPState.new(self).perform
+    end
   end
 end
