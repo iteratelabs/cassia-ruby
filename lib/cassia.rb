@@ -22,6 +22,7 @@ require "cassia/response_handlers/disconnect_local"
 require "cassia/response_handlers/get_connected_devices_router"
 require "cassia/response_handlers/open_notify"
 require "cassia/response_handlers/close_notify"
+require "cassia/response_handlers/open_connection_state"
 require "cassia/requests/get_token"
 require "cassia/requests/get_all_routers_status"
 require "cassia/requests/switch_autoselect"
@@ -34,6 +35,7 @@ require "cassia/requests/disconnect_local"
 require "cassia/requests/get_connected_devices_router"
 require "cassia/requests/open_notify"
 require "cassia/requests/close_notify"
+require "cassia/requests/open_connection_state"
 
 module Cassia
   def self.configuration
