@@ -1,9 +1,8 @@
 module Cassia
   module ResponseHandlers
-    class OpenScan
-      def initialize(access_controller, aps: )
+    class OpenApState
+      def initialize(access_controller)
         @access_controller = access_controller
-        @aps = aps
       end
 
       def handle(response)
@@ -18,14 +17,14 @@ module Cassia
       private
 
       def handle_success
-        routers_to_open_scan = @access_controller.routers.select {|router| @aps.include?(router.mac) }
-        routers_to_open_scan.each do |router|
-          router.scanning_on = true
+        @access_controller.routers.each do |router|
+          router.ap_state_monitor_on = true
         end
       end
 
       def handle_failure(response)
         @access_controller.error = JSON.parse(response.body)['error']
+        @access_controller.error_description = JSON.parse(response.body)['error_description']
       end
     end
   end

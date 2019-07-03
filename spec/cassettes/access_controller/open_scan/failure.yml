@@ -19,7 +19,7 @@ http_interactions:
       server:
       - nginx/1.13.6
       date:
-      - Wed, 26 Jun 2019 19:10:28 GMT
+      - Wed, 03 Jul 2019 19:36:56 GMT
       content-type:
       - application/json
       content-length:
@@ -44,18 +44,18 @@ http_interactions:
       - no-cache
     body:
       encoding: UTF-8
-      string: '{"token_type":"bearer","access_token":"626272f6982f8d6a08fad9cbed306733ce96aa2659b1dafa88f8d6b0eb8091f0","expires_in":3600}'
+      string: '{"token_type":"bearer","access_token":"b5cbddebaf5db113298ffe80a3de2b01105206b14bae29176a0644934b9b1130","expires_in":3600}'
     http_version: 
-  recorded_at: Wed, 26 Jun 2019 19:10:28 GMT
+  recorded_at: Wed, 03 Jul 2019 19:36:56 GMT
 - request:
     method: post
     uri: http://iteratelabs.cassia.pro/api/aps/scan/open
     body:
       encoding: UTF-8
-      string: '{"aps":null}'
+      string: '{"aps":["invalid router mac"]}'
     headers:
       Authorization:
-      - Bearer 626272f6982f8d6a08fad9cbed306733ce96aa2659b1dafa88f8d6b0eb8091f0
+      - Bearer b5cbddebaf5db113298ffe80a3de2b01105206b14bae29176a0644934b9b1130
       Content-Type:
       - application/json
   response:
@@ -66,7 +66,7 @@ http_interactions:
       server:
       - nginx/1.13.6
       date:
-      - Wed, 26 Jun 2019 19:10:28 GMT
+      - Wed, 03 Jul 2019 19:36:56 GMT
       transfer-encoding:
       - chunked
       connection:
@@ -87,5 +87,5 @@ http_interactions:
       encoding: UTF-8
       string: '{"status":"bad request","error":"invalid aps"}'
     http_version: 
-  recorded_at: Wed, 26 Jun 2019 19:10:28 GMT
+  recorded_at: Wed, 03 Jul 2019 19:36:56 GMT
 recorded_with: VCR 5.0.0

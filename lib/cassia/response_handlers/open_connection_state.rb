@@ -1,6 +1,6 @@
 module Cassia
   module ResponseHandlers
-    class OpenScan
+    class OpenConnectionState
       def initialize(access_controller, aps: )
         @access_controller = access_controller
         @aps = aps
@@ -18,9 +18,9 @@ module Cassia
       private
 
       def handle_success
-        routers_to_open_scan = @access_controller.routers.select {|router| @aps.include?(router.mac) }
-        routers_to_open_scan.each do |router|
-          router.scanning_on = true
+        routers_to_open_connection = @access_controller.routers.select {|router| @aps.include?(router.mac) }
+        routers_to_open_connection.each do |router|
+          router.connection_state_monitor_on = true
         end
       end
 

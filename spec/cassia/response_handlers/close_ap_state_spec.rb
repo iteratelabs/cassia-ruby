@@ -1,13 +1,13 @@
 require 'spec_helper'
 
-RSpec.describe Cassia::ResponseHandlers::OpenScan do
+RSpec.describe Cassia::ResponseHandlers::CloseApState do
   include FaradayHelpers
   describe "#handle" do
     it "returns true for a successful response" do
       access_controller = Cassia::AccessController.new
       response_body = '{"status":"accepted"}'
       response = build_response(status: 202, body: response_body)
-      response_handler = described_class.new(access_controller, aps: ["CC:1B:E0:E0:ED:AC", "CC:1B:E0:E0:F1:E8"])
+      response_handler = described_class.new(access_controller)
       
       result = response_handler.handle(response)
 
@@ -16,9 +16,9 @@ RSpec.describe Cassia::ResponseHandlers::OpenScan do
 
     it "returns false for an unsuccessful response" do
       access_controller = Cassia::AccessController.new
-      response_body = '{"status":"bad request","error":"invalid aps"}'
-      response = build_response(status: 400, body: response_body)
-      response_handler = described_class.new(access_controller, aps: ["invalid router mac"])
+      response_body = '{"error":"access_denied","error_description":"Wrong authorization header"}'
+      response = build_response(status: 403, body: response_body)
+      response_handler = described_class.new(access_controller)
       
       result = response_handler.handle(response)
 

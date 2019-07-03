@@ -18,15 +18,14 @@ module Cassia
       private
 
       def handle_success
-        @aps.each do |router|
-          router.notification_on = true
+        routers_to_open_notify = @access_controller.routers.select {|router| @aps.include?(router.mac) }
+        routers_to_open_notify.each do |router|
+          router.notification_open = true
         end
       end
 
       def handle_failure(response)
-        puts response.body
-        puts response.body.class
-        # @access_controller.error = JSON.parse(response.body)['error']
+        @access_controller.error = JSON.parse(response.body)['error']
       end
     end
   end
