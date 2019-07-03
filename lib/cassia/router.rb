@@ -26,6 +26,7 @@ module Cassia
     attribute :notification_open, Boolean
     attribute :scanning_on, Boolean
     attribute :connection_state_monitor_on, Boolean
+    attribute :ap_state_monitor_on, Boolean
 
     def connect_local(access_controller, device_mac: , type: )
       Cassia::Requests::ConnectLocal.new(access_controller, router: self, device_mac: device_mac, type: type).perform
