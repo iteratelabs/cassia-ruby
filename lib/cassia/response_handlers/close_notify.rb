@@ -18,8 +18,8 @@ module Cassia
       private
 
       def handle_success
-        routers_to_be_turned_on = @access_controller.routers.select {|router| @aps.include?(router.mac) }
-        routers_to_be_turned_on.each do |router|
+        routers_to_close_notify = @access_controller.routers.select {|router| @aps.include?(router.mac) }
+        routers_to_close_notify.each do |router|
           router.notification_open = false
         end
       end

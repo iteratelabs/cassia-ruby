@@ -18,8 +18,8 @@ module Cassia
       private
 
       def handle_success
-        routers_to_be_turned_on = @access_controller.routers.select {|router| @aps.include?(router.mac) }
-        routers_to_be_turned_on.each do |router|
+        routers_to_open_connection = @access_controller.routers.select {|router| @aps.include?(router.mac) }
+        routers_to_open_connection.each do |router|
           router.connection_state_monitor_on = true
         end
       end
