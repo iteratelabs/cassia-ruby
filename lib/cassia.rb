@@ -3,6 +3,7 @@ require "faraday_middleware"
 require "virtus"
 require "base64"
 require "json"
+require "ld-eventsource"
 
 require "cassia/api"
 require "cassia/configuration"
@@ -42,6 +43,7 @@ require "cassia/requests/open_connection_state"
 require "cassia/requests/close_connection_state"
 require "cassia/requests/open_ap_state"
 require "cassia/requests/close_ap_state"
+require "cassia/requests/combined_sse"
 
 module Cassia
   def self.configuration
