@@ -60,5 +60,9 @@ module Cassia
     def close_ap_state
       Cassia::Requests::CloseApState.new(self).perform
     end
+
+    def discover_all_services(router: , device_mac: )
+      Cassia::Requests::DiscoverAllServices.new(self, router: router, device_mac: device_mac).perform
+    end
   end
 end
