@@ -1,11 +1,11 @@
 require 'spec_helper'
 
-RSpec.describe Cassia::Requests::DiscoverAllServices do
+RSpec.describe Cassia::Requests::DiscoverAllChar do
   describe '#path' do
     it "returns the correct API endpoint" do
       router = Cassia::Router.new(mac: "CC:1B:E0:E0:F1:E8")
       request = described_class.new(Cassia::AccessController.new, router: router, device_mac: "F3:25:5F:22:35:39")
-      expect(request.path).to eq('/api/gatt/nodes/F3:25:5F:22:35:39/services?mac=CC:1B:E0:E0:F1:E8')
+      expect(request.path).to eq('/api/gatt/nodes/F3:25:5F:22:35:39/characteristics?mac=CC:1B:E0:E0:F1:E8')
     end
   end
 
@@ -26,8 +26,8 @@ RSpec.describe Cassia::Requests::DiscoverAllServices do
   end
 
   describe '#perform' do
-    vcr_options = { cassette_name: 'discover_all_services/success', record: :new_episodes }
-      context "when passing in valid router and device_mac", vcr: vcr_options do
+    vcr_options = { cassette_name: 'discover_all_char/success', record: :new_episodes }
+      context "when passing in a valid router and device_mac", vcr: vcr_options do
         it "returns true" do
           Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
           Cassia.configuration.secret = ENV['CASSIA_SECRET']
@@ -43,8 +43,8 @@ RSpec.describe Cassia::Requests::DiscoverAllServices do
         end
       end
 
-    vcr_options = { cassette_name: 'discover_all_services/failure', record: :new_episodes }
-      context "when passing in invalid device_mac", vcr: vcr_options do
+    vcr_options = { cassette_name: 'discover_all_char/failure', record: :new_episodes }
+      context "when passing in an invalid device_mac", vcr: vcr_options do
         it "returns false" do
           Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
           Cassia.configuration.secret = ENV['CASSIA_SECRET']
