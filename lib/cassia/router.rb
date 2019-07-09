@@ -43,5 +43,9 @@ module Cassia
     def discover_all_services(access_controller, device_mac: )
       Cassia::Requests::DiscoverAllServices.new(access_controller, router: self, device_mac: device_mac).perform
     end
+
+    def discover_all_char(access_controller, device_mac: )
+      Cassia::Requests::DiscoverAllChar.new(access_controller, router: self, device_mac: device_mac).perform
+    end
   end
 end
