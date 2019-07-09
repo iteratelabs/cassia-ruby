@@ -74,6 +74,8 @@ module Cassia
 
     def ac_url
       Cassia.configuration.ac_url
+    def discover_all_services(router: , device_mac: )
+      Cassia::Requests::DiscoverAllServices.new(self, router: router, device_mac: device_mac).perform
     end
   end
 end

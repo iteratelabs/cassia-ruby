@@ -39,5 +39,9 @@ module Cassia
     def get_connected_devices(access_controller)
       Cassia::Requests::GetConnectedDevicesRouter.new(access_controller, router: self).perform
     end
+
+    def discover_all_services(access_controller, device_mac: )
+      Cassia::Requests::DiscoverAllServices.new(access_controller, router: self, device_mac: device_mac).perform
+    end
   end
 end
