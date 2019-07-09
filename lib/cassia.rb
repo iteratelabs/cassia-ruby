@@ -27,6 +27,7 @@ require "cassia/response_handlers/close_connection_state"
 require "cassia/response_handlers/open_ap_state"
 require "cassia/response_handlers/close_ap_state"
 require "cassia/response_handlers/discover_all_services"
+require "cassia/response_handlers/discover_all_char"
 require "cassia/requests/get_token"
 require "cassia/requests/get_all_routers_status"
 require "cassia/requests/switch_autoselect"
@@ -44,6 +45,7 @@ require "cassia/requests/close_connection_state"
 require "cassia/requests/open_ap_state"
 require "cassia/requests/close_ap_state"
 require "cassia/requests/discover_all_services"
+require "cassia/requests/discover_all_char"
 
 module Cassia
   def self.configuration

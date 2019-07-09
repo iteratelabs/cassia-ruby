@@ -64,5 +64,9 @@ module Cassia
     def discover_all_services(router: , device_mac: )
       Cassia::Requests::DiscoverAllServices.new(self, router: router, device_mac: device_mac).perform
     end
+
+    def discover_all_char(router: , device_mac: )
+      Cassia::Requests::DiscoverAllChar.new(self, router: router, device_mac: device_mac).perform
+    end
   end
 end
