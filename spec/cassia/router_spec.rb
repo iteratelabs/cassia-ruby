@@ -224,4 +224,45 @@ RSpec.describe Cassia::Router do
       end
     end
   end
+
+  describe "#discover_descriptor_of_char" do
+    vcr_options = { cassette_name: 'router/discover_descriptor_of_char/success', record: :new_episodes }
+    context "when successful", vcr: vcr_options do
+      it "sets the descriptors of a characteristic" do
+        Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
+        Cassia.configuration.secret = ENV['CASSIA_SECRET']
+        access_controller = Cassia::AccessController.new
+        router = described_class.new(mac: "CC:1B:E0:E0:F1:E8")
+        connect_req = Cassia::Requests::ConnectLocal.new(access_controller, router: router, device_mac: "F6:12:3D:BD:DE:44", type: "random")
+        connect_res = connect_req.perform
+        service_req = Cassia::Requests::DiscoverAllServices.new(access_controller, router: router, device_mac: "F6:12:3D:BD:DE:44")
+        service_res = service_req.perform
+        char_req = Cassia::Requests::DiscoverAllChar.new(access_controller, router: router, device_mac: "F6:12:3D:BD:DE:44")
+        char_res = char_req.perform
+
+        router.discover_descriptor_of_char(access_controller, device_mac: "F6:12:3D:BD:DE:44", char_uuid: "00002a00-0000-1000-8000-00805f9b34fb")
+
+        char = router.connected_devices[0].characteristics.detect {|char| char.uuid == "00002a00-0000-1000-8000-00805f9b34fb"}
+        expect(char.descriptors).to eq [{"handle"=>3, "uuid"=>"00002a00-0000-1000-8000-00805f9b34fb"}]
+      end
+    end
+
+  vcr_options = { cassette_name: 'router/discover_descriptor_of_char/failure', record: :new_episodes }
+    context "when unsuccessful", vcr: vcr_options do
+      it "sets the error" do
+        Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
+        Cassia.configuration.secret = ENV['CASSIA_SECRET']
+        access_controller = Cassia::AccessController.new
+        router = described_class.new(mac: "CC:1B:E0:E0:F1:E8")
+        connect_req = Cassia::Requests::ConnectLocal.new(access_controller, router: router, device_mac: "F6:12:3D:BD:DE:44", type: "random")
+        connect_res = connect_req.perform
+        char_req = Cassia::Requests::DiscoverAllChar.new(access_controller, router: router, device_mac: "F6:12:3D:BD:DE:44")
+        char_res = char_req.perform
+
+        router.discover_descriptor_of_char(access_controller, device_mac: "F6:12:3D:BD:DE:44", char_uuid: "11002a00-0000-1000-8000-00805f9b34fb")
+
+        expect(access_controller.error). to eq "descriptors empty"
+      end
+    end
+  end
 end
