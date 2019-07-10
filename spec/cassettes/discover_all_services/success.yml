@@ -19,7 +19,7 @@ http_interactions:
       server:
       - nginx/1.13.6
       date:
-      - Tue, 09 Jul 2019 14:45:46 GMT
+      - Wed, 10 Jul 2019 15:38:24 GMT
       content-type:
       - application/json
       content-length:
@@ -44,9 +44,9 @@ http_interactions:
       - no-cache
     body:
       encoding: UTF-8
-      string: '{"token_type":"bearer","access_token":"177f35613ee113f1d3c574cd91ccba6be31dc9f5e1d3733d9f948b6870e3e4f5","expires_in":3600}'
+      string: '{"token_type":"bearer","access_token":"00f1f420bb9d1328638accef5e4dca94c4f23cec2d78b0aa75e6ddb1ff2defff","expires_in":3600}'
     http_version: 
-  recorded_at: Tue, 09 Jul 2019 14:45:47 GMT
+  recorded_at: Wed, 10 Jul 2019 15:38:24 GMT
 - request:
     method: post
     uri: http://iteratelabs.cassia.pro/api/gap/nodes/F6:12:3D:BD:DE:44/connection?mac=CC%3A1B%3AE0%3AE0%3AF1%3AE8
@@ -55,7 +55,7 @@ http_interactions:
       string: '{"type":"random","timeout":"5000","auto":"0","discovergatt":"1"}'
     headers:
       Authorization:
-      - Bearer 177f35613ee113f1d3c574cd91ccba6be31dc9f5e1d3733d9f948b6870e3e4f5
+      - Bearer 00f1f420bb9d1328638accef5e4dca94c4f23cec2d78b0aa75e6ddb1ff2defff
       Content-Type:
       - application/json
   response:
@@ -66,7 +66,7 @@ http_interactions:
       server:
       - nginx/1.13.6
       date:
-      - Tue, 09 Jul 2019 14:45:47 GMT
+      - Wed, 10 Jul 2019 15:38:25 GMT
       content-type:
       - text/plain
       content-length:
@@ -89,7 +89,7 @@ http_interactions:
       encoding: UTF-8
       string: OK
     http_version: 
-  recorded_at: Tue, 09 Jul 2019 14:45:47 GMT
+  recorded_at: Wed, 10 Jul 2019 15:38:25 GMT
 - request:
     method: get
     uri: http://iteratelabs.cassia.pro/api/gatt/nodes/F6:12:3D:BD:DE:44/services?mac=CC%3A1B%3AE0%3AE0%3AF1%3AE8
@@ -98,7 +98,7 @@ http_interactions:
       string: ''
     headers:
       Authorization:
-      - Bearer 177f35613ee113f1d3c574cd91ccba6be31dc9f5e1d3733d9f948b6870e3e4f5
+      - Bearer 00f1f420bb9d1328638accef5e4dca94c4f23cec2d78b0aa75e6ddb1ff2defff
       Content-Type:
       - application/json
   response:
@@ -109,7 +109,7 @@ http_interactions:
       server:
       - nginx/1.13.6
       date:
-      - Tue, 09 Jul 2019 14:45:47 GMT
+      - Wed, 10 Jul 2019 15:38:25 GMT
       content-type:
       - application/json
       content-length:
@@ -132,5 +132,5 @@ http_interactions:
       encoding: UTF-8
       string: '[{"uuid":"00001800-0000-1000-8000-00805f9b34fb","primary":true,"handle":1},{"uuid":"00001801-0000-1000-8000-00805f9b34fb","primary":true,"handle":10},{"uuid":"6e400001-b5a3-f393-e0a9-e50e24dcca9e","primary":true,"handle":11}]'
     http_version: 
-  recorded_at: Tue, 09 Jul 2019 14:45:47 GMT
+  recorded_at: Wed, 10 Jul 2019 15:38:25 GMT
 recorded_with: VCR 5.0.0

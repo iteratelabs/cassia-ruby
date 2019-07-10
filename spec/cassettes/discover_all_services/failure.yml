@@ -19,7 +19,7 @@ http_interactions:
       server:
       - nginx/1.13.6
       date:
-      - Tue, 09 Jul 2019 14:45:48 GMT
+      - Wed, 10 Jul 2019 15:38:23 GMT
       content-type:
       - application/json
       content-length:
@@ -44,9 +44,9 @@ http_interactions:
       - no-cache
     body:
       encoding: UTF-8
-      string: '{"token_type":"bearer","access_token":"fcd55c4059b957f9b8a5b3d9dd8e8104b4a7e840f960ad99b611c4f4bbcc9b57","expires_in":3600}'
+      string: '{"token_type":"bearer","access_token":"cf7f5f4f9f2ed5f1423bfd0b56f0c971a14ee2e2c665a54562dd5763188baad8","expires_in":3600}'
     http_version: 
-  recorded_at: Tue, 09 Jul 2019 14:45:48 GMT
+  recorded_at: Wed, 10 Jul 2019 15:38:23 GMT
 - request:
     method: post
     uri: http://iteratelabs.cassia.pro/api/gap/nodes/F6:12:3D:BD:DE:44/connection?mac=CC%3A1B%3AE0%3AE0%3AF1%3AE8
@@ -55,7 +55,7 @@ http_interactions:
       string: '{"type":"random","timeout":"5000","auto":"0","discovergatt":"1"}'
     headers:
       Authorization:
-      - Bearer fcd55c4059b957f9b8a5b3d9dd8e8104b4a7e840f960ad99b611c4f4bbcc9b57
+      - Bearer cf7f5f4f9f2ed5f1423bfd0b56f0c971a14ee2e2c665a54562dd5763188baad8
       Content-Type:
       - application/json
   response:
@@ -66,7 +66,7 @@ http_interactions:
       server:
       - nginx/1.13.6
       date:
-      - Tue, 09 Jul 2019 14:45:48 GMT
+      - Wed, 10 Jul 2019 15:38:23 GMT
       content-type:
       - text/plain
       content-length:
@@ -89,7 +89,7 @@ http_interactions:
       encoding: UTF-8
       string: OK
     http_version: 
-  recorded_at: Tue, 09 Jul 2019 14:45:48 GMT
+  recorded_at: Wed, 10 Jul 2019 15:38:23 GMT
 - request:
     method: get
     uri: http://iteratelabs.cassia.pro/api/gatt/nodes/invalid_device_mac/services?mac=CC%3A1B%3AE0%3AE0%3AF1%3AE8
@@ -98,7 +98,7 @@ http_interactions:
       string: ''
     headers:
       Authorization:
-      - Bearer fcd55c4059b957f9b8a5b3d9dd8e8104b4a7e840f960ad99b611c4f4bbcc9b57
+      - Bearer cf7f5f4f9f2ed5f1423bfd0b56f0c971a14ee2e2c665a54562dd5763188baad8
       Content-Type:
       - application/json
   response:
@@ -109,7 +109,7 @@ http_interactions:
       server:
       - nginx/1.13.6
       date:
-      - Tue, 09 Jul 2019 14:45:49 GMT
+      - Wed, 10 Jul 2019 15:38:24 GMT
       content-type:
       - text/plain
       content-length:
@@ -132,5 +132,5 @@ http_interactions:
       encoding: UTF-8
       string: parameter invalid
     http_version: 
-  recorded_at: Tue, 09 Jul 2019 14:45:49 GMT
+  recorded_at: Wed, 10 Jul 2019 15:38:24 GMT
 recorded_with: VCR 5.0.0
