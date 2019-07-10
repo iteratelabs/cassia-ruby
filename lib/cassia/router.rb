@@ -51,5 +51,9 @@ module Cassia
     def discover_char_of_service(access_controller, device_mac: , service_uuid: )
       Cassia::Requests::DiscoverCharOfService.new(access_controller, router: self, device_mac: device_mac, service_uuid: service_uuid).perform
     end
+
+    def discover_descriptor_of_char(access_controller, device_mac: , char_uuid: )
+      Cassia::Requests::DiscoverDescriptorOfChar.new(access_controller, router: self, device_mac: device_mac, char_uuid: char_uuid).perform
+    end
   end
 end

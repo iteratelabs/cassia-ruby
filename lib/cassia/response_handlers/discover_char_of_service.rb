@@ -21,9 +21,7 @@ module Cassia
 
       def handle_success(response)
         device = @router.connected_devices.detect {|device| device.mac == @device_mac}
-        device = Device.new(mac: @device_mac) if device.nil?
         service = device.services.detect {|service| service.uuid == @service_uuid}
-        service = Service.new(uuid: @service_uuid) if service.nil?
         response.body.each do |char|
           new_char = Characteristic.new(char)
           service.characteristics << new_char
