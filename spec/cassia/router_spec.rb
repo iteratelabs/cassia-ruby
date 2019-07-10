@@ -182,8 +182,8 @@ RSpec.describe Cassia::Router do
     end
   end
 
-  describe "#discover_char_one_service" do
-    vcr_options = { cassette_name: 'router/discover_char_one_service/success', record: :new_episodes }
+  describe "#discover_char_of_service" do
+    vcr_options = { cassette_name: 'router/discover_char_of_service/success', record: :new_episodes }
     context "when successful", vcr: vcr_options do
       it "sets the characteristics of a service" do
         Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
@@ -195,7 +195,7 @@ RSpec.describe Cassia::Router do
         service_req = Cassia::Requests::DiscoverAllServices.new(access_controller, router: router, device_mac: "F6:12:3D:BD:DE:44")
         service_res = service_req.perform
 
-        router.discover_char_one_service(access_controller, device_mac: "F6:12:3D:BD:DE:44", service_uuid: "00001800-0000-1000-8000-00805f9b34fb")
+        router.discover_char_of_service(access_controller, device_mac: "F6:12:3D:BD:DE:44", service_uuid: "00001800-0000-1000-8000-00805f9b34fb")
 
         char1 = Cassia::Characteristic.new(uuid: "00002a00-0000-1000-8000-00805f9b34fb", handle: 3, properties: 10)
         char2 = Cassia::Characteristic.new(uuid: "00002a01-0000-1000-8000-00805f9b34fb", handle: 5, properties: 2)
@@ -206,7 +206,7 @@ RSpec.describe Cassia::Router do
       end
     end
 
-  vcr_options = { cassette_name: 'router/discover_char_one_service/failure', record: :new_episodes }
+  vcr_options = { cassette_name: 'router/discover_char_of_service/failure', record: :new_episodes }
     context "when unsuccessful", vcr: vcr_options do
       it "sets the error" do
         Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
@@ -218,7 +218,7 @@ RSpec.describe Cassia::Router do
         service_req = Cassia::Requests::DiscoverAllServices.new(access_controller, router: router, device_mac: "F6:12:3D:BD:DE:44")
         service_res = service_req.perform
 
-        router.discover_char_one_service(access_controller, device_mac: "F6:12:3D:BD:DE:44", service_uuid: "11001800-0000-1000-8000-00805f9b34fb")
+        router.discover_char_of_service(access_controller, device_mac: "F6:12:3D:BD:DE:44", service_uuid: "11001800-0000-1000-8000-00805f9b34fb")
 
         expect(access_controller.error). to eq "Service Not Found"
       end

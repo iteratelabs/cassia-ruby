@@ -1,6 +1,6 @@
 module Cassia
   module ResponseHandlers
-    class DiscoverCharOneService
+    class DiscoverCharOfService
       def initialize(access_controller, router: , device_mac: , service_uuid: )
         @access_controller = access_controller
         @router = router
@@ -20,8 +20,10 @@ module Cassia
       private
 
       def handle_success(response)
-        device = @router.connected_devices.select {|device| device.mac == @device_mac}[0]
-        service = device.services.select {|service| service.uuid == @service_uuid}[0]
+        device = @router.connected_devices.detect {|device| device.mac == @device_mac}
+        device = Device.new(mac: @device_mac) if device.nil?
+        service = device.services.detect {|service| service.uuid == @service_uuid}
+        service = Service.new(uuid: @service_uuid) if service.nil?
         response.body.each do |char|
           new_char = Characteristic.new(char)
           service.characteristics << new_char
