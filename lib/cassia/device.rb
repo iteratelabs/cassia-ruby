@@ -8,7 +8,7 @@ module Cassia
     attribute :handle, String
     attribute :name, String
     attribute :connectionState, String
-    attribute :services, Array
-    attribute :characteristics, Array
+    attribute :services, Array[Cassia::Service]
+    attribute :characteristics, Array[Cassia::Characteristic]
   end
 end

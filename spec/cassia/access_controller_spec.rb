@@ -334,9 +334,11 @@ RSpec.describe Cassia::AccessController do
 
           access_controller.discover_all_services(router: router, device_mac: "F6:12:3D:BD:DE:44")
 
-          expect(access_controller.connected_devices[0].services).to eq [{"handle"=>1, "primary"=>true, "uuid"=>"00001800-0000-1000-8000-00805f9b34fb"},
-          {"handle"=>10, "primary"=>true, "uuid"=>"00001801-0000-1000-8000-00805f9b34fb"},
-          {"handle"=>11, "primary"=>true, "uuid"=>"6e400001-b5a3-f393-e0a9-e50e24dcca9e"}]
+          service1 = Cassia::Service.new(handle: 1, primary: true, uuid: "00001800-0000-1000-8000-00805f9b34fb")
+          service2 = Cassia::Service.new(handle: 10, primary: true, uuid: "00001801-0000-1000-8000-00805f9b34fb")
+          service3 = Cassia::Service.new(handle: 11, primary: true, uuid: "6e400001-b5a3-f393-e0a9-e50e24dcca9e")
+          
+          expect(access_controller.connected_devices[0].services).to eq([service1, service2, service3])
         end
       end
     
@@ -370,12 +372,14 @@ RSpec.describe Cassia::AccessController do
 
         access_controller.discover_all_char(router: router, device_mac: "F6:12:3D:BD:DE:44")
 
-        expect(access_controller.connected_devices[0].characteristics).to eq [{"handle"=>3, "properties"=>10, "uuid"=>"00002a00-0000-1000-8000-00805f9b34fb"},
-        {"handle"=>5, "properties"=>2, "uuid"=>"00002a01-0000-1000-8000-00805f9b34fb"},
-        {"handle"=>7, "properties"=>2, "uuid"=>"00002a04-0000-1000-8000-00805f9b34fb"},
-        {"handle"=>9, "properties"=>2, "uuid"=>"00002aa6-0000-1000-8000-00805f9b34fb"},
-        {"handle"=>13, "properties"=>16, "uuid"=>"6e400003-b5a3-f393-e0a9-e50e24dcca9e"},
-        {"handle"=>16, "properties"=>12, "uuid"=>"6e400002-b5a3-f393-e0a9-e50e24dcca9e"}]
+        char1 = Cassia::Characteristic.new(uuid: "00002a00-0000-1000-8000-00805f9b34fb", handle: 3, properties: 10)
+        char2 = Cassia::Characteristic.new(uuid: "00002a01-0000-1000-8000-00805f9b34fb", handle: 5, properties: 2)
+        char3 = Cassia::Characteristic.new(uuid: "00002a04-0000-1000-8000-00805f9b34fb", handle: 7, properties: 2)
+        char4 = Cassia::Characteristic.new(uuid: "00002aa6-0000-1000-8000-00805f9b34fb", handle: 9, properties: 2)
+        char5 = Cassia::Characteristic.new(uuid: "6e400003-b5a3-f393-e0a9-e50e24dcca9e", handle: 13, properties: 16)
+        char6 = Cassia::Characteristic.new(uuid: "6e400002-b5a3-f393-e0a9-e50e24dcca9e", handle: 16, properties: 12)
+        
+        expect(access_controller.connected_devices[0].characteristics).to eq [char1, char2, char3, char4, char5, char6]
       end
     end
   
@@ -394,5 +398,48 @@ RSpec.describe Cassia::AccessController do
         expect(access_controller.error). to eq "device disconnect"
       end
     end
-end
+  end
+
+  describe "#discover_char_one_service" do
+  vcr_options = { cassette_name: 'access_controller/discover_char_one_service/success', record: :new_episodes }
+    context "when successful", vcr: vcr_options do
+      it "sets the characteristics for a service" do
+        Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
+        Cassia.configuration.secret = ENV['CASSIA_SECRET']
+        access_controller = described_class.new
+        router = Cassia::Router.new(mac: "CC:1B:E0:E0:F1:E8")
+        connect_req = Cassia::Requests::ConnectLocal.new(access_controller, router: router, device_mac: "F6:12:3D:BD:DE:44", type: "random")
+        connect_res = connect_req.perform
+        service_req = Cassia::Requests::DiscoverAllServices.new(access_controller, router: router, device_mac: "F6:12:3D:BD:DE:44")
+        service_res = service_req.perform
+
+        access_controller.discover_char_one_service(router: router, device_mac: "F6:12:3D:BD:DE:44", service_uuid: "00001800-0000-1000-8000-00805f9b34fb")
+
+        char1 = Cassia::Characteristic.new(uuid: "00002a00-0000-1000-8000-00805f9b34fb", handle: 3, properties: 10)
+        char2 = Cassia::Characteristic.new(uuid: "00002a01-0000-1000-8000-00805f9b34fb", handle: 5, properties: 2)
+        char3 = Cassia::Characteristic.new(uuid: "00002a04-0000-1000-8000-00805f9b34fb", handle: 7, properties: 2)
+        char4 = Cassia::Characteristic.new(uuid: "00002aa6-0000-1000-8000-00805f9b34fb", handle: 9, properties: 2)
+        
+        expect(access_controller.connected_devices[0].characteristics).to eq [char1, char2, char3, char4]
+      end
+    end
+  
+  vcr_options = { cassette_name: 'access_controller/discover_char_one_service/failure', record: :new_episodes }
+    context "when unsuccessful" do
+      it "sets the error", vcr: vcr_options do
+        Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
+        Cassia.configuration.secret = ENV['CASSIA_SECRET']
+        access_controller = described_class.new
+        router = Cassia::Router.new(mac: "CC:1B:E0:E0:F1:E8")
+        connect_req = Cassia::Requests::ConnectLocal.new(access_controller, router: router, device_mac: "F6:12:3D:BD:DE:44", type: "random")
+        connect_res = connect_req.perform
+        service_req = Cassia::Requests::DiscoverAllServices.new(access_controller, router: router, device_mac: "F6:12:3D:BD:DE:44")
+        service_res = service_req.perform
+
+        access_controller.discover_char_one_service(router: router, device_mac: "F6:12:3D:BD:DE:44", service_uuid: "11001800-0000-1000-8000-00805f9b34fb")
+        
+        expect(access_controller.error). to eq "Service Not Found"
+      end
+    end
+  end
 end

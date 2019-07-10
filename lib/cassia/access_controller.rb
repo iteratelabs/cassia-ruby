@@ -81,5 +81,9 @@ module Cassia
     def discover_all_char(router: , device_mac: )
       Cassia::Requests::DiscoverAllChar.new(self, router: router, device_mac: device_mac).perform
     end
+
+    def discover_char_one_service(router: , device_mac: , service_uuid: )
+      Cassia::Requests::DiscoverCharOneService.new(self, router: router, device_mac: device_mac, service_uuid: service_uuid).perform
+    end
   end
 end

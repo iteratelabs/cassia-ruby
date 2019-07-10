@@ -20,7 +20,10 @@ module Cassia
 
       def handle_success(response)
         device = @router.connected_devices.select {|device| device.mac == @device_mac}[0]
-        device.services = response.body
+        response.body.each do |service|
+          new_service = Service.new(service)
+          device.services << new_service
+        end
       end
 
       def handle_failure(response)
