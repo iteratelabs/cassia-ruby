@@ -8,6 +8,7 @@ module Cassia
     attribute :autoselect_switch, Integer, default: 0
     attribute :connected_devices, Array[Cassia::Device], default: []
     attribute :routers, Array[Cassia::Router], default: []
+    attribute :sse
 
     def get_token
       Cassia::Requests::GetToken.new(self).perform
@@ -59,6 +60,20 @@ module Cassia
 
     def close_ap_state
       Cassia::Requests::CloseApState.new(self).perform
+    end
+
+    def combined_sse
+      combined_sse = Cassia::Requests::CombinedSse.new(self)
+
+      self.sse = SSE::Client.new("#{ac_url}#{combined_sse.path}", headers: combined_sse.headers) do |client|
+        yield(client)
+      end
+    end
+
+    private
+
+    def ac_url
+      Cassia.configuration.ac_url
     end
   end
 end
