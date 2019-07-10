@@ -12,7 +12,7 @@ RSpec.describe Cassia::Requests::CloseNotify do
   describe '#body' do
     it "returns the correct request" do
       request = described_class.new(Cassia::AccessController.new, aps: ["CC:1B:E0:E0:ED:AC", "CC:1B:E0:E0:F1:E8"])
-      
+
       expect(request.body).to eq(
         {
           'aps' => ["CC:1B:E0:E0:ED:AC", "CC:1B:E0:E0:F1:E8"]
@@ -43,7 +43,7 @@ RSpec.describe Cassia::Requests::CloseNotify do
           Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
           Cassia.configuration.secret = ENV['CASSIA_SECRET']
           request = described_class.new(Cassia::AccessController.new, aps: ["CC:1B:E0:E0:F1:E8"])
-          
+
           response = request.perform
 
           expect(response).to be_truthy
@@ -56,7 +56,7 @@ RSpec.describe Cassia::Requests::CloseNotify do
           Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
           Cassia.configuration.secret = ENV['CASSIA_SECRET']
           request = described_class.new(Cassia::AccessController.new, aps: ["invalid router mac"])
-          
+
           response = request.perform
 
           expect(response).to be_falsey
