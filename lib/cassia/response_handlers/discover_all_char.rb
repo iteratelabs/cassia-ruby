@@ -19,7 +19,8 @@ module Cassia
       private
 
       def handle_success(response)
-        device = @router.connected_devices.select {|device| device.mac == @device_mac}[0]
+        device = @router.connected_devices.detect {|device| device.mac == @device_mac}
+        device = Device.new(mac: @device_mac) if device.nil?
         response.body.each do |char|
           new_char = Characteristic.new(char)
           device.characteristics << new_char

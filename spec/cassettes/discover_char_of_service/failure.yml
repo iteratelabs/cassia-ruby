@@ -19,7 +19,7 @@ http_interactions:
       server:
       - nginx/1.13.6
       date:
-      - Wed, 10 Jul 2019 17:25:44 GMT
+      - Wed, 10 Jul 2019 18:45:26 GMT
       content-type:
       - application/json
       content-length:
@@ -44,9 +44,9 @@ http_interactions:
       - no-cache
     body:
       encoding: UTF-8
-      string: '{"token_type":"bearer","access_token":"53b46bb1e46942cac3cdda3443ba2d4ca041b9a54b88f4ec0765f3cc791aa21d","expires_in":3600}'
+      string: '{"token_type":"bearer","access_token":"6924c00060fcb0d5a8a24ad0ac5157f0a5db207db8c0015eaca9cc2a59928995","expires_in":3600}'
     http_version: 
-  recorded_at: Wed, 10 Jul 2019 17:25:45 GMT
+  recorded_at: Wed, 10 Jul 2019 18:45:26 GMT
 - request:
     method: post
     uri: http://iteratelabs.cassia.pro/api/gap/nodes/F6:12:3D:BD:DE:44/connection?mac=CC%3A1B%3AE0%3AE0%3AF1%3AE8
@@ -55,7 +55,7 @@ http_interactions:
       string: '{"type":"random","timeout":"5000","auto":"0","discovergatt":"1"}'
     headers:
       Authorization:
-      - Bearer 53b46bb1e46942cac3cdda3443ba2d4ca041b9a54b88f4ec0765f3cc791aa21d
+      - Bearer 6924c00060fcb0d5a8a24ad0ac5157f0a5db207db8c0015eaca9cc2a59928995
       Content-Type:
       - application/json
   response:
@@ -66,7 +66,7 @@ http_interactions:
       server:
       - nginx/1.13.6
       date:
-      - Wed, 10 Jul 2019 17:26:10 GMT
+      - Wed, 10 Jul 2019 18:45:26 GMT
       content-type:
       - text/plain
       content-length:
@@ -89,7 +89,7 @@ http_interactions:
       encoding: UTF-8
       string: OK
     http_version: 
-  recorded_at: Wed, 10 Jul 2019 17:26:10 GMT
+  recorded_at: Wed, 10 Jul 2019 18:45:26 GMT
 - request:
     method: get
     uri: http://iteratelabs.cassia.pro/api/gatt/nodes/F6:12:3D:BD:DE:44/services?mac=CC%3A1B%3AE0%3AE0%3AF1%3AE8
@@ -98,7 +98,7 @@ http_interactions:
       string: ''
     headers:
       Authorization:
-      - Bearer 53b46bb1e46942cac3cdda3443ba2d4ca041b9a54b88f4ec0765f3cc791aa21d
+      - Bearer 6924c00060fcb0d5a8a24ad0ac5157f0a5db207db8c0015eaca9cc2a59928995
       Content-Type:
       - application/json
   response:
@@ -109,7 +109,7 @@ http_interactions:
       server:
       - nginx/1.13.6
       date:
-      - Wed, 10 Jul 2019 17:26:13 GMT
+      - Wed, 10 Jul 2019 18:45:27 GMT
       content-type:
       - application/json
       content-length:
@@ -132,7 +132,7 @@ http_interactions:
       encoding: UTF-8
       string: '[{"uuid":"00001800-0000-1000-8000-00805f9b34fb","primary":true,"handle":1},{"uuid":"00001801-0000-1000-8000-00805f9b34fb","primary":true,"handle":10},{"uuid":"6e400001-b5a3-f393-e0a9-e50e24dcca9e","primary":true,"handle":11}]'
     http_version: 
-  recorded_at: Wed, 10 Jul 2019 17:26:13 GMT
+  recorded_at: Wed, 10 Jul 2019 18:45:27 GMT
 - request:
     method: get
     uri: http://iteratelabs.cassia.pro/api/gatt/nodes/F6:12:3D:BD:DE:44/services/11001800-0000-1000-8000-00805f9b34fb/characteristics?mac=CC%3A1B%3AE0%3AE0%3AF1%3AE8
@@ -141,7 +141,7 @@ http_interactions:
       string: ''
     headers:
       Authorization:
-      - Bearer 53b46bb1e46942cac3cdda3443ba2d4ca041b9a54b88f4ec0765f3cc791aa21d
+      - Bearer 6924c00060fcb0d5a8a24ad0ac5157f0a5db207db8c0015eaca9cc2a59928995
       Content-Type:
       - application/json
   response:
@@ -152,7 +152,7 @@ http_interactions:
       server:
       - nginx/1.13.6
       date:
-      - Wed, 10 Jul 2019 17:26:13 GMT
+      - Wed, 10 Jul 2019 18:45:27 GMT
       content-type:
       - text/plain
       content-length:
@@ -175,5 +175,5 @@ http_interactions:
       encoding: UTF-8
       string: Service Not Found
     http_version: 
-  recorded_at: Wed, 10 Jul 2019 17:26:13 GMT
+  recorded_at: Wed, 10 Jul 2019 18:45:27 GMT
 recorded_with: VCR 5.0.0

@@ -31,7 +31,7 @@ require "cassia/response_handlers/open_ap_state"
 require "cassia/response_handlers/close_ap_state"
 require "cassia/response_handlers/discover_all_services"
 require "cassia/response_handlers/discover_all_char"
-require "cassia/response_handlers/discover_char_one_service"
+require "cassia/response_handlers/discover_char_of_service"
 require "cassia/requests/get_token"
 require "cassia/requests/get_all_routers_status"
 require "cassia/requests/switch_autoselect"
@@ -51,7 +51,7 @@ require "cassia/requests/close_ap_state"
 require "cassia/requests/combined_sse"
 require "cassia/requests/discover_all_services"
 require "cassia/requests/discover_all_char"
-require "cassia/requests/discover_char_one_service"
+require "cassia/requests/discover_char_of_service"
 
 module Cassia
   def self.configuration

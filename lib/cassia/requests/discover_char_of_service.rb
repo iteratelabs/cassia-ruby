@@ -1,6 +1,6 @@
 module Cassia
   module Requests
-    class DiscoverCharOneService
+    class DiscoverCharOfService
       def initialize(access_controller, router: , device_mac: , service_uuid: )
         @access_controller = access_controller
         @router = router
@@ -20,7 +20,7 @@ module Cassia
       end
 
       def perform
-        Cassia::ResponseHandlers::DiscoverCharOneService.new(@access_controller, router: @router, device_mac: @device_mac, service_uuid: @service_uuid).handle(Cassia.api.get(self))
+        Cassia::ResponseHandlers::DiscoverCharOfService.new(@access_controller, router: @router, device_mac: @device_mac, service_uuid: @service_uuid).handle(Cassia.api.get(self))
       end
 
       private
