@@ -1,0 +1,179 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://iteratelabs.cassia.pro/api/oauth2/token
+    body:
+      encoding: UTF-8
+      string: '{"grant_type":"client_credentials"}'
+    headers:
+      Authorization:
+      - Basic <CREDENTIALS>
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      server:
+      - nginx/1.13.6
+      date:
+      - Thu, 11 Jul 2019 19:18:03 GMT
+      content-type:
+      - application/json
+      content-length:
+      - '123'
+      connection:
+      - close
+      access-control-allow-origin:
+      - "*"
+      access-control-allow-headers:
+      - Content-Type,Accept,Authorization
+      access-control-allow-methods:
+      - GET,POST,PUT,DELETE
+      access-control-allow-credentials:
+      - 'true'
+      x-frame-options:
+      - SAMEORIGIN
+      x-content-type-options:
+      - nosniff
+      cache-control:
+      - no-store
+      pragma:
+      - no-cache
+    body:
+      encoding: UTF-8
+      string: '{"token_type":"bearer","access_token":"202aa88de311a7dfcdb058718e3efd4034a05d061c74f7b1a87c043b749872a1","expires_in":3600}'
+    http_version: 
+  recorded_at: Thu, 11 Jul 2019 19:18:03 GMT
+- request:
+    method: post
+    uri: http://iteratelabs.cassia.pro/api/gap/nodes/F6:12:3D:BD:DE:44/connection?mac=CC%3A1B%3AE0%3AE0%3AF1%3AE8
+    body:
+      encoding: UTF-8
+      string: '{"type":"random","timeout":"5000","auto":"0","discovergatt":"1"}'
+    headers:
+      Authorization:
+      - Bearer 202aa88de311a7dfcdb058718e3efd4034a05d061c74f7b1a87c043b749872a1
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      server:
+      - nginx/1.13.6
+      date:
+      - Thu, 11 Jul 2019 19:18:03 GMT
+      content-type:
+      - text/plain
+      content-length:
+      - '2'
+      connection:
+      - close
+      access-control-allow-origin:
+      - "*"
+      access-control-allow-headers:
+      - Content-Type,Accept,Authorization
+      access-control-allow-methods:
+      - GET,POST,PUT,DELETE
+      access-control-allow-credentials:
+      - 'true'
+      x-frame-options:
+      - SAMEORIGIN
+      x-content-type-options:
+      - nosniff
+    body:
+      encoding: UTF-8
+      string: OK
+    http_version: 
+  recorded_at: Thu, 11 Jul 2019 19:18:03 GMT
+- request:
+    method: get
+    uri: http://iteratelabs.cassia.pro/api/gatt/nodes/F6:12:3D:BD:DE:44/characteristics?mac=CC%3A1B%3AE0%3AE0%3AF1%3AE8
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer 202aa88de311a7dfcdb058718e3efd4034a05d061c74f7b1a87c043b749872a1
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      server:
+      - nginx/1.13.6
+      date:
+      - Thu, 11 Jul 2019 19:18:03 GMT
+      content-type:
+      - application/json
+      content-length:
+      - '450'
+      connection:
+      - close
+      access-control-allow-origin:
+      - "*"
+      access-control-allow-headers:
+      - Content-Type,Accept,Authorization
+      access-control-allow-methods:
+      - GET,POST,PUT,DELETE
+      access-control-allow-credentials:
+      - 'true'
+      x-frame-options:
+      - SAMEORIGIN
+      x-content-type-options:
+      - nosniff
+    body:
+      encoding: UTF-8
+      string: '[{"handle":3,"properties":10,"uuid":"00002a00-0000-1000-8000-00805f9b34fb"},{"handle":5,"properties":2,"uuid":"00002a01-0000-1000-8000-00805f9b34fb"},{"handle":7,"properties":2,"uuid":"00002a04-0000-1000-8000-00805f9b34fb"},{"handle":9,"properties":2,"uuid":"00002aa6-0000-1000-8000-00805f9b34fb"},{"handle":13,"properties":16,"uuid":"6e400003-b5a3-f393-e0a9-e50e24dcca9e"},{"handle":16,"properties":12,"uuid":"6e400002-b5a3-f393-e0a9-e50e24dcca9e"}]'
+    http_version: 
+  recorded_at: Thu, 11 Jul 2019 19:18:04 GMT
+- request:
+    method: get
+    uri: http://iteratelabs.cassia.pro/api/gatt/nodes/F6:12:3D:BD:DE:44/handle/3/value/0100?mac=CC%3A1B%3AE0%3AE0%3AF1%3AE8
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer 202aa88de311a7dfcdb058718e3efd4034a05d061c74f7b1a87c043b749872a1
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      server:
+      - nginx/1.13.6
+      date:
+      - Thu, 11 Jul 2019 19:18:04 GMT
+      content-type:
+      - text/plain
+      content-length:
+      - '2'
+      connection:
+      - close
+      access-control-allow-origin:
+      - "*"
+      access-control-allow-headers:
+      - Content-Type,Accept,Authorization
+      access-control-allow-methods:
+      - GET,POST,PUT,DELETE
+      access-control-allow-credentials:
+      - 'true'
+      x-frame-options:
+      - SAMEORIGIN
+      x-content-type-options:
+      - nosniff
+    body:
+      encoding: UTF-8
+      string: OK
+    http_version: 
+  recorded_at: Thu, 11 Jul 2019 19:18:04 GMT
+recorded_with: VCR 5.0.0

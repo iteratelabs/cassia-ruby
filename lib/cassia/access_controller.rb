@@ -90,6 +90,18 @@ module Cassia
       Cassia::Requests::DiscoverAllServicesAndChars.new(self, router: router, device_mac: device_mac).perform
     end
     
+    def write_char_by_handle(router: , device_mac:, handle: , value: )
+      Cassia::Requests::WriteCharByHandle.new(self, router: router, device_mac: device_mac, handle: handle, value: value).perform
+    end
+
+    def open_char_notification(router: , device_mac: , handle: )
+      Cassia::Requests::WriteCharByHandle.new(self, router: router, device_mac: device_mac, handle: handle, value: "0100").perform
+    end
+    
+    def close_char_notification(router: , device_mac: , handle: )
+      Cassia::Requests::WriteCharByHandle.new(self, router: router, device_mac: device_mac, handle: handle, value: "0000").perform
+    end
+
     private
 
     def ac_url

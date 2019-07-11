@@ -524,4 +524,59 @@ RSpec.describe Cassia::AccessController do
       end
     end
   end
+
+  describe "#write_char_by_handle" do
+  vcr_options = { cassette_name: 'access_controller/write_char_by_handle/success', record: :new_episodes }
+    context "when successful", vcr: vcr_options do
+      it "sets the notification_on attribute to true of a characteristic" do
+        Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
+        Cassia.configuration.secret = ENV['CASSIA_SECRET']
+        access_controller = described_class.new
+        router = Cassia::Router.new(mac: "CC:1B:E0:E0:F1:E8")
+        connect_req = Cassia::Requests::ConnectLocal.new(access_controller, router: router, device_mac: "F6:12:3D:BD:DE:44", type: "random")
+        connect_res = connect_req.perform
+        char_req = Cassia::Requests::DiscoverAllChar.new(access_controller, router: router, device_mac: "F6:12:3D:BD:DE:44")
+        char_res = char_req.perform
+
+        access_controller.write_char_by_handle(router: router, device_mac: "F6:12:3D:BD:DE:44", handle: 3, value: "0100")
+        
+        char = access_controller.connected_devices[0].characteristics.detect {|char| char.handle == 3}
+        expect(char.notification_on).to eq true
+      end
+
+      it "sets the notification_on attribute to false of a characteristic" do
+        Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
+        Cassia.configuration.secret = ENV['CASSIA_SECRET']
+        access_controller = described_class.new
+        router = Cassia::Router.new(mac: "CC:1B:E0:E0:F1:E8")
+        connect_req = Cassia::Requests::ConnectLocal.new(access_controller, router: router, device_mac: "F6:12:3D:BD:DE:44", type: "random")
+        connect_res = connect_req.perform
+        char_req = Cassia::Requests::DiscoverAllChar.new(access_controller, router: router, device_mac: "F6:12:3D:BD:DE:44")
+        char_res = char_req.perform
+
+        access_controller.write_char_by_handle(router: router, device_mac: "F6:12:3D:BD:DE:44", handle: 3, value: "0000")
+
+        char = access_controller.connected_devices[0].characteristics.detect {|char| char.handle == 3}
+        expect(char.notification_on).to eq false
+      end
+    end
+  
+  vcr_options = { cassette_name: 'access_controller/write_char_by_handle/failure', record: :new_episodes }
+    context "when unsuccessful" do
+      it "sets the error", vcr: vcr_options do
+        Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
+        Cassia.configuration.secret = ENV['CASSIA_SECRET']
+        access_controller = described_class.new
+        router = Cassia::Router.new(mac: "CC:1B:E0:E0:F1:E8")
+        connect_req = Cassia::Requests::ConnectLocal.new(access_controller, router: router, device_mac: "F6:12:3D:BD:DE:44", type: "random")
+        connect_res = connect_req.perform
+        char_req = Cassia::Requests::DiscoverAllChar.new(access_controller, router: router, device_mac: "F6:12:3D:BD:DE:44")
+        char_res = char_req.perform
+
+        access_controller.write_char_by_handle(router: router, device_mac: "F6:12:3D:BD:DE:44", handle: 100, value: "0100")
+        
+        expect(access_controller.error). to eq "Characteristic With Given Handle Not Found"
+      end
+    end
+  end
 end
