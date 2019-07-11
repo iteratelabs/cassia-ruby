@@ -1,6 +1,6 @@
 module Cassia
   module Requests
-    class DiscoverAll
+    class DiscoverAllServicesAndChars
       def initialize(access_controller, router: , device_mac: )
         @access_controller = access_controller
         @router = router
@@ -19,7 +19,7 @@ module Cassia
       end
 
       def perform
-        Cassia::ResponseHandlers::DiscoverAll.new(@access_controller, router: @router, device_mac: @device_mac).handle(Cassia.api.get(self))
+        Cassia::ResponseHandlers::DiscoverAllServicesAndChars.new(@access_controller, router: @router, device_mac: @device_mac).handle(Cassia.api.get(self))
       end
 
       private

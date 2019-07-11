@@ -1,6 +1,6 @@
 module Cassia
   module ResponseHandlers
-    class DiscoverAll
+    class DiscoverAllServicesAndChars
       def initialize(access_controller, router: , device_mac: )
         @access_controller = access_controller
         @router = router
@@ -22,7 +22,7 @@ module Cassia
         device = @router.connected_devices.detect {|device| device.mac == @device_mac}
         response.body.each do |service|
           new_service = Service.new(uuid: service["uuid"], primary: service["primary"], handle: service["handle"])
-          if !(service["characteristics"].nil?)
+          if service["characteristics"]
             service["characteristics"].each do |char|
               new_char = Characteristic.new(char)
               new_service.characteristics << new_char

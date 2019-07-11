@@ -19,7 +19,7 @@ http_interactions:
       server:
       - nginx/1.13.6
       date:
-      - Wed, 10 Jul 2019 17:15:10 GMT
+      - Thu, 11 Jul 2019 16:52:36 GMT
       content-type:
       - application/json
       content-length:
@@ -44,9 +44,9 @@ http_interactions:
       - no-cache
     body:
       encoding: UTF-8
-      string: '{"token_type":"bearer","access_token":"91acd7d8cfd92bad5bff721adce1acd2f02f2e8e76f9774dd2b893199c96f872","expires_in":3600}'
+      string: '{"token_type":"bearer","access_token":"7b2bf22ac80b7f04095febc3df58b43c3a5cb9a0a0bc0af44f909995bb4c99c5","expires_in":3600}'
     http_version: 
-  recorded_at: Wed, 10 Jul 2019 17:15:10 GMT
+  recorded_at: Thu, 11 Jul 2019 16:52:36 GMT
 - request:
     method: post
     uri: http://iteratelabs.cassia.pro/api/gap/nodes/F6:12:3D:BD:DE:44/connection?mac=CC%3A1B%3AE0%3AE0%3AF1%3AE8
@@ -55,7 +55,7 @@ http_interactions:
       string: '{"type":"random","timeout":"5000","auto":"0","discovergatt":"1"}'
     headers:
       Authorization:
-      - Bearer 91acd7d8cfd92bad5bff721adce1acd2f02f2e8e76f9774dd2b893199c96f872
+      - Bearer 7b2bf22ac80b7f04095febc3df58b43c3a5cb9a0a0bc0af44f909995bb4c99c5
       Content-Type:
       - application/json
   response:
@@ -66,7 +66,7 @@ http_interactions:
       server:
       - nginx/1.13.6
       date:
-      - Wed, 10 Jul 2019 17:15:10 GMT
+      - Thu, 11 Jul 2019 16:52:37 GMT
       content-type:
       - text/plain
       content-length:
@@ -89,31 +89,31 @@ http_interactions:
       encoding: UTF-8
       string: OK
     http_version: 
-  recorded_at: Wed, 10 Jul 2019 17:15:11 GMT
+  recorded_at: Thu, 11 Jul 2019 16:52:37 GMT
 - request:
     method: get
-    uri: http://iteratelabs.cassia.pro/api/gatt/nodes/F6:12:3D:BD:DE:44/services?mac=CC%3A1B%3AE0%3AE0%3AF1%3AE8
+    uri: http://iteratelabs.cassia.pro/api/gatt/nodes/invalid_device_mac/services/characteristics/descriptors?mac=CC%3A1B%3AE0%3AE0%3AF1%3AE8
     body:
       encoding: US-ASCII
       string: ''
     headers:
       Authorization:
-      - Bearer 91acd7d8cfd92bad5bff721adce1acd2f02f2e8e76f9774dd2b893199c96f872
+      - Bearer 7b2bf22ac80b7f04095febc3df58b43c3a5cb9a0a0bc0af44f909995bb4c99c5
       Content-Type:
       - application/json
   response:
     status:
-      code: 200
-      message: OK
+      code: 500
+      message: Internal Server Error
     headers:
       server:
       - nginx/1.13.6
       date:
-      - Wed, 10 Jul 2019 17:15:11 GMT
+      - Thu, 11 Jul 2019 16:52:38 GMT
       content-type:
-      - application/json
+      - text/plain
       content-length:
-      - '225'
+      - '17'
       connection:
       - close
       access-control-allow-origin:
@@ -130,7 +130,7 @@ http_interactions:
       - nosniff
     body:
       encoding: UTF-8
-      string: '[{"uuid":"00001800-0000-1000-8000-00805f9b34fb","primary":true,"handle":1},{"uuid":"00001801-0000-1000-8000-00805f9b34fb","primary":true,"handle":10},{"uuid":"6e400001-b5a3-f393-e0a9-e50e24dcca9e","primary":true,"handle":11}]'
+      string: parameter invalid
     http_version: 
-  recorded_at: Wed, 10 Jul 2019 17:15:11 GMT
+  recorded_at: Thu, 11 Jul 2019 16:52:38 GMT
 recorded_with: VCR 5.0.0

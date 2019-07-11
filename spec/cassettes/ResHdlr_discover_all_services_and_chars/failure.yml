@@ -19,7 +19,7 @@ http_interactions:
       server:
       - nginx/1.13.6
       date:
-      - Thu, 11 Jul 2019 15:28:23 GMT
+      - Thu, 11 Jul 2019 16:52:38 GMT
       content-type:
       - application/json
       content-length:
@@ -44,9 +44,9 @@ http_interactions:
       - no-cache
     body:
       encoding: UTF-8
-      string: '{"token_type":"bearer","access_token":"13d280e3ee10b95b2bd699fe5672f2148cce76f97d53309d3ef3fe82a078332b","expires_in":3600}'
+      string: '{"token_type":"bearer","access_token":"1a643d5eb93fb2e30fa08bcf0544366830486b51dcf55aca5f6f27b8f10c7cf4","expires_in":3600}'
     http_version: 
-  recorded_at: Thu, 11 Jul 2019 15:28:23 GMT
+  recorded_at: Thu, 11 Jul 2019 16:52:38 GMT
 - request:
     method: post
     uri: http://iteratelabs.cassia.pro/api/gap/nodes/F6:12:3D:BD:DE:44/connection?mac=CC%3A1B%3AE0%3AE0%3AF1%3AE8
@@ -55,7 +55,7 @@ http_interactions:
       string: '{"type":"random","timeout":"5000","auto":"0","discovergatt":"1"}'
     headers:
       Authorization:
-      - Bearer 13d280e3ee10b95b2bd699fe5672f2148cce76f97d53309d3ef3fe82a078332b
+      - Bearer 1a643d5eb93fb2e30fa08bcf0544366830486b51dcf55aca5f6f27b8f10c7cf4
       Content-Type:
       - application/json
   response:
@@ -66,7 +66,7 @@ http_interactions:
       server:
       - nginx/1.13.6
       date:
-      - Thu, 11 Jul 2019 15:28:23 GMT
+      - Thu, 11 Jul 2019 16:52:39 GMT
       content-type:
       - text/plain
       content-length:
@@ -89,5 +89,5 @@ http_interactions:
       encoding: UTF-8
       string: OK
     http_version: 
-  recorded_at: Thu, 11 Jul 2019 15:28:23 GMT
+  recorded_at: Thu, 11 Jul 2019 16:52:39 GMT
 recorded_with: VCR 5.0.0

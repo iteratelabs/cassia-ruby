@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-RSpec.describe Cassia::ResponseHandlers::DiscoverAll do
+RSpec.describe Cassia::ResponseHandlers::DiscoverAllServicesAndChars do
   include FaradayHelpers
   describe "#handle" do
-    vcr_options = { cassette_name: 'ResHdlr_discover_all/success', record: :new_episodes }
+    vcr_options = { cassette_name: 'ResHdlr_discover_all_services_and_chars/success', record: :new_episodes }
       context "when passing in a valid router and device_mac", vcr: vcr_options do
         it "returns true for a successful response" do
           access_controller = Cassia::AccessController.new
@@ -20,7 +20,7 @@ RSpec.describe Cassia::ResponseHandlers::DiscoverAll do
         end
       end
 
-    vcr_options = { cassette_name: 'ResHdlr_discover_all/failure', record: :new_episodes }
+    vcr_options = { cassette_name: 'ResHdlr_discover_all_services_and_chars/failure', record: :new_episodes }
       context "when passing in a valid router and device_mac", vcr: vcr_options do
         it "returns false for an unsuccessful response" do
           access_controller = Cassia::AccessController.new
