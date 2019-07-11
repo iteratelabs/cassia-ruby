@@ -5,6 +5,7 @@ module Cassia
     attribute :properties, Integer
     attribute :handle, Integer
     attribute :descriptors, Array
+    attribute :notification_on, Boolean
 
     def ==(other)
       return self.uuid == other.uuid && self.properties == other.properties && self.handle == other.handle && self.descriptors == other.descriptors
