@@ -477,13 +477,13 @@ RSpec.describe Cassia::AccessController do
 
         access_controller.discover_descriptor_of_char(router: router, device_mac: "F6:12:3D:BD:DE:44", char_uuid: "11002a00-0000-1000-8000-00805f9b34fb")
         
-        expect(access_controller.error). to eq "descriptors empty"
+        expect(access_controller.error). to eq "Desciptors Empty. Characteristic Not Found."
       end
     end
   end
 
-  describe "#discover_all" do
-  vcr_options = { cassette_name: 'access_controller/discover_all/success', record: :new_episodes }
+  describe "#discover_all_services_and_chars" do
+  vcr_options = { cassette_name: 'access_controller/discover_all_services_and_chars/success', record: :new_episodes }
     context "when successful", vcr: vcr_options do
       it "sets the characteristics of a service and appends it to services" do
         Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
@@ -493,7 +493,7 @@ RSpec.describe Cassia::AccessController do
         connect_req = Cassia::Requests::ConnectLocal.new(access_controller, router: router, device_mac: "F6:12:3D:BD:DE:44", type: "random")
         connect_res = connect_req.perform
 
-        access_controller.discover_all(router: router, device_mac: "F6:12:3D:BD:DE:44")
+        access_controller.discover_all_services_and_chars(router: router, device_mac: "F6:12:3D:BD:DE:44")
 
         char1 = Cassia::Characteristic.new(uuid: "00002a00-0000-1000-8000-00805f9b34fb", handle: 3, properties: 10, descriptors: [{"handle"=>3, "uuid"=>"00002a00-0000-1000-8000-00805f9b34fb"}])
         char2 = Cassia::Characteristic.new(uuid: "00002a01-0000-1000-8000-00805f9b34fb", handle: 5, properties: 2, descriptors: [{"handle"=>5, "uuid"=>"00002a01-0000-1000-8000-00805f9b34fb"}])
@@ -508,7 +508,7 @@ RSpec.describe Cassia::AccessController do
       end
     end
   
-  vcr_options = { cassette_name: 'access_controller/discover_all/failure', record: :new_episodes }
+  vcr_options = { cassette_name: 'access_controller/discover_all_services_and_chars/failure', record: :new_episodes }
     context "when unsuccessful" do
       it "sets the error", vcr: vcr_options do
         Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
@@ -518,7 +518,7 @@ RSpec.describe Cassia::AccessController do
         connect_req = Cassia::Requests::ConnectLocal.new(access_controller, router: router, device_mac: "F6:12:3D:BD:DE:44", type: "random")
         connect_res = connect_req.perform
 
-        access_controller.discover_all(router: router, device_mac: "F6:12:3D:BD:DE:40")
+        access_controller.discover_all_services_and_chars(router: router, device_mac: "F6:12:3D:BD:DE:40")
         
         expect(access_controller.error). to eq "device disconnect"
       end
