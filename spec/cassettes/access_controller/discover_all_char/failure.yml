@@ -1,0 +1,136 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://iteratelabs.cassia.pro/api/oauth2/token
+    body:
+      encoding: UTF-8
+      string: '{"grant_type":"client_credentials"}'
+    headers:
+      Authorization:
+      - Basic <CREDENTIALS>
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      server:
+      - nginx/1.13.6
+      date:
+      - Wed, 10 Jul 2019 17:22:51 GMT
+      content-type:
+      - application/json
+      content-length:
+      - '123'
+      connection:
+      - close
+      access-control-allow-origin:
+      - "*"
+      access-control-allow-headers:
+      - Content-Type,Accept,Authorization
+      access-control-allow-methods:
+      - GET,POST,PUT,DELETE
+      access-control-allow-credentials:
+      - 'true'
+      x-frame-options:
+      - SAMEORIGIN
+      x-content-type-options:
+      - nosniff
+      cache-control:
+      - no-store
+      pragma:
+      - no-cache
+    body:
+      encoding: UTF-8
+      string: '{"token_type":"bearer","access_token":"0fd4719ac2f575cc6628a326edef7f12da36ddbdbdbf380e845cb694858063f4","expires_in":3600}'
+    http_version: 
+  recorded_at: Wed, 10 Jul 2019 17:22:51 GMT
+- request:
+    method: post
+    uri: http://iteratelabs.cassia.pro/api/gap/nodes/F6:12:3D:BD:DE:44/connection?mac=CC%3A1B%3AE0%3AE0%3AF1%3AE8
+    body:
+      encoding: UTF-8
+      string: '{"type":"random","timeout":"5000","auto":"0","discovergatt":"1"}'
+    headers:
+      Authorization:
+      - Bearer 0fd4719ac2f575cc6628a326edef7f12da36ddbdbdbf380e845cb694858063f4
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      server:
+      - nginx/1.13.6
+      date:
+      - Wed, 10 Jul 2019 17:22:52 GMT
+      content-type:
+      - text/plain
+      content-length:
+      - '2'
+      connection:
+      - close
+      access-control-allow-origin:
+      - "*"
+      access-control-allow-headers:
+      - Content-Type,Accept,Authorization
+      access-control-allow-methods:
+      - GET,POST,PUT,DELETE
+      access-control-allow-credentials:
+      - 'true'
+      x-frame-options:
+      - SAMEORIGIN
+      x-content-type-options:
+      - nosniff
+    body:
+      encoding: UTF-8
+      string: OK
+    http_version: 
+  recorded_at: Wed, 10 Jul 2019 17:22:52 GMT
+- request:
+    method: get
+    uri: http://iteratelabs.cassia.pro/api/gatt/nodes/F6:12:3D:BD:DE:40/characteristics?mac=CC%3A1B%3AE0%3AE0%3AF1%3AE8
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer 0fd4719ac2f575cc6628a326edef7f12da36ddbdbdbf380e845cb694858063f4
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 500
+      message: Internal Server Error
+    headers:
+      server:
+      - nginx/1.13.6
+      date:
+      - Wed, 10 Jul 2019 17:22:52 GMT
+      content-type:
+      - text/plain
+      content-length:
+      - '17'
+      connection:
+      - close
+      access-control-allow-origin:
+      - "*"
+      access-control-allow-headers:
+      - Content-Type,Accept,Authorization
+      access-control-allow-methods:
+      - GET,POST,PUT,DELETE
+      access-control-allow-credentials:
+      - 'true'
+      x-frame-options:
+      - SAMEORIGIN
+      x-content-type-options:
+      - nosniff
+    body:
+      encoding: UTF-8
+      string: device disconnect
+    http_version: 
+  recorded_at: Wed, 10 Jul 2019 17:22:52 GMT
+recorded_with: VCR 5.0.0

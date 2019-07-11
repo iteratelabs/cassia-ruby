@@ -70,6 +70,26 @@ module Cassia
       end
     end
 
+    def discover_all_services(router: , device_mac: )
+      Cassia::Requests::DiscoverAllServices.new(self, router: router, device_mac: device_mac).perform
+    end
+
+    def discover_all_char(router: , device_mac: )
+      Cassia::Requests::DiscoverAllChar.new(self, router: router, device_mac: device_mac).perform
+    end
+
+    def discover_char_of_service(router: , device_mac: , service_uuid: )
+      Cassia::Requests::DiscoverCharOfService.new(self, router: router, device_mac: device_mac, service_uuid: service_uuid).perform
+    end
+
+    def discover_descriptor_of_char(router: , device_mac: , char_uuid: )
+      Cassia::Requests::DiscoverDescriptorOfChar.new(self, router: router, device_mac: device_mac, char_uuid: char_uuid).perform
+    end
+
+    def discover_all_services_and_chars(router: , device_mac: )
+      Cassia::Requests::DiscoverAllServicesAndChars.new(self, router: router, device_mac: device_mac).perform
+    end
+    
     private
 
     def ac_url

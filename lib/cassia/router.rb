@@ -39,5 +39,25 @@ module Cassia
     def get_connected_devices(access_controller)
       Cassia::Requests::GetConnectedDevicesRouter.new(access_controller, router: self).perform
     end
+
+    def discover_all_services(access_controller, device_mac: )
+      Cassia::Requests::DiscoverAllServices.new(access_controller, router: self, device_mac: device_mac).perform
+    end
+
+    def discover_all_char(access_controller, device_mac: )
+      Cassia::Requests::DiscoverAllChar.new(access_controller, router: self, device_mac: device_mac).perform
+    end
+
+    def discover_char_of_service(access_controller, device_mac: , service_uuid: )
+      Cassia::Requests::DiscoverCharOfService.new(access_controller, router: self, device_mac: device_mac, service_uuid: service_uuid).perform
+    end
+
+    def discover_descriptor_of_char(access_controller, device_mac: , char_uuid: )
+      Cassia::Requests::DiscoverDescriptorOfChar.new(access_controller, router: self, device_mac: device_mac, char_uuid: char_uuid).perform
+    end
+
+    def discover_all_services_and_chars(access_controller, device_mac: )
+      Cassia::Requests::DiscoverAllServicesAndChars.new(access_controller, router: self, device_mac: device_mac).perform
+    end
   end
 end
