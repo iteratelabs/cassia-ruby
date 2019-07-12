@@ -23,12 +23,11 @@ Or install it yourself as:
 ## Configuration
 Here is a list of the available configuration options and their default values
 
-| Option          | Description                                                                                                                                                                                                                                                | Default Value                                |
-|-----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------|
-| `ac_url`        | The URL of your AC server address                                                                                                                                                                                                                                  | `"http://iteratelabs.cassia.pro"` |
-| `client_id`     | Your Cassia API Developer Key                                                                                                                                                                                                                                  | `iteratelabs`                                          |
-| `secret`       | Your Cassia API Developer Secret                                                                                                                                                           |
- `7d8b99e989344b6f` |
+| Option          | Description                       |
+|-----------------|:---------------------------------:|
+| `ac_url`        | The URL of your AC server address | 
+| `client_id`     | Your Cassia API Developer Key     |                
+| `secret`        | Your Cassia API Developer Secret  |
 
 ### Setting your configuration
 
@@ -46,27 +45,30 @@ end
 
 ### AccessControllers
 
+In the following context, `access_controller` is a `Cassia::AccessController` object which contains attributes and structures of a Cassia access controller. 
+
 #### Retrieve An Access Token From the Cassia API
 ```ruby
-token = access_controller.get_token
+access_controller.get_token
+access_controller.access_token
 ```
-`access_controller` is a `Cassia::AccessController` object which contains attributes and structures of a Cassia access controller. 
 
-`get_token` will return the `access_token` attribute of `access_controller` if it is not `nil`. Otherwise, it will generate an access token encoded from `config.client_id` and `config.secret` using base64. 
+`get_token` will make a request from `access_controller` to generate an access token encoded from `config.client_id` and `config.secret` using base64. 
+
+`access_token` will return the access token of `access_controller`.
 
 #### Obtain Cassia router's status
 ```ruby
-routers = access_controller.get_all_routers_status
+access_controller.get_all_routers_status
+access_controller.routers
 ```
-`access_controller` is a `Cassia::AccessController` object which contains attributes and structures of a Cassia access controller. 
 
-`routers` is an Array of `Router` objects connected to `access_controller`.
+`routers` will return an Array of `Router` objects connected to `access_controller`.
 
 #### Switch Router Auto-Selection
 ```ruby
 access_controller.switch_autoselect(flag: 1)
 ```
-`access_controller` is a `Cassia::AccessController` object which contains attributes and structures of a Cassia access controller. 
 
 If `flag` is 1, the router auto-selection function will be enabled. If `flag` is 0, the router auto-selection function will be disabled.
 
@@ -74,7 +76,6 @@ If `flag` is 1, the router auto-selection function will be enabled. If `flag` is
 ```ruby
 access_controller.open_scan(aps: ["CC:1B:E0:E7:FE:F8",  "CC:1B:E0:E7:FE:F8", "CC:1B:E0:E7:FE:F8"], chip: 0, active: 0, filter_name: "cassia", filter_mac: "CC:1B:E0:E7:FE:F7", filter_uuid: "00001800-0000-1000-800000805f9b34fb")
 ```
-`access_controller` is a `Cassia::AccessController` object which contains attributes and structures of a Cassia access controller. 
 
 `aps` is an array of one or multiple router's MAC address.
 `chip` (optional) means which chip to scan.
@@ -87,15 +88,13 @@ access_controller.open_scan(aps: ["CC:1B:E0:E7:FE:F8",  "CC:1B:E0:E7:FE:F8", "CC
 ```ruby
 access_controller.close_scan(aps: ["CC:1B:E0:E7:FE:F8",  "CC:1B:E0:E7:FE:F8", "CC:1B:E0:E7:FE:F8"])
 ```
-`access_controller` is a `Cassia::AccessController` object which contains attributes and structures of a Cassia access controller.
  
 `aps` is an array of one or multiple router's MAC address.
 
-#### Connect to One Automatically Selected Router from the router list
+#### Connect A Device to An Automatically Selected Router from the router list
 ```ruby
 access_controller.connect_device(aps: '*', device_mac: "CC:1B:E0:E7:FE:F8")
 ```
-`access_controller` is a `Cassia::AccessController` object which contains attributes and structures of a Cassia access controller.
 
 `aps` is an array of one or multiple router's MAC address, or the string '*' which refers to all currently connected routers.
 `device_mac` is the mac address of the device that you are connecting to. You may only pass in one MAC address.
@@ -104,7 +103,6 @@ access_controller.connect_device(aps: '*', device_mac: "CC:1B:E0:E7:FE:F8")
 ```ruby
 access_controller.disconnect_device(device_mac: "CC:1B:E0:E7:FE:F8")
 ```
-`access_controller` is a `Cassia::AccessController` object which contains attributes and structures of a Cassia access controller.
 
 `device_mac` is the mac address of the device that you are disconnecting.
 
@@ -112,7 +110,6 @@ access_controller.disconnect_device(device_mac: "CC:1B:E0:E7:FE:F8")
 ```ruby
 access_controller.open_notify(aps:  ["CC:1B:E0:E7:FE:F8","CC:1B:E0:E7:FE:F8"])
 ```
-`access_controller` is a `Cassia::AccessController` object which contains attributes and structures of a Cassia access controller.
 
 `aps` is an array of one or multiple router's MAC address.
 
@@ -120,7 +117,6 @@ access_controller.open_notify(aps:  ["CC:1B:E0:E7:FE:F8","CC:1B:E0:E7:FE:F8"])
 ```ruby
 access_controller.close_notify(aps: ["CC:1B:E0:E7:FE:F8","CC:1B:E0:E7:FE:F8"])
 ```
-`access_controller` is a `Cassia::AccessController` object which contains attributes and structures of a Cassia access controller.
 
 `aps` is an array of one or multiple router's MAC address.
 
@@ -128,7 +124,6 @@ access_controller.close_notify(aps: ["CC:1B:E0:E7:FE:F8","CC:1B:E0:E7:FE:F8"])
 ```ruby
 access_controller.open_connection_state(aps: ["CC:1B:E0:E7:FE:F8","CC:1B:E0:E7:FE:F8"])
 ```
-`access_controller` is a `Cassia::AccessController` object which contains attributes and structures of a Cassia access controller.
 
 `aps` is an array of one or multiple router's MAC address.
 
@@ -136,7 +131,6 @@ access_controller.open_connection_state(aps: ["CC:1B:E0:E7:FE:F8","CC:1B:E0:E7:F
 ```ruby
 access_controller.close_connection_state(aps: ["CC:1B:E0:E7:FE:F8","CC:1B:E0:E7:FE:F9"])
 ```
-`access_controller` is a `Cassia::AccessController` object which contains attributes and structures of a Cassia access controller.
 
 `aps` is an array of one or multiple router's MAC address.
 
@@ -144,26 +138,22 @@ access_controller.close_connection_state(aps: ["CC:1B:E0:E7:FE:F8","CC:1B:E0:E7:
 ```ruby
 access_controller.open_ap_state
 ```
-`access_controller` is a `Cassia::AccessController` object which contains attributes and structures of a Cassia access controller.
 
 #### Close Ap-state Monitoring on SSE Channel
 ```ruby
 access_controller.close_ap_state
 ```
-`access_controller` is a `Cassia::AccessController` object which contains attributes and structures of a Cassia access controller.
 
 #### Create One Combined SSE Connection
 ```ruby
 access_controller.combined_sse
 ```
-`access_controller` is a `Cassia::AccessController` object which contains attributes and structures of a Cassia access controller.
 
 #### Discover All GATT Services
 ```ruby
 access_controller.discover_all_services(router: "CC:1B:E0:E7:FE:F8", device_mac: "CC:1B:E0:E7:FE:F9")
 device.services
 ```
-`access_controller` is a `Cassia::AccessController` object which contains attributes and structures of a Cassia access controller.
 
 `router` is the MAC address of the router that is currently connected to the access controller.
 
@@ -176,7 +166,6 @@ device.services
 access_controller.discover_all_char(router: "CC:1B:E0:E7:FE:F8", device_mac: "CC:1B:E0:E7:FE:F9")
 device.characteristics
 ```
-`access_controller` is a `Cassia::AccessController` object which contains attributes and structures of a Cassia access controller.
 
 `router` is the MAC address of the router that is currently connected to the access controller.
 
@@ -189,7 +178,6 @@ device.characteristics
 access_controller.discover_all_char(router: "CC:1B:E0:E7:FE:F8", device_mac: "CC:1B:E0:E7:FE:F9", service_uuid: "00001800-0000-1000-800000805f9b34fb")
 service.characteristics
 ```
-`access_controller` is a `Cassia::AccessController` object which contains attributes and structures of a Cassia access controller.
 
 `router` is the MAC address of the router that is currently connected to the access controller.
 
@@ -205,7 +193,6 @@ access_controller.discover_all_services_and_chars(router: "CC:1B:E0:E7:FE:F8", d
 device.services
 device.characteristics
 ```
-`access_controller` is a `Cassia::AccessController` object which contains attributes and structures of a Cassia access controller.
 
 `router` is the MAC address of the router that is currently connected to the access controller.
 
@@ -218,8 +205,6 @@ device.characteristics
 ```ruby
 access_controller.write_char_by_handle(router: "CC:1B:E0:E7:FE:F8", device_mac: "CC:1B:E0:E7:FE:F9", handle: 3, value: "0100")
 ```
-
-`access_controller` is a `Cassia::AccessController` object which contains attributes and structures of a Cassia access controller.
 
 `router` is the MAC address of the router that is currently connected to the access controller.
 
@@ -234,8 +219,6 @@ access_controller.write_char_by_handle(router: "CC:1B:E0:E7:FE:F8", device_mac: 
 access_controller.open_char_notification(router: "CC:1B:E0:E7:FE:F8", device_mac: "CC:1B:E0:E7:FE:F9", handle: 3)
 ```
 
-`access_controller` is a `Cassia::AccessController` object which contains attributes and structures of a Cassia access controller.
-
 `router` is the MAC address of the router that is currently connected to the access controller.
 
 `device_mac` is the mac address of the device whose characteristic is being turned on notification.
@@ -247,8 +230,6 @@ access_controller.open_char_notification(router: "CC:1B:E0:E7:FE:F8", device_mac
 access_controller.close_char_notification(router: "CC:1B:E0:E7:FE:F8", device_mac: "CC:1B:E0:E7:FE:F9", handle: 3)
 ```
 
-`access_controller` is a `Cassia::AccessController` object which contains attributes and structures of a Cassia access controller.
-
 `router` is the MAC address of the router that is currently connected to the access controller.
 
 `device_mac` is the mac address of the device whose characteristic is being turned off notification.
@@ -257,14 +238,12 @@ access_controller.close_char_notification(router: "CC:1B:E0:E7:FE:F8", device_ma
 
 ### Routers
 
+In the following context, `router` is a `Cassia::Router` object which contains attributes and structures of a router.
+
 #### Connect To A Target Device
 ```ruby
 router.connect_local(access_controller, device_mac: "CC:1B:E0:E7:FE:F9", type: "random")
 ```
-
-`router` is a `Cassia::Router` object which contains attributes and structures of a router.
-
-`access_controller` is a `Cassia::AccessController` object which contains attributes and structures of a Cassia access controller.
 
 `device_mac` is the mac address of the device that you are connecting `router` to.
 
@@ -275,32 +254,21 @@ router.connect_local(access_controller, device_mac: "CC:1B:E0:E7:FE:F9", type: "
 router.disconnect_local(access_controller, device_mac: "CC:1B:E0:E7:FE:F9")
 ```
 
-`router` is a `Cassia::Router` object which contains attributes and structures of a router.
-
-`access_controller` is a `Cassia::AccessController` object which contains attributes and structures of a Cassia access controller.
-
 `device_mac` is the mac address of the device that you are disconnecting from `router`.
 
 #### Get Device List Connected To A Router
 ```ruby
-devices = router.get_connected_devices(access_controller)
+router.get_connected_devices(access_controller)
+router.connected_devices
 ```
 
-`router` is a `Cassia::Router` object which contains attributes and structures of a router.
-
-`access_controller` is a `Cassia::AccessController` object which contains attributes and structures of a Cassia access controller.
-
-`devices` is an Array of devices connected to `router`.
+`connected_devices` returns an Array of devices connected to `router`.
 
 #### Discover All GATT Services
 ```ruby
 router.discover_all_services(access_controller, device_mac: "CC:1B:E0:E7:FE:F9")
 device.services
 ```
-
-`router` is a `Cassia::Router` object which contains attributes and structures of a router.
-
-`access_controller` is a `Cassia::AccessController` object which contains attributes and structures of a Cassia access controller.
 
 `device_mac` is the mac address of the device that you are discovering all GATT services of.
 
@@ -312,10 +280,6 @@ router.discover_all_char(access_controller, device_mac: "CC:1B:E0:E7:FE:F9")
 device.characteristics
 ```
 
-`router` is a `Cassia::Router` object which contains attributes and structures of a router.
-
-`access_controller` is a `Cassia::AccessController` object which contains attributes and structures of a Cassia access controller.
-
 `device_mac` is the mac address of the device that you are discovering all GATT characteristics of.
 
 `device` is an `Cassia::Device` object with mac address `device_mac`. `device.characteristics` returns all GATT characteristics of services provided by `device`.
@@ -325,10 +289,6 @@ device.characteristics
 router.discover_all_char(access_controller, device_mac: "CC:1B:E0:E7:FE:F9", service_uuid: "00001800-0000-1000-800000805f9b34fb")
 service.characteristics
 ```
-
-`router` is a `Cassia::Router` object which contains attributes and structures of a router.
-
-`access_controller` is a `Cassia::AccessController` object which contains attributes and structures of a Cassia access controller.
 
 `device_mac` is the mac address of the device that you are discovering GATT characteristics of.
 
@@ -343,10 +303,6 @@ device.services
 device.characteristics
 ```
 
-`router` is a `Cassia::Router` object which contains attributes and structures of a router.
-
-`access_controller` is a `Cassia::AccessController` object which contains attributes and structures of a Cassia access controller.
-
 `device_mac` is the mac address of the device that you are discovering GATT characteristics and services of.
 
 `device` is an `Cassia::Device` object with mac address `device_mac`. `device.services` returns all GATT services provided by `device`.
@@ -356,10 +312,6 @@ device.characteristics
 ```ruby
 router.write_char_by_handle(access_controller, device_mac: "CC:1B:E0:E7:FE:F9", handle: 3, value: "0100")
 ```
-
-`router` is a `Cassia::Router` object which contains attributes and structures of a router.
-
-`access_controller` is a `Cassia::AccessController` object which contains attributes and structures of a Cassia access controller.
 
 `device_mac` is the mac address of the device that you are writing GATT characteristic to.
 
@@ -372,10 +324,6 @@ router.write_char_by_handle(access_controller, device_mac: "CC:1B:E0:E7:FE:F9", 
 router.open_char_notification(access_controller, device_mac: "CC:1B:E0:E7:FE:F9", handle: 3)
 ```
 
-`router` is a `Cassia::Router` object which contains attributes and structures of a router.
-
-`access_controller` is a `Cassia::AccessController` object which contains attributes and structures of a Cassia access controller.
-
 `device_mac` is the mac address of the device whose characteristic is being turned on notification.
 
 `handle` is the handle of the characteristic that you are turning notification on.
@@ -384,10 +332,6 @@ router.open_char_notification(access_controller, device_mac: "CC:1B:E0:E7:FE:F9"
 ```ruby
 router.close_char_notification(access_controller, device_mac: "CC:1B:E0:E7:FE:F9", handle: 3)
 ```
-
-`router` is a `Cassia::Router` object which contains attributes and structures of a router.
-
-`access_controller` is a `Cassia::AccessController` object which contains attributes and structures of a Cassia access controller.
 
 `device_mac` is the mac address of the device whose characteristic is being turned off notification.
 
