@@ -1,8 +1,8 @@
+[![Maintainability](https://api.codeclimate.com/v1/badges/dd4bf18bcdf6b2bdc860/maintainability)](https://codeclimate.com/github/iteratelabs/cassia-ruby/maintainability) [![CircleCI](https://circleci.com/gh/iteratelabs/cassia-ruby/tree/master.svg?style=svg)](https://circleci.com/gh/iteratelabs/cassia-ruby/tree/master)
 # Cassia::Ruby
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/cassia/ruby`. To experiment with that code, run `bin/console` for an interactive prompt.
+This gem was created in order to allow Ruby developers to interact with the Cassia Bluetooth Gateway API's https://www.cassianetworks.com/download/docs/Cassia_SDK_Implementation_Guide.pdf.
 
-TODO: Delete this and the text above, and describe your gem
 
 ## Installation
 
@@ -25,8 +25,8 @@ Here is a list of the available configuration options and their default values
 
 | Option          | Description                       |
 |-----------------|:---------------------------------:|
-| `ac_url`        | The URL of your AC server address | 
-| `client_id`     | Your Cassia API Developer Key     |                
+| `ac_url`        | The URL of your AC server address |
+| `client_id`     | Your Cassia API Developer Key     |
 | `secret`        | Your Cassia API Developer Secret  |
 
 ### Setting your configuration
@@ -45,7 +45,7 @@ end
 
 ### AccessControllers
 
-In the following context, `access_controller` is a `Cassia::AccessController` object which contains attributes and structures of a Cassia access controller. 
+In the following context, `access_controller` is a `Cassia::AccessController` object which contains attributes and structures of a Cassia access controller.
 
 #### Retrieve An Access Token From the Cassia API
 ```ruby
@@ -53,7 +53,7 @@ access_controller.get_token
 access_controller.access_token
 ```
 
-`get_token` will make a request from `access_controller` to generate an access token encoded from `config.client_id` and `config.secret` using base64. 
+`get_token` will make a request from `access_controller` to generate an access token encoded from `config.client_id` and `config.secret` using base64.
 
 `access_token` will return the access token of `access_controller`.
 
@@ -88,7 +88,7 @@ access_controller.open_scan(aps: ["CC:1B:E0:E7:FE:F8",  "CC:1B:E0:E7:FE:F8", "CC
 ```ruby
 access_controller.close_scan(aps: ["CC:1B:E0:E7:FE:F8",  "CC:1B:E0:E7:FE:F8", "CC:1B:E0:E7:FE:F8"])
 ```
- 
+
 `aps` is an array of one or multiple router's MAC address.
 
 #### Connect A Device to An Automatically Selected Router from the router list
@@ -147,7 +147,7 @@ access_controller.close_ap_state
 #### Create One Combined SSE Connection
 ```ruby
 access_controller.combined_sse do |client|
-  client.on_event do |event| 
+  client.on_event do |event|
     puts "I received an event: #{event.type}, #{event.data}"
    # put code here to act on events
   end

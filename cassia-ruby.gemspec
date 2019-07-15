@@ -6,8 +6,8 @@ require "cassia/ruby/version"
 Gem::Specification.new do |spec|
   spec.name          = "cassia-ruby"
   spec.version       = Cassia::Ruby::VERSION
-  spec.authors       = ["adelinewang679"]
-  spec.email         = ["adelinewang679@gmail.com"]
+  spec.authors       = ["Adeline Wang", "James Russo"]
+  spec.email         = ["adelinewang679@gmail.com", "jdrusso1020@gmail.com"]
 
   spec.summary       = "a ruby api client for the cassia router api"
   spec.description   = "a ruby api client for the cassia router api"
