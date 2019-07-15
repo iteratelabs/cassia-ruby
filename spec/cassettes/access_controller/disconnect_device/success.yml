@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: http://iteratelabs.cassia.pro/api/oauth2/token
+    uri: <API_URL>/api/oauth2/token
     body:
       encoding: UTF-8
       string: '{"grant_type":"client_credentials"}'
@@ -45,11 +45,11 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"token_type":"bearer","access_token":"a4beb9fd920a1756eff0c71aca56569856652899bc2a076bfb2d03388020d471","expires_in":3600}'
-    http_version: 
+    http_version:
   recorded_at: Fri, 28 Jun 2019 20:30:03 GMT
 - request:
     method: post
-    uri: http://iteratelabs.cassia.pro/api/aps/scan/open
+    uri: <API_URL>/api/aps/scan/open
     body:
       encoding: UTF-8
       string: '{"aps":["CC:1B:E0:E0:F1:E8"]}'
@@ -86,11 +86,11 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"status":"accepted"}'
-    http_version: 
+    http_version:
   recorded_at: Fri, 28 Jun 2019 20:30:03 GMT
 - request:
     method: post
-    uri: http://iteratelabs.cassia.pro/api/aps/connections/connect
+    uri: <API_URL>/api/aps/connections/connect
     body:
       encoding: UTF-8
       string: '{"aps":"*","devices":["F3:25:5F:22:35:39"]}'
@@ -129,11 +129,11 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"status":"error","error":"timeout","device":"F3:25:5F:22:35:39"}'
-    http_version: 
+    http_version:
   recorded_at: Fri, 28 Jun 2019 20:30:14 GMT
 - request:
     method: post
-    uri: http://iteratelabs.cassia.pro/api/aps/connections/disconnect
+    uri: <API_URL>/api/aps/connections/disconnect
     body:
       encoding: UTF-8
       string: '{"devices":["F3:25:5F:22:35:39"]}'
@@ -172,6 +172,6 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"status":"error","error":"device is not in connected state","device":"F3:25:5F:22:35:39"}'
-    http_version: 
+    http_version:
   recorded_at: Fri, 28 Jun 2019 20:30:14 GMT
 recorded_with: VCR 5.0.0

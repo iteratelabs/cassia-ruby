@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: http://iteratelabs.cassia.pro/api/oauth2/token
+    uri: <API_URL>/api/oauth2/token
     body:
       encoding: UTF-8
       string: '{"grant_type":"client_credentials"}'
@@ -45,11 +45,11 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"token_type":"bearer","access_token":"d6db833e0f2445b124f3988ed084b2518dc54cb7b2b047677bd5795ab388951d","expires_in":3600}'
-    http_version: 
+    http_version:
   recorded_at: Mon, 01 Jul 2019 20:37:07 GMT
 - request:
     method: post
-    uri: http://iteratelabs.cassia.pro/api/gap/nodes/F6:12:3D:BD:DE:44/connection?mac=CC%3A1B%3AE0%3AE0%3AF1%3AE8
+    uri: <API_URL>/api/gap/nodes/F6:12:3D:BD:DE:44/connection?mac=CC%3A1B%3AE0%3AE0%3AF1%3AE8
     body:
       encoding: UTF-8
       string: '{"type":"random","timeout":"5000","auto":"0","discovergatt":"1"}'
@@ -88,11 +88,11 @@ http_interactions:
     body:
       encoding: UTF-8
       string: OK
-    http_version: 
+    http_version:
   recorded_at: Mon, 01 Jul 2019 20:37:08 GMT
 - request:
     method: get
-    uri: http://iteratelabs.cassia.pro/api/gap/nodes?connection_state=connected&mac=CC%3A1B%3AE0%3AE0%3AF1%3AE8
+    uri: <API_URL>/api/gap/nodes?connection_state=connected&mac=CC%3A1B%3AE0%3AE0%3AF1%3AE8
     body:
       encoding: US-ASCII
       string: ''
@@ -131,6 +131,6 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"nodes":[{"type":"random","bdaddrs":{"bdaddr":"F6:12:3D:BD:DE:44","bdaddrType":"random"},"chipId":0,"handle":"","name":"","connectionState":"connected","id":"F6:12:3D:BD:DE:44"}]}'
-    http_version: 
+    http_version:
   recorded_at: Mon, 01 Jul 2019 20:37:08 GMT
 recorded_with: VCR 5.0.0
