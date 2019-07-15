@@ -59,5 +59,17 @@ module Cassia
     def discover_all_services_and_chars(access_controller, device_mac: )
       Cassia::Requests::DiscoverAllServicesAndChars.new(access_controller, router: self, device_mac: device_mac).perform
     end
+
+    def write_char_by_handle(access_controller, device_mac:, handle: , value: )
+      Cassia::Requests::WriteCharByHandle.new(access_controller, router: self, device_mac: device_mac, handle: handle, value: value).perform
+    end
+
+    def open_char_notification(access_controller, device_mac: , handle: )
+      Cassia::Requests::WriteCharByHandle.new(access_controller, router: self, device_mac: device_mac, handle: handle, value: "0100").perform
+    end
+    
+    def close_char_notification(access_controller, device_mac: , handle: )
+      Cassia::Requests::WriteCharByHandle.new(access_controller, router: self, device_mac: device_mac, handle: handle, value: "0000").perform
+    end
   end
 end
