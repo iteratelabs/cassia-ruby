@@ -146,8 +146,17 @@ access_controller.close_ap_state
 
 #### Create One Combined SSE Connection
 ```ruby
-access_controller.combined_sse
+access_controller.combined_sse do |client|
+  client.on_event do |event| 
+    puts "I received an event: #{event.type}, #{event.data}"
+   # put code here to act on events
+  end
+  client.on_error { |err| puts "#{err.status}" }
+end
 ```
+You can pass a block to the combined_sse method that allows you to act on the SSE's that you get from the routers.
+
+We are using the https://github.com/launchdarkly/ruby-eventsource gem ld-eventsource for our SSE client. Please refer to their documentation for more info.
 
 #### Discover All GATT Services
 ```ruby
