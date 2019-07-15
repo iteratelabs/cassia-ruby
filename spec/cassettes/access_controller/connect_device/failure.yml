@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: http://iteratelabs.cassia.pro/api/oauth2/token
+    uri: <API_URL>/api/oauth2/token
     body:
       encoding: UTF-8
       string: '{"grant_type":"client_credentials"}'
@@ -45,11 +45,11 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"token_type":"bearer","access_token":"ce8dac6d6f185ff2579bd28fe7b685fe3e7be436488022e14ebc8d1421bfa355","expires_in":3600}'
-    http_version: 
+    http_version:
   recorded_at: Wed, 26 Jun 2019 19:17:27 GMT
 - request:
     method: post
-    uri: http://iteratelabs.cassia.pro/api/aps/connections/connect
+    uri: <API_URL>/api/aps/connections/connect
     body:
       encoding: UTF-8
       string: '{"aps":"*","devices":[["blah"]]}'
@@ -88,6 +88,6 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"status":"bad request","error":"invalid devices"}'
-    http_version: 
+    http_version:
   recorded_at: Wed, 26 Jun 2019 19:17:28 GMT
 recorded_with: VCR 5.0.0

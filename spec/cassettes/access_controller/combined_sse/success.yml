@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: http://iteratelabs.cassia.pro/api/oauth2/token
+    uri: <API_URL>/api/oauth2/token
     body:
       encoding: UTF-8
       string: '{"grant_type":"client_credentials"}'
@@ -45,6 +45,6 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"token_type":"bearer","access_token":"61f41db0bd5a4d5a006ff349581ace6be94c1b8d8466f86a9b3f0c5a3da0ae6e","expires_in":3600}'
-    http_version: 
+    http_version:
   recorded_at: Mon, 08 Jul 2019 21:02:31 GMT
 recorded_with: VCR 5.0.0

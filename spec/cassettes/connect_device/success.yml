@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: http://iteratelabs.cassia.pro/api/oauth2/token
+    uri: <API_URL>/api/oauth2/token
     body:
       encoding: UTF-8
       string: '{"grant_type":"client_credentials"}'
@@ -45,11 +45,11 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"token_type":"bearer","access_token":"c506071c1b244bf321e241d0075a11d53939d24352f0984d6f55a770b97418f1","expires_in":3600}'
-    http_version: 
+    http_version:
   recorded_at: Wed, 19 Jun 2019 16:09:41 GMT
 - request:
     method: post
-    uri: http://iteratelabs.cassia.pro/api/aps/connections/connect
+    uri: <API_URL>/api/aps/connections/connect
     body:
       encoding: UTF-8
       string: '{"aps":["CC:1B:E0:E0:F1:E8"],"devices":["F3:25:5F:22:35:39"]}'
@@ -88,11 +88,11 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"status":"ok","device":"F3:25:5F:22:35:39"}'
-    http_version: 
+    http_version:
   recorded_at: Wed, 19 Jun 2019 16:09:43 GMT
 - request:
     method: post
-    uri: http://iteratelabs.cassia.pro/api/aps/scan/open
+    uri: <API_URL>/api/aps/scan/open
     body:
       encoding: UTF-8
       string: '{"aps":["CC:1B:E0:E0:F1:E8"]}'
@@ -133,6 +133,6 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"error":"forbidden","error_description":"Token not found or expired"}'
-    http_version: 
+    http_version:
   recorded_at: Mon, 24 Jun 2019 19:17:08 GMT
 recorded_with: VCR 5.0.0
