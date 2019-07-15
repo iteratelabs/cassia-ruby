@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: http://iteratelabs.cassia.pro/api/oauth2/token
+    uri: <API_URL>/api/oauth2/token
     body:
       encoding: UTF-8
       string: '{"grant_type":"client_credentials"}'
@@ -45,11 +45,11 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"token_type":"bearer","access_token":"69bb3f4ff19caa0f9ce0770f8da3ace97059ba3e14e17a1e6387a6e051c7ab46","expires_in":3600}'
-    http_version: 
+    http_version:
   recorded_at: Thu, 11 Jul 2019 16:52:43 GMT
 - request:
     method: post
-    uri: http://iteratelabs.cassia.pro/api/gap/nodes/F6:12:3D:BD:DE:44/connection?mac=CC%3A1B%3AE0%3AE0%3AF1%3AE8
+    uri: <API_URL>/api/gap/nodes/F6:12:3D:BD:DE:44/connection?mac=CC%3A1B%3AE0%3AE0%3AF1%3AE8
     body:
       encoding: UTF-8
       string: '{"type":"random","timeout":"5000","auto":"0","discovergatt":"1"}'
@@ -88,11 +88,11 @@ http_interactions:
     body:
       encoding: UTF-8
       string: OK
-    http_version: 
+    http_version:
   recorded_at: Thu, 11 Jul 2019 16:52:44 GMT
 - request:
     method: get
-    uri: http://iteratelabs.cassia.pro/api/gatt/nodes/F6:12:3D:BD:DE:44/services/characteristics/descriptors?mac=CC%3A1B%3AE0%3AE0%3AF1%3AE8
+    uri: <API_URL>/api/gatt/nodes/F6:12:3D:BD:DE:44/services/characteristics/descriptors?mac=CC%3A1B%3AE0%3AE0%3AF1%3AE8
     body:
       encoding: US-ASCII
       string: ''
@@ -131,6 +131,6 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '[{"uuid":"00001800-0000-1000-8000-00805f9b34fb","primary":true,"characteristics":[{"descriptors":[{"handle":3,"uuid":"00002a00-0000-1000-8000-00805f9b34fb"}],"handle":3,"properties":10,"uuid":"00002a00-0000-1000-8000-00805f9b34fb"},{"descriptors":[{"handle":5,"uuid":"00002a01-0000-1000-8000-00805f9b34fb"}],"handle":5,"properties":2,"uuid":"00002a01-0000-1000-8000-00805f9b34fb"},{"descriptors":[{"handle":7,"uuid":"00002a04-0000-1000-8000-00805f9b34fb"}],"handle":7,"properties":2,"uuid":"00002a04-0000-1000-8000-00805f9b34fb"},{"descriptors":[{"handle":9,"uuid":"00002aa6-0000-1000-8000-00805f9b34fb"}],"handle":9,"properties":2,"uuid":"00002aa6-0000-1000-8000-00805f9b34fb"}],"handle":1},{"uuid":"00001801-0000-1000-8000-00805f9b34fb","primary":true,"handle":10},{"uuid":"6e400001-b5a3-f393-e0a9-e50e24dcca9e","primary":true,"characteristics":[{"descriptors":[{"handle":13,"uuid":"6e400003-b5a3-f393-e0a9-e50e24dcca9e"},{"handle":14,"uuid":"00002902-0000-1000-8000-00805f9b34fb"}],"handle":13,"properties":16,"uuid":"6e400003-b5a3-f393-e0a9-e50e24dcca9e"},{"descriptors":[{"handle":16,"uuid":"6e400002-b5a3-f393-e0a9-e50e24dcca9e"}],"handle":16,"properties":12,"uuid":"6e400002-b5a3-f393-e0a9-e50e24dcca9e"}],"handle":11}]'
-    http_version: 
+    http_version:
   recorded_at: Thu, 11 Jul 2019 16:52:44 GMT
 recorded_with: VCR 5.0.0
