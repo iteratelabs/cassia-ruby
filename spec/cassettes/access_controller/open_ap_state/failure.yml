@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: http://iteratelabs.cassia.pro/api/oauth2/token
+    uri: <API_URL>/api/oauth2/token
     body:
       encoding: UTF-8
       string: '{"grant_type":"client_credentials"}'
@@ -45,11 +45,11 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"error":"invalid_client","error_description":"Client not found"}'
-    http_version: 
+    http_version:
   recorded_at: Wed, 03 Jul 2019 15:33:29 GMT
 - request:
     method: get
-    uri: http://iteratelabs.cassia.pro/api/aps/ap-state/open
+    uri: <API_URL>/api/aps/ap-state/open
     body:
       encoding: US-ASCII
       string: ''
@@ -90,6 +90,6 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"error":"access_denied","error_description":"Wrong authorization header"}'
-    http_version: 
+    http_version:
   recorded_at: Wed, 03 Jul 2019 15:33:29 GMT
 recorded_with: VCR 5.0.0

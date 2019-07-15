@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: http://iteratelabs.cassia.pro/api/oauth2/token
+    uri: <API_URL>/api/oauth2/token
     body:
       encoding: UTF-8
       string: '{"grant_type":"client_credentials"}'
@@ -45,11 +45,11 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"token_type":"bearer","access_token":"68e4d11f569742c7097b37dd1d38580c4445b8a3a821c2db72358be08bbb934b","expires_in":3600}'
-    http_version: 
+    http_version:
   recorded_at: Fri, 21 Jun 2019 19:11:29 GMT
 - request:
     method: get
-    uri: http://iteratelabs.cassia.pro/api/cassia/hubs
+    uri: <API_URL>/api/cassia/hubs
     body:
       encoding: US-ASCII
       string: ''
@@ -90,6 +90,6 @@ http_interactions:
       string: '[{"_id":"5cb8e45764390a003eb9304c","id":"CC:1B:E0:E0:ED:AC","mac":"CC:1B:E0:E0:ED:AC","name":"Cassia
         Router","group":"","status":"online","model":"E1000","version":"1.4.0.1901300130","position":"","time":1555620951936,"ip":"76.244.39.175","localip":"192.168.1.75","uptime":250268,"offline_time":0,"online_time":1560893971,"update_status":"update_ok","update_reason":"","update_version":"","update_progress":0,"container":{"status_code":6,"status":"not_exist"},"ap":{"uplink":"wired"}},{"_id":"5d09176f64390a003eba70a1","id":"CC:1B:E0:E0:F1:E8","mac":"CC:1B:E0:E0:F1:E8","name":"New
         York","group":"","status":"online","model":"E1000","version":"1.4.1.1904161322","position":"","time":1560876911998,"ip":"38.142.141.11","localip":"172.16.1.47","uptime":83572,"offline_time":1561060649,"online_time":1561060667,"update_status":"update_ok","update_reason":"","update_version":"","update_progress":0,"container":{"status_code":6,"status":"not_exist"},"ap":{"uplink":"wireless"}}]'
-    http_version: 
+    http_version:
   recorded_at: Fri, 21 Jun 2019 19:11:29 GMT
 recorded_with: VCR 5.0.0
