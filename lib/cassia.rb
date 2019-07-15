@@ -34,6 +34,7 @@ require "cassia/response_handlers/discover_all_char"
 require "cassia/response_handlers/discover_char_of_service"
 require "cassia/response_handlers/discover_descriptor_of_char"
 require "cassia/response_handlers/discover_all_services_and_chars"
+require "cassia/response_handlers/write_char_by_handle"
 require "cassia/requests/get_token"
 require "cassia/requests/get_all_routers_status"
 require "cassia/requests/switch_autoselect"
@@ -56,6 +57,7 @@ require "cassia/requests/discover_all_char"
 require "cassia/requests/discover_char_of_service"
 require "cassia/requests/discover_descriptor_of_char"
 require "cassia/requests/discover_all_services_and_chars"
+require "cassia/requests/write_char_by_handle"
 
 module Cassia
   def self.configuration
