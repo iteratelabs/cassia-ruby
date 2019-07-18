@@ -12,7 +12,7 @@ RSpec.describe Cassia::Requests::ConnectDevice do
   describe '#body' do
     it "returns the correct aps and devices" do
       request = described_class.new(Cassia::AccessController.new, aps: ["CC:1B:E0:E0:ED:AC", "CC:1B:E0:E0:F1:E8"], device_mac: "CC:1B:E0:E0:ED:AC" )
-      
+
       expect(request.body).to eq(
         {
           'aps' => ["CC:1B:E0:E0:ED:AC", "CC:1B:E0:E0:F1:E8"],
@@ -41,8 +41,6 @@ RSpec.describe Cassia::Requests::ConnectDevice do
     vcr_options = { cassette_name: 'connect_device/success', record: :new_episodes }
       context "when passing in valid aps and MAC", vcr: vcr_options do
         it "returns the correct response" do
-          Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
-          Cassia.configuration.secret = ENV['CASSIA_SECRET']
           access_controller = Cassia::AccessController.new
           scan_req = Cassia::Requests::OpenScan.new(access_controller, aps: ["CC:1B:E0:E0:F1:E8"])
           scan_res = scan_req.perform
@@ -50,7 +48,7 @@ RSpec.describe Cassia::Requests::ConnectDevice do
             device_mac: "F3:25:5F:22:35:39" )
 
           response = request.perform
-          
+
           expect(response).to be_truthy
         end
       end
@@ -58,10 +56,8 @@ RSpec.describe Cassia::Requests::ConnectDevice do
     vcr_options = { cassette_name: 'connect_device/failure', record: :new_episodes }
       context "when passing invalid aps or MAC", vcr: vcr_options do
         it "returns a 400 and error message invalid devices" do
-          Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
-          Cassia.configuration.secret = ENV['CASSIA_SECRET']
           request = described_class.new(Cassia::AccessController.new, device_mac: ["CC:1B:E0:E0:ED:AC", "CC:1B:E0:E0:F1:E8"])
-          
+
           response = request.perform
 
           expect(response).to be_falsey

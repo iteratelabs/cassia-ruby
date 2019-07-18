@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 RSpec.describe Cassia::Requests::GetToken do
+  include EnvironmentHelpers
   describe '#path' do
     it "returns the correct API endpoint" do
       request = described_class.new(Cassia::AccessController.new)
@@ -41,8 +42,6 @@ RSpec.describe Cassia::Requests::GetToken do
     vcr_options = { cassette_name: 'token/success', record: :new_episodes }
     context "when passing valid credentials", vcr: vcr_options do
       it "returns true" do
-        Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
-        Cassia.configuration.secret = ENV['CASSIA_SECRET']
         request = described_class.new(Cassia::AccessController.new)
 
         response = request.perform
@@ -54,13 +53,13 @@ RSpec.describe Cassia::Requests::GetToken do
     vcr_options = { cassette_name: 'token/failure', record: :new_episodes }
     context "when passing invalid credentials", vcr: vcr_options do
       it "returns false" do
-        Cassia.configuration.client_id = "invalid"
-        Cassia.configuration.secret = "invalid"
-        request = described_class.new(Cassia::AccessController.new)
-        
-        response = request.perform
+        with_environment('CASSIA_CLIENT_ID' => 'invalid', 'CASSIA_SECRET' => 'invalid') do
+          request = described_class.new(Cassia::AccessController.new)
 
-        expect(response).to be_falsey
+          response = request.perform
+
+          expect(response).to be_falsey
+        end
       end
     end
   end
