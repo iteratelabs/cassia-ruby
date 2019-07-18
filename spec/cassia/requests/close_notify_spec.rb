@@ -40,8 +40,6 @@ RSpec.describe Cassia::Requests::CloseNotify do
     vcr_options = { cassette_name: 'close_notify/success', record: :new_episodes }
       context "when passing in valid aps", vcr: vcr_options do
         it "returns a 202" do
-          Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
-          Cassia.configuration.secret = ENV['CASSIA_SECRET']
           request = described_class.new(Cassia::AccessController.new, aps: ["CC:1B:E0:E0:F1:E8"])
 
           response = request.perform
@@ -53,8 +51,6 @@ RSpec.describe Cassia::Requests::CloseNotify do
     vcr_options = { cassette_name: 'close_notify/failure', record: :new_episodes }
       context "when passing invalid aps", vcr: vcr_options do
         it "returns a 400" do
-          Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
-          Cassia.configuration.secret = ENV['CASSIA_SECRET']
           request = described_class.new(Cassia::AccessController.new, aps: ["invalid router mac"])
 
           response = request.perform

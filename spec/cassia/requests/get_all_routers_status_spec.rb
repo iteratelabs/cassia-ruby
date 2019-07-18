@@ -28,8 +28,6 @@ RSpec.describe Cassia::Requests::GetAllRoutersStatus do
     vcr_options = { cassette_name: 'routersstatus/success', record: :new_episodes }
     context "when passing valid credentials", vcr: vcr_options do
       it "returns true" do
-        Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
-        Cassia.configuration.secret = ENV['CASSIA_SECRET']
         access_controller = Cassia::AccessController.new
         request = described_class.new(access_controller)
 
@@ -45,7 +43,7 @@ RSpec.describe Cassia::Requests::GetAllRoutersStatus do
         access_controller = Cassia::AccessController.new
         access_controller.access_token = "invalid_access_token"
         request = described_class.new(access_controller)
-        
+
         response = request.perform
 
         expect(response).to be_falsey
