@@ -30,8 +30,6 @@ RSpec.describe Cassia::Requests::GetConnectedDevicesRouter do
     vcr_options = { cassette_name: 'get_connected_devices_router/success', record: :new_episodes }
     context "when passing a valid router", vcr: vcr_options do
       it "returns true" do
-        Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
-        Cassia.configuration.secret = ENV['CASSIA_SECRET']
         access_controller = Cassia::AccessController.new
         router = Cassia::Router.new(mac: "CC:1B:E0:E0:F1:E8")
         request = described_class.new(access_controller, router: router)
@@ -45,8 +43,6 @@ RSpec.describe Cassia::Requests::GetConnectedDevicesRouter do
     vcr_options = { cassette_name: 'get_connected_devices_router/failure', record: :new_episodes }
     context "when passing an invalid router", vcr: vcr_options do
       it "returns false" do
-        Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
-        Cassia.configuration.secret = ENV['CASSIA_SECRET']
         access_controller = Cassia::AccessController.new
         router = Cassia::Router.new(mac: "invalid router mac")
         request = described_class.new(access_controller, router: router)

@@ -14,9 +14,9 @@ RSpec.describe Cassia::Requests::ConnectLocal do
       router = Cassia::Router.new(mac: "CC:1B:E0:E0:F1:E8")
       request = described_class.new(Cassia::AccessController.new, router: router,
       device_mac: "F3:25:5F:22:35:39", type: "public", timeout: '6000', auto: '1', discovergatt: '0' )
-      
+
       expect(request.body).to eq(
-        { 
+        {
           'type' => "public",
           'timeout' => '6000',
           'auto' => '1',
@@ -46,14 +46,12 @@ RSpec.describe Cassia::Requests::ConnectLocal do
     vcr_options = { cassette_name: 'connect_local/success', record: :new_episodes }
       context "when passing in valid router and device_mac", vcr: vcr_options do
         it "returns true" do
-          Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
-          Cassia.configuration.secret = ENV['CASSIA_SECRET']
           access_controller = Cassia::AccessController.new
           router = Cassia::Router.new(mac: "CC:1B:E0:E0:F1:E8")
           request = described_class.new(access_controller, router: router, device_mac: "F6:12:3D:BD:DE:44", type: "random")
-         
+
           response = request.perform
-          
+
           expect(response).to be_truthy
         end
       end
@@ -61,11 +59,9 @@ RSpec.describe Cassia::Requests::ConnectLocal do
     vcr_options = { cassette_name: 'connect_local/failure', record: :new_episodes }
       context "when passing in invalid device_mac", vcr: vcr_options do
         it "returns false" do
-          Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
-          Cassia.configuration.secret = ENV['CASSIA_SECRET']
           access_controller = Cassia::AccessController.new
           router = Cassia::Router.new(mac: "CC:1B:E0:E0:F1:E8")
-          request = described_class.new(access_controller, router: router, device_mac: "invalid_device_mac", type: "random")          
+          request = described_class.new(access_controller, router: router, device_mac: "invalid_device_mac", type: "random")
           response = request.perform
 
           expect(response).to be_falsey
