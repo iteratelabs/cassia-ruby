@@ -12,7 +12,7 @@ RSpec.describe Cassia::Requests::DisconnectDevice do
   describe '#body' do
     it "returns the correct device" do
       request = described_class.new(Cassia::AccessController.new, device_mac: "F6:12:3D:BD:DE:44" )
-      
+
       expect(request.body).to eq(
         {
           'devices' => ["F6:12:3D:BD:DE:44"]
@@ -40,8 +40,6 @@ RSpec.describe Cassia::Requests::DisconnectDevice do
     vcr_options = { cassette_name: 'disconnect_device/success', record: :new_episodes }
       context "when passing in a valid device_mac", vcr: vcr_options do
         it "returns the correct response" do
-          Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
-          Cassia.configuration.secret = ENV['CASSIA_SECRET']
           access_controller = Cassia::AccessController.new
           autoselect_req = Cassia::Requests::SwitchAutoselect.new(access_controller, flag: 1)
           autoselect_res = autoselect_req.perform
@@ -52,7 +50,7 @@ RSpec.describe Cassia::Requests::DisconnectDevice do
           request = described_class.new(access_controller, device_mac: "F6:12:3D:BD:DE:44" )
 
           response = request.perform
-          
+
           expect(response).to be_truthy
         end
       end
@@ -68,7 +66,7 @@ RSpec.describe Cassia::Requests::DisconnectDevice do
           connect_req = Cassia::Requests::ConnectDevice.new(access_controller, device_mac: "F6:12:3D:BD:DE:44")
           connect_res = connect_req.perform
           request = described_class.new(Cassia::AccessController.new, device_mac: ["CC:1B:E0:E0:ED:AC", "CC:1B:E0:E0:F1:E8"])
-          
+
           response = request.perform
 
           expect(response).to be_falsey

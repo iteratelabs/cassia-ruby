@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 RSpec.describe Cassia::Requests::CloseApState do
+  include EnvironmentHelpers
+
   describe '#path' do
     it "returns the correct API endpoint" do
       request = described_class.new(Cassia::AccessController.new)
@@ -28,10 +30,8 @@ RSpec.describe Cassia::Requests::CloseApState do
     vcr_options = { cassette_name: 'close_ap_state/success', record: :new_episodes }
       context "when passing in valid aps", vcr: vcr_options do
         it "returns a 202" do
-          Cassia.configuration.client_id = ENV['CASSIA_CLIENT_ID']
-          Cassia.configuration.secret = ENV['CASSIA_SECRET']
           request = described_class.new(Cassia::AccessController.new)
-          
+
           response = request.perform
 
           expect(response).to be_truthy
@@ -41,13 +41,15 @@ RSpec.describe Cassia::Requests::CloseApState do
     vcr_options = { cassette_name: 'close_ap_state/failure', record: :new_episodes }
       context "when passing invalid aps", vcr: vcr_options do
         it "returns a 403" do
-          Cassia.configuration.client_id = "invalid client id"
-          Cassia.configuration.secret = "invalid secret"
-          request = described_class.new(Cassia::AccessController.new)
-          
-          response = request.perform
+          with_environment('CASSIA_CLIENT_ID' => 'invalid client id', 'CASSIA_SECRET' => 'invalid secret') do
+            Cassia.configuration.client_id = "invalid client id"
+            Cassia.configuration.secret = "invalid secret"
+            request = described_class.new(Cassia::AccessController.new)
 
-          expect(response).to be_falsey
+            response = request.perform
+
+            expect(response).to be_falsey
+          end
         end
       end
   end
