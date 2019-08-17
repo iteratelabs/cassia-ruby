@@ -30,7 +30,7 @@ GEM
     hitimes (1.3.1)
     http_tools (0.4.5)
     ice_nine (0.11.2)
-    ld-eventsource (1.0.0)
+    ld-eventsource (1.0.1)
       concurrent-ruby (~> 1.0)
       http_tools (~> 0.4.5)
       socketry (~> 0.5.1)
