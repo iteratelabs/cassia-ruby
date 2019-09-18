@@ -31,6 +31,7 @@ Here is a list of the available configuration options and their default values
 | `client_cert`   | Your SSL client cert              | Yes     |
 | `client_key`    | Your SSL client key               | Yes     |
 | `ca_file`       | Your SSL CA file                  | Yes     |
+| `ca_path`       | The path to your SSL CA files     | Yes     |
 
 ### Setting your configuration
 
