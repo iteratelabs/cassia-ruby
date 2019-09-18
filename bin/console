@@ -12,6 +12,9 @@ Cassia.configure do |config|
   config.ac_url = ENV['CASSIA_AC_URL']
   config.client_id = ENV['CASSIA_CLIENT_ID']
   config.secret = ENV['CASSIA_SECRET']
+  config.client_cert = ENV['CASSIA_CLIENT_CERT']
+  config.client_key = ENV['CASSIA_CLIENT_KEY']
+  config.ca_file = ENV['CASSIA_CA_FILE']
 end
 
 IRB.start(__FILE__)

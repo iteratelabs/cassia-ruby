@@ -23,11 +23,14 @@ Or install it yourself as:
 ## Configuration
 Here is a list of the available configuration options and their default values
 
-| Option          | Description                       |
-|-----------------|:---------------------------------:|
-| `ac_url`        | The URL of your AC server address |
-| `client_id`     | Your Cassia API Developer Key     |
-| `secret`        | Your Cassia API Developer Secret  |
+| Option          | Description                       | Optional|
+|-----------------|:---------------------------------:|---------|
+| `ac_url`        | The URL of your AC server address | No      |
+| `client_id`     | Your Cassia API Developer Key     | No      |
+| `secret`        | Your Cassia API Developer Secret  | No      |
+| `client_cert`   | Your SSL client cert              | Yes     |
+| `client_key`    | Your SSL client key               | Yes     |
+| `ca_file`       | Your SSL CA file                  | Yes     |
 
 ### Setting your configuration
 
