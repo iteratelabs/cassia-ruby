@@ -1,6 +1,9 @@
 module Cassia
   class Configuration
-    attr_accessor :client_id, :secret, :ac_url, :client_cert, :client_key, :ca_file
+    attr_accessor :client_id, :secret,
+      :ac_url, :client_cert,
+      :client_key, :ca_file,
+      :ca_path
 
     def ac_url
     	@ac_url ||= "http://demo.cassia.pro"
