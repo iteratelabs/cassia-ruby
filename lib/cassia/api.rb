@@ -29,9 +29,10 @@ module Cassia
         faraday.response :logger, Cassia.logger, bodies: true
         faraday.response :json, :content_type => /\bjson$/
         faraday.adapter Faraday.default_adapter
-        faraday.ssl.client_cert = OpenSSL::X509::Certificate.new(client_cert )if client_cert
+        faraday.ssl.client_cert = OpenSSL::X509::Certificate.new(client_cert)if client_cert
         faraday.ssl.client_key = OpenSSL::PKey::RSA.new(client_key) if client_key
         faraday.ssl.ca_file = ca_file if ca_file
+        faraday.ssl.ca_path = ca_path if ca_path
       end
     end
 
@@ -49,6 +50,10 @@ module Cassia
 
     def ca_file
       Cassia.configuration.ca_file
+    end
+
+    def ca_path
+      Cassia.configuration.ca_path
     end
   end
 end
