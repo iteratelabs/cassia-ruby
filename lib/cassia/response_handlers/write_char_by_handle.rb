@@ -20,7 +20,7 @@ module Cassia
 
       def handle_success
         device = @router.connected_devices.detect {|device| device.mac == @device_mac}
-        char = device.characteristics.detect {|char| char.handle == @handle}
+        char = device.characteristics.detect {|char| char.handle == @handle || !char.descriptors.detect {|d| d.handle == @handle }.nil? }
         if char
           if @value == "0100"
             char.notification_on = true
