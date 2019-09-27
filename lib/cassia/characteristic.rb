@@ -4,7 +4,7 @@ module Cassia
     attribute :uuid, String
     attribute :properties, Integer
     attribute :handle, Integer
-    attribute :descriptors, Array
+    attribute :descriptors, Array[Cassia::Descriptor]
     attribute :notification_on, Boolean
 
     def ==(other)
