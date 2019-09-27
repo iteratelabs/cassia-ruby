@@ -34,8 +34,7 @@ module Cassia
       end
 
       def handle_failure(response)
-        @access_controller.error = JSON.parse(response.body)['error']
-        @access_controller.error_description = JSON.parse(response.body)['error_description']
+        @access_controller.error = response.body
       end
     end
   end

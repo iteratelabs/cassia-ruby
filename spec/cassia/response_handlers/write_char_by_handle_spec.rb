@@ -57,13 +57,13 @@ RSpec.describe Cassia::ResponseHandlers::WriteCharByHandle do
       it "sets the error on the access controller" do
         access_controller = Cassia::AccessController.new
         router = Cassia::Router.new(mac: "CC:1B:E0:E0:F1:E8")
-        response = build_response(status: 500, body: {error: 'Error message'}.to_json)
+        response = build_response(status: 500, body: 'device disconnect')
 
         response_handler = described_class.new(access_controller, router: router, device_mac: "F6:12:3D:BD:DE:44", handle: 100, value: "32" )
 
         result = response_handler.handle(response)
 
-        expect(access_controller.error). to eq('Error message')
+        expect(access_controller.error). to eq('device disconnect')
       end
     end
   end
