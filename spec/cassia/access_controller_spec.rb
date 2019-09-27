@@ -424,7 +424,8 @@ RSpec.describe Cassia::AccessController do
         access_controller.discover_descriptor_of_char(router: router, device_mac: "F6:12:3D:BD:DE:44", char_uuid: "00002a00-0000-1000-8000-00805f9b34fb")
 
         char = access_controller.connected_devices[0].characteristics.detect {|char| char.uuid == "00002a00-0000-1000-8000-00805f9b34fb"}
-        expect(char.descriptors).to eq [{"handle"=>3, "uuid"=>"00002a00-0000-1000-8000-00805f9b34fb"}]
+        descriptor = Cassia::Descriptor.new(handle: 3, uuid: "00002a00-0000-1000-8000-00805f9b34fb")
+        expect(char.descriptors).to eq [descriptor]
       end
     end
 
