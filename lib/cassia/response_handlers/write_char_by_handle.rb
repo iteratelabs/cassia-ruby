@@ -10,6 +10,15 @@ module Cassia
       end
 
       def handle(response)
+        if response.success?
+          return handle_success
+        else
+          handle_failure(response)
+        end
+        response.success?
+      end
+
+      def handle_success
         device = @router.connected_devices.detect {|device| device.mac == @device_mac}
         char = device.characteristics.detect {|char| char.handle == @handle}
         if char
@@ -22,6 +31,11 @@ module Cassia
           @access_controller.error = "Characteristic With Given Handle Not Found"
         end
         !(char.nil?)
+      end
+
+      def handle_failure(response)
+        @access_controller.error = JSON.parse(response.body)['error']
+        @access_controller.error_description = JSON.parse(response.body)['error_description']
       end
     end
   end
