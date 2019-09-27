@@ -30,7 +30,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "ld-eventsource"
 
   spec.add_development_dependency "bundler", "~> 2.0"
-  spec.add_development_dependency "rake", "~> 12.3"
+  spec.add_development_dependency "rake", "~> 13.0"
   spec.add_development_dependency "rspec"
   spec.add_development_dependency "pry"
   spec.add_development_dependency "dotenv"
