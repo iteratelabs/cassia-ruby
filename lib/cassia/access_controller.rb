@@ -3,6 +3,7 @@ module Cassia
     include Virtus.model
 
     attribute :access_token, String
+    attribute :access_token_expiration, Time, default: Time.now.getutc + 100 # default for tests when we pass in access token
     attribute :error, String
     attribute :error_description, String
     attribute :autoselect_switch, Integer, default: 0
@@ -11,7 +12,8 @@ module Cassia
     attribute :sse
 
     def get_token
-      Cassia::Requests::GetToken.new(self).perform
+      Cassia::Requests::GetToken.new(self).perform if access_token.nil? || Time.now.getutc > access_token_expiration
+      access_token
     end
 
     def get_all_routers_status
@@ -89,7 +91,7 @@ module Cassia
     def discover_all_services_and_chars(router: , device_mac: )
       Cassia::Requests::DiscoverAllServicesAndChars.new(self, router: router, device_mac: device_mac).perform
     end
-    
+
     def write_char_by_handle(router: , device_mac:, handle: , value: )
       Cassia::Requests::WriteCharByHandle.new(self, router: router, device_mac: device_mac, handle: handle, value: value).perform
     end
@@ -97,7 +99,7 @@ module Cassia
     def open_char_notification(router: , device_mac: , handle: )
       Cassia::Requests::WriteCharByHandle.new(self, router: router, device_mac: device_mac, handle: handle, value: "0100").perform
     end
-    
+
     def close_char_notification(router: , device_mac: , handle: )
       Cassia::Requests::WriteCharByHandle.new(self, router: router, device_mac: device_mac, handle: handle, value: "0000").perform
     end

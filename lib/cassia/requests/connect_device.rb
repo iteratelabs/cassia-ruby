@@ -18,20 +18,13 @@ module Cassia
 
       def headers
         {
-          'Authorization' => "Bearer #{access_token}",
+          'Authorization' => "Bearer #{@access_controller.get_token}",
           'Content-Type' => "application/json"
         }
       end
 
       def perform
         Cassia::ResponseHandlers::ConnectDevice.new(@access_controller).handle(Cassia.api.post(self))
-      end
-
-      private
-
-      def access_token
-        @access_controller.get_token if @access_controller.access_token.nil?
-        @access_controller.access_token
       end
     end
   end
