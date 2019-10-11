@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    cassia-ruby (1.0.0)
+    cassia-ruby (1.0.1)
       faraday
       faraday_middleware
       ld-eventsource
