@@ -16,6 +16,26 @@ RSpec.describe Cassia::AccessController do
       end
     end
 
+    context "when the token is expired", vcr: vcr_options do
+      it "gets a new access_token" do
+        access_controller = described_class.new(access_token: 'old_token', access_token_expiration: Time.now.getutc - 30)
+
+        access_controller.get_token
+
+        expect(access_controller.access_token).not_to eq('old_token')
+      end
+    end
+
+    context "when the token is not expired and already exists" do
+      it "returns the current token" do
+        access_controller = described_class.new(access_token: 'current_token', access_token_expiration: Time.now.getutc + 1000)
+
+        access_controller.get_token
+
+        expect(access_controller.access_token).to eq('current_token')
+      end
+    end
+
     vcr_options = { cassette_name: 'access_controller/get_token/failure', record: :new_episodes }
     context "when unsuccessful", vcr: vcr_options do
       it "sets the error and error_description values" do
