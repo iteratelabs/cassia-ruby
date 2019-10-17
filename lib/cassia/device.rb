@@ -10,5 +10,13 @@ module Cassia
     attribute :connectionState, String
     attribute :services, Array[Cassia::Service]
     attribute :characteristics, Array[Cassia::Characteristic]
+
+    def ==(other)
+      return self.mac == other.mac
+    end
+
+    def eql?(other)
+      return self.mac == other.mac
+    end
   end
 end

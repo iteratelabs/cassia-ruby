@@ -7,8 +7,8 @@ module Cassia
     attribute :error, String
     attribute :error_description, String
     attribute :autoselect_switch, Integer, default: 0
-    attribute :connected_devices, Array[Cassia::Device], default: []
-    attribute :routers, Array[Cassia::Router], default: []
+    attribute :connected_devices, Set[Cassia::Device], default: []
+    attribute :routers, Set[Cassia::Router], default: []
     attribute :sse
 
     def get_token
