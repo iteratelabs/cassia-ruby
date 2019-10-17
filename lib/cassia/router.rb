@@ -22,11 +22,19 @@ module Cassia
     attribute :update_progress, Integer
     attribute :container, Hash
     attribute :ap, Hash
-    attribute :connected_devices, Array[Cassia::Device], default: []
+    attribute :connected_devices, Set[Cassia::Device], default: []
     attribute :notification_open, Boolean
     attribute :scanning_on, Boolean
     attribute :connection_state_monitor_on, Boolean
     attribute :ap_state_monitor_on, Boolean
+
+    def ==(other)
+      return self.mac == other.mac
+    end
+
+    def eql?(other)
+      return self.mac == other.mac
+    end
 
     def connect_local(access_controller, device_mac: , type: )
       Cassia::Requests::ConnectLocal.new(access_controller, router: self, device_mac: device_mac, type: type).perform
@@ -67,7 +75,7 @@ module Cassia
     def open_char_notification(access_controller, device_mac: , handle: )
       Cassia::Requests::WriteCharByHandle.new(access_controller, router: self, device_mac: device_mac, handle: handle, value: "0100").perform
     end
-    
+
     def close_char_notification(access_controller, device_mac: , handle: )
       Cassia::Requests::WriteCharByHandle.new(access_controller, router: self, device_mac: device_mac, handle: handle, value: "0000").perform
     end

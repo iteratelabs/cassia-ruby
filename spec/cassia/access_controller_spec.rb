@@ -335,7 +335,7 @@ RSpec.describe Cassia::AccessController do
           service2 = Cassia::Service.new(handle: 10, primary: true, uuid: "00001801-0000-1000-8000-00805f9b34fb")
           service3 = Cassia::Service.new(handle: 11, primary: true, uuid: "6e400001-b5a3-f393-e0a9-e50e24dcca9e")
 
-          expect(access_controller.connected_devices[0].services).to eq([service1, service2, service3])
+          expect(access_controller.connected_devices.first.services).to eq([service1, service2, service3])
         end
       end
 
@@ -372,7 +372,7 @@ RSpec.describe Cassia::AccessController do
         char5 = Cassia::Characteristic.new(uuid: "6e400003-b5a3-f393-e0a9-e50e24dcca9e", handle: 13, properties: 16)
         char6 = Cassia::Characteristic.new(uuid: "6e400002-b5a3-f393-e0a9-e50e24dcca9e", handle: 16, properties: 12)
 
-        expect(access_controller.connected_devices[0].characteristics).to eq [char1, char2, char3, char4, char5, char6]
+        expect(access_controller.connected_devices.first.characteristics).to eq [char1, char2, char3, char4, char5, char6]
       end
     end
 
@@ -409,7 +409,7 @@ RSpec.describe Cassia::AccessController do
         char3 = Cassia::Characteristic.new(uuid: "00002a04-0000-1000-8000-00805f9b34fb", handle: 7, properties: 2)
         char4 = Cassia::Characteristic.new(uuid: "00002aa6-0000-1000-8000-00805f9b34fb", handle: 9, properties: 2)
 
-        expect(access_controller.connected_devices[0].characteristics).to eq [char1, char2, char3, char4]
+        expect(access_controller.connected_devices.first.characteristics).to eq [char1, char2, char3, char4]
       end
     end
 
@@ -443,7 +443,7 @@ RSpec.describe Cassia::AccessController do
 
         access_controller.discover_descriptor_of_char(router: router, device_mac: "F6:12:3D:BD:DE:44", char_uuid: "00002a00-0000-1000-8000-00805f9b34fb")
 
-        char = access_controller.connected_devices[0].characteristics.detect {|char| char.uuid == "00002a00-0000-1000-8000-00805f9b34fb"}
+        char = access_controller.connected_devices.first.characteristics.detect {|char| char.uuid == "00002a00-0000-1000-8000-00805f9b34fb"}
         descriptor = Cassia::Descriptor.new(handle: 3, uuid: "00002a00-0000-1000-8000-00805f9b34fb")
         expect(char.descriptors).to eq [descriptor]
       end
@@ -485,8 +485,8 @@ RSpec.describe Cassia::AccessController do
         char6 = Cassia::Characteristic.new(uuid: "6e400002-b5a3-f393-e0a9-e50e24dcca9e", handle: 16, properties: 12, descriptors: [{"handle"=>16, "uuid"=>"6e400002-b5a3-f393-e0a9-e50e24dcca9e"}])
         service1 = Cassia::Service.new(uuid: "00001800-0000-1000-8000-00805f9b34fb", primary: true, characteristics: [char1, char2, char3, char4], handle: 1)
 
-        expect(access_controller.connected_devices[0].characteristics).to eq [char1, char2, char3, char4, char5, char6]
-        expect(access_controller.connected_devices[0].services).to include service1
+        expect(access_controller.connected_devices.first.characteristics).to eq [char1, char2, char3, char4, char5, char6]
+        expect(access_controller.connected_devices.first.services).to include service1
       end
     end
 
@@ -518,7 +518,7 @@ RSpec.describe Cassia::AccessController do
 
         access_controller.write_char_by_handle(router: router, device_mac: "F6:12:3D:BD:DE:44", handle: 3, value: "0100")
 
-        char = access_controller.connected_devices[0].characteristics.detect {|char| char.handle == 3}
+        char = access_controller.connected_devices.first.characteristics.detect {|char| char.handle == 3}
         expect(char.notification_on).to eq true
       end
 
@@ -532,7 +532,7 @@ RSpec.describe Cassia::AccessController do
 
         access_controller.write_char_by_handle(router: router, device_mac: "F6:12:3D:BD:DE:44", handle: 3, value: "0000")
 
-        char = access_controller.connected_devices[0].characteristics.detect {|char| char.handle == 3}
+        char = access_controller.connected_devices.first.characteristics.detect {|char| char.handle == 3}
         expect(char.notification_on).to eq false
       end
     end
